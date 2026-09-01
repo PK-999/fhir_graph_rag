@@ -1,0 +1,3204 @@
+{
+  "resourceType": "Bundle",
+  "id": "bundle-p-000838",
+  "type": "transaction",
+  "entry": [
+    {
+      "fullUrl": "Patient/p-000838",
+      "resource": {
+        "resourceType": "Patient",
+        "id": "p-000838",
+        "name": [
+          {
+            "use": "official",
+            "family": "Scott",
+            "given": [
+              "Carol"
+            ]
+          }
+        ],
+        "gender": "female",
+        "birthDate": "1985-02-24",
+        "address": [
+          {
+            "use": "home",
+            "line": [
+              "9073 Lake Dr"
+            ],
+            "city": "Miami",
+            "state": "FL",
+            "postalCode": "73450",
+            "country": "US"
+          }
+        ],
+        "telecom": [
+          {
+            "system": "phone",
+            "value": "(213) 688-7513",
+            "use": "home"
+          },
+          {
+            "system": "email",
+            "value": "carol.scott91@example.com"
+          }
+        ]
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Patient/p-000838"
+      }
+    },
+    {
+      "fullUrl": "Encounter/p-000838-e-0001",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "p-000838-e-0001",
+        "status": "finished",
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "185347001",
+                "display": "Encounter for problem"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "participant": [
+          {
+            "individual": {
+              "reference": "Practitioner/pract-0059",
+              "display": "Dr. Karen Kumar"
+            }
+          }
+        ],
+        "period": {
+          "start": "2021-10-14T17:13:00Z",
+          "end": "2021-10-14T21:13:00Z"
+        },
+        "serviceProvider": {
+          "reference": "Organization/org-0006",
+          "display": "Miami University Hospital"
+        },
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "EMER",
+          "display": "emergency"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Encounter/p-000838-e-0001"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0001",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0001",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            }
+          ],
+          "text": "Body weight"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0001"
+        },
+        "effectiveDateTime": "2021-10-14T17:13:00Z",
+        "valueQuantity": {
+          "value": 79.8,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0001"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0002",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0002",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Heart rate"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0001"
+        },
+        "effectiveDateTime": "2021-10-14T17:13:00Z",
+        "valueQuantity": {
+          "value": 72.0,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0002"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0003",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0003",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            }
+          ],
+          "text": "Body temperature"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0001"
+        },
+        "effectiveDateTime": "2021-10-14T17:13:00Z",
+        "valueQuantity": {
+          "value": 36.8,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0003"
+      }
+    },
+    {
+      "fullUrl": "Condition/p-000838-c-0001",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "p-000838-c-0001",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ],
+          "text": "Active"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "confirmed",
+              "display": "Confirmed"
+            }
+          ],
+          "text": "Confirmed"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "77386006",
+              "display": "Patient currently pregnant"
+            }
+          ],
+          "text": "Patient currently pregnant"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0001"
+        },
+        "onsetDateTime": "2021-10-14T17:13:00Z",
+        "recordedDate": "2021-10-14T17:13:00Z"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Condition/p-000838-c-0001"
+      }
+    },
+    {
+      "fullUrl": "Condition/p-000838-c-0002",
+      "resource": {
+        "resourceType": "Condition",
+        "id": "p-000838-c-0002",
+        "clinicalStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+              "code": "active",
+              "display": "Active"
+            }
+          ],
+          "text": "Active"
+        },
+        "verificationStatus": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+              "code": "confirmed",
+              "display": "Confirmed"
+            }
+          ],
+          "text": "Confirmed"
+        },
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "195967001",
+              "display": "Asthma"
+            }
+          ],
+          "text": "Asthma"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0001"
+        },
+        "onsetDateTime": "2021-10-14T17:13:00Z",
+        "recordedDate": "2021-10-14T17:13:00Z"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Condition/p-000838-c-0002"
+      }
+    },
+    {
+      "fullUrl": "MedicationRequest/p-000838-mr-0001",
+      "resource": {
+        "resourceType": "MedicationRequest",
+        "id": "p-000838-mr-0001",
+        "status": "active",
+        "intent": "order",
+        "medicationCodeableConcept": {
+          "coding": [
+            {
+              "system": "http://www.nlm.nih.gov/research/umls/rxnorm",
+              "code": "2123111",
+              "display": "Albuterol 90 MCG/ACTUAT Inhaler"
+            }
+          ],
+          "text": "Albuterol 90 MCG/ACTUAT Inhaler"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0001"
+        },
+        "authoredOn": "2021-10-14T17:13:00Z",
+        "requester": {
+          "reference": "Practitioner/pract-0059",
+          "display": "Dr. Karen Kumar"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "MedicationRequest/p-000838-mr-0001"
+      }
+    },
+    {
+      "fullUrl": "Encounter/p-000838-e-0002",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "p-000838-e-0002",
+        "status": "finished",
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "185347001",
+                "display": "Encounter for problem"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "participant": [
+          {
+            "individual": {
+              "reference": "Practitioner/pract-0052",
+              "display": "Dr. David Diaz"
+            }
+          }
+        ],
+        "period": {
+          "start": "2022-06-23T08:08:00Z",
+          "end": "2022-06-25T09:08:00Z"
+        },
+        "serviceProvider": {
+          "reference": "Organization/org-0002",
+          "display": "Portland Medical Center"
+        },
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "IMP",
+          "display": "inpatient encounter"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Encounter/p-000838-e-0002"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0004",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0004",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            }
+          ],
+          "text": "Body weight"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0002"
+        },
+        "effectiveDateTime": "2022-06-23T08:08:00Z",
+        "valueQuantity": {
+          "value": 92.9,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0004"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0005",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0005",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Heart rate"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0002"
+        },
+        "effectiveDateTime": "2022-06-23T08:08:00Z",
+        "valueQuantity": {
+          "value": 76.0,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0005"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0006",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0006",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            }
+          ],
+          "text": "Body temperature"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0002"
+        },
+        "effectiveDateTime": "2022-06-23T08:08:00Z",
+        "valueQuantity": {
+          "value": 36.7,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0006"
+      }
+    },
+    {
+      "fullUrl": "Encounter/p-000838-e-0003",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "p-000838-e-0003",
+        "status": "finished",
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "185347001",
+                "display": "Encounter for problem"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "participant": [
+          {
+            "individual": {
+              "reference": "Practitioner/pract-0045",
+              "display": "Dr. Uma Ueda"
+            }
+          }
+        ],
+        "period": {
+          "start": "2022-08-07T08:23:00Z",
+          "end": "2022-08-07T13:23:00Z"
+        },
+        "serviceProvider": {
+          "reference": "Organization/org-0006",
+          "display": "Miami University Hospital"
+        },
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "EMER",
+          "display": "emergency"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Encounter/p-000838-e-0003"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0007",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0007",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            }
+          ],
+          "text": "Body weight"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0003"
+        },
+        "effectiveDateTime": "2022-08-07T08:23:00Z",
+        "valueQuantity": {
+          "value": 85.6,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0007"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0008",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0008",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Heart rate"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0003"
+        },
+        "effectiveDateTime": "2022-08-07T08:23:00Z",
+        "valueQuantity": {
+          "value": 95.0,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0008"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0009",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0009",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            }
+          ],
+          "text": "Body temperature"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0003"
+        },
+        "effectiveDateTime": "2022-08-07T08:23:00Z",
+        "valueQuantity": {
+          "value": 37.2,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0009"
+      }
+    },
+    {
+      "fullUrl": "Encounter/p-000838-e-0004",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "p-000838-e-0004",
+        "status": "finished",
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "185347001",
+                "display": "Encounter for problem"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "participant": [
+          {
+            "individual": {
+              "reference": "Practitioner/pract-0063",
+              "display": "Dr. Olivia O'Brien"
+            }
+          }
+        ],
+        "period": {
+          "start": "2022-11-13T15:05:00Z",
+          "end": "2022-11-13T17:05:00Z"
+        },
+        "serviceProvider": {
+          "reference": "Organization/org-0001",
+          "display": "Springfield General Hospital"
+        },
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "EMER",
+          "display": "emergency"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Encounter/p-000838-e-0004"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0010",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0010",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            }
+          ],
+          "text": "Body weight"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0004"
+        },
+        "effectiveDateTime": "2022-11-13T15:05:00Z",
+        "valueQuantity": {
+          "value": 74.6,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0010"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0011",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0011",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Heart rate"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0004"
+        },
+        "effectiveDateTime": "2022-11-13T15:05:00Z",
+        "valueQuantity": {
+          "value": 68.0,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0011"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0012",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0012",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            }
+          ],
+          "text": "Body temperature"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0004"
+        },
+        "effectiveDateTime": "2022-11-13T15:05:00Z",
+        "valueQuantity": {
+          "value": 36.9,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0012"
+      }
+    },
+    {
+      "fullUrl": "Procedure/p-000838-proc-0001",
+      "resource": {
+        "resourceType": "Procedure",
+        "id": "p-000838-proc-0001",
+        "status": "completed",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "16310003",
+              "display": "Diagnostic ultrasonography (procedure)"
+            }
+          ],
+          "text": "Diagnostic ultrasonography (procedure)"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0004"
+        },
+        "performedDateTime": "2022-11-13T15:05:00Z"
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Procedure/p-000838-proc-0001"
+      }
+    },
+    {
+      "fullUrl": "DiagnosticReport/p-000838-dr-0001",
+      "resource": {
+        "resourceType": "DiagnosticReport",
+        "id": "p-000838-dr-0001",
+        "status": "final",
+        "code": {
+          "coding": [
+            {
+              "system": "http://snomed.info/sct",
+              "code": "16310003",
+              "display": "Diagnostic ultrasonography (procedure)"
+            }
+          ],
+          "text": "Diagnostic ultrasonography (procedure)"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0004"
+        },
+        "effectiveDateTime": "2022-11-13T15:05:00Z",
+        "issued": "2022-11-13T15:05:00Z",
+        "conclusion": "Normal fetal development."
+      },
+      "request": {
+        "method": "PUT",
+        "url": "DiagnosticReport/p-000838-dr-0001"
+      }
+    },
+    {
+      "fullUrl": "Encounter/p-000838-e-0005",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "p-000838-e-0005",
+        "status": "finished",
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "185347001",
+                "display": "Encounter for problem"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "participant": [
+          {
+            "individual": {
+              "reference": "Practitioner/pract-0068",
+              "display": "Dr. Tina Turner"
+            }
+          }
+        ],
+        "period": {
+          "start": "2023-02-13T13:50:00Z",
+          "end": "2023-02-16T06:50:00Z"
+        },
+        "serviceProvider": {
+          "reference": "Organization/org-0005",
+          "display": "Seattle Mercy Hospital"
+        },
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "ACUTE",
+          "display": "inpatient acute"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Encounter/p-000838-e-0005"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0013",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0013",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            }
+          ],
+          "text": "Body weight"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0005"
+        },
+        "effectiveDateTime": "2023-02-13T13:50:00Z",
+        "valueQuantity": {
+          "value": 73.4,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0013"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0014",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0014",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Heart rate"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0005"
+        },
+        "effectiveDateTime": "2023-02-13T13:50:00Z",
+        "valueQuantity": {
+          "value": 60.0,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0014"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0015",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0015",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            }
+          ],
+          "text": "Body temperature"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0005"
+        },
+        "effectiveDateTime": "2023-02-13T13:50:00Z",
+        "valueQuantity": {
+          "value": 36.4,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0015"
+      }
+    },
+    {
+      "fullUrl": "Encounter/p-000838-e-0006",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "p-000838-e-0006",
+        "status": "finished",
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "185347001",
+                "display": "Encounter for problem"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "participant": [
+          {
+            "individual": {
+              "reference": "Practitioner/pract-0013",
+              "display": "Dr. Maria Mitchell"
+            }
+          }
+        ],
+        "period": {
+          "start": "2023-06-16T07:35:00Z",
+          "end": "2023-06-18T23:35:00Z"
+        },
+        "serviceProvider": {
+          "reference": "Organization/org-0006",
+          "display": "Miami University Hospital"
+        },
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "IMP",
+          "display": "inpatient encounter"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Encounter/p-000838-e-0006"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0016",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0016",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            }
+          ],
+          "text": "Body weight"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0006"
+        },
+        "effectiveDateTime": "2023-06-16T07:35:00Z",
+        "valueQuantity": {
+          "value": 69.0,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0016"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0017",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0017",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Heart rate"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0006"
+        },
+        "effectiveDateTime": "2023-06-16T07:35:00Z",
+        "valueQuantity": {
+          "value": 67.0,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0017"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0018",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0018",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            }
+          ],
+          "text": "Body temperature"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0006"
+        },
+        "effectiveDateTime": "2023-06-16T07:35:00Z",
+        "valueQuantity": {
+          "value": 36.6,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0018"
+      }
+    },
+    {
+      "fullUrl": "Encounter/p-000838-e-0007",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "p-000838-e-0007",
+        "status": "finished",
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "185347001",
+                "display": "Encounter for problem"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "participant": [
+          {
+            "individual": {
+              "reference": "Practitioner/pract-0075",
+              "display": "Dr. Carol Chen"
+            }
+          }
+        ],
+        "period": {
+          "start": "2023-06-20T15:53:00Z",
+          "end": "2023-06-20T17:53:00Z"
+        },
+        "serviceProvider": {
+          "reference": "Organization/org-0003",
+          "display": "Austin Community Health"
+        },
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "AMB",
+          "display": "ambulatory"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Encounter/p-000838-e-0007"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0019",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0019",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            }
+          ],
+          "text": "Body weight"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0007"
+        },
+        "effectiveDateTime": "2023-06-20T15:53:00Z",
+        "valueQuantity": {
+          "value": 84.9,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0019"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0020",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0020",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Heart rate"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0007"
+        },
+        "effectiveDateTime": "2023-06-20T15:53:00Z",
+        "valueQuantity": {
+          "value": 65.0,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0020"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0021",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0021",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            }
+          ],
+          "text": "Body temperature"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0007"
+        },
+        "effectiveDateTime": "2023-06-20T15:53:00Z",
+        "valueQuantity": {
+          "value": 36.4,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0021"
+      }
+    },
+    {
+      "fullUrl": "Encounter/p-000838-e-0008",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "p-000838-e-0008",
+        "status": "finished",
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "185347001",
+                "display": "Encounter for problem"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "participant": [
+          {
+            "individual": {
+              "reference": "Practitioner/pract-0004",
+              "display": "Dr. David Diaz"
+            }
+          }
+        ],
+        "period": {
+          "start": "2023-06-24T17:01:00Z",
+          "end": "2023-06-24T17:01:00Z"
+        },
+        "serviceProvider": {
+          "reference": "Organization/org-0002",
+          "display": "Portland Medical Center"
+        },
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "AMB",
+          "display": "ambulatory"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Encounter/p-000838-e-0008"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0022",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0022",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            }
+          ],
+          "text": "Body weight"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0008"
+        },
+        "effectiveDateTime": "2023-06-24T17:01:00Z",
+        "valueQuantity": {
+          "value": 91.6,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0022"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0023",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0023",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Heart rate"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0008"
+        },
+        "effectiveDateTime": "2023-06-24T17:01:00Z",
+        "valueQuantity": {
+          "value": 66.0,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0023"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0024",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0024",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            }
+          ],
+          "text": "Body temperature"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0008"
+        },
+        "effectiveDateTime": "2023-06-24T17:01:00Z",
+        "valueQuantity": {
+          "value": 37.2,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0024"
+      }
+    },
+    {
+      "fullUrl": "Encounter/p-000838-e-0009",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "p-000838-e-0009",
+        "status": "finished",
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "185347001",
+                "display": "Encounter for problem"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "participant": [
+          {
+            "individual": {
+              "reference": "Practitioner/pract-0033",
+              "display": "Dr. Irene Ibrahim"
+            }
+          }
+        ],
+        "period": {
+          "start": "2023-09-18T07:29:00Z",
+          "end": "2023-09-18T08:29:00Z"
+        },
+        "serviceProvider": {
+          "reference": "Organization/org-0007",
+          "display": "Boston Children's Medical Center"
+        },
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "AMB",
+          "display": "ambulatory"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Encounter/p-000838-e-0009"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0025",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0025",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            }
+          ],
+          "text": "Body weight"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0009"
+        },
+        "effectiveDateTime": "2023-09-18T07:29:00Z",
+        "valueQuantity": {
+          "value": 76.6,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0025"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0026",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0026",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Heart rate"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0009"
+        },
+        "effectiveDateTime": "2023-09-18T07:29:00Z",
+        "valueQuantity": {
+          "value": 88.0,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0026"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0027",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0027",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            }
+          ],
+          "text": "Body temperature"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0009"
+        },
+        "effectiveDateTime": "2023-09-18T07:29:00Z",
+        "valueQuantity": {
+          "value": 36.6,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0027"
+      }
+    },
+    {
+      "fullUrl": "Encounter/p-000838-e-0010",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "p-000838-e-0010",
+        "status": "finished",
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "185347001",
+                "display": "Encounter for problem"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "participant": [
+          {
+            "individual": {
+              "reference": "Practitioner/pract-0002",
+              "display": "Dr. Bob Baker"
+            }
+          }
+        ],
+        "period": {
+          "start": "2023-09-30T09:29:00Z",
+          "end": "2023-09-30T09:29:00Z"
+        },
+        "serviceProvider": {
+          "reference": "Organization/org-0006",
+          "display": "Miami University Hospital"
+        },
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "URGNT",
+          "display": "urgent"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Encounter/p-000838-e-0010"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0028",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0028",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            }
+          ],
+          "text": "Body weight"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0010"
+        },
+        "effectiveDateTime": "2023-09-30T09:29:00Z",
+        "valueQuantity": {
+          "value": 56.2,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0028"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0029",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0029",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Heart rate"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0010"
+        },
+        "effectiveDateTime": "2023-09-30T09:29:00Z",
+        "valueQuantity": {
+          "value": 62.0,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0029"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0030",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0030",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            }
+          ],
+          "text": "Body temperature"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0010"
+        },
+        "effectiveDateTime": "2023-09-30T09:29:00Z",
+        "valueQuantity": {
+          "value": 37.1,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0030"
+      }
+    },
+    {
+      "fullUrl": "Encounter/p-000838-e-0011",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "p-000838-e-0011",
+        "status": "finished",
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "185347001",
+                "display": "Encounter for problem"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "participant": [
+          {
+            "individual": {
+              "reference": "Practitioner/pract-0003",
+              "display": "Dr. Carol Chen"
+            }
+          }
+        ],
+        "period": {
+          "start": "2024-04-29T10:59:00Z",
+          "end": "2024-04-29T15:59:00Z"
+        },
+        "serviceProvider": {
+          "reference": "Organization/org-0006",
+          "display": "Miami University Hospital"
+        },
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "EMER",
+          "display": "emergency"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Encounter/p-000838-e-0011"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0031",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0031",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            }
+          ],
+          "text": "Body weight"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0011"
+        },
+        "effectiveDateTime": "2024-04-29T10:59:00Z",
+        "valueQuantity": {
+          "value": 67.8,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0031"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0032",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0032",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Heart rate"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0011"
+        },
+        "effectiveDateTime": "2024-04-29T10:59:00Z",
+        "valueQuantity": {
+          "value": 91.0,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0032"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0033",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0033",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            }
+          ],
+          "text": "Body temperature"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0011"
+        },
+        "effectiveDateTime": "2024-04-29T10:59:00Z",
+        "valueQuantity": {
+          "value": 36.6,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0033"
+      }
+    },
+    {
+      "fullUrl": "Encounter/p-000838-e-0012",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "p-000838-e-0012",
+        "status": "finished",
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "185347001",
+                "display": "Encounter for problem"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "participant": [
+          {
+            "individual": {
+              "reference": "Practitioner/pract-0017",
+              "display": "Dr. Quinn Quinn"
+            }
+          }
+        ],
+        "period": {
+          "start": "2024-07-06T10:11:00Z",
+          "end": "2024-07-06T10:11:00Z"
+        },
+        "serviceProvider": {
+          "reference": "Organization/org-0003",
+          "display": "Austin Community Health"
+        },
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "AMB",
+          "display": "ambulatory"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Encounter/p-000838-e-0012"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0034",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0034",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            }
+          ],
+          "text": "Body weight"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0012"
+        },
+        "effectiveDateTime": "2024-07-06T10:11:00Z",
+        "valueQuantity": {
+          "value": 70.6,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0034"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0035",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0035",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Heart rate"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0012"
+        },
+        "effectiveDateTime": "2024-07-06T10:11:00Z",
+        "valueQuantity": {
+          "value": 93.0,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0035"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0036",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0036",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            }
+          ],
+          "text": "Body temperature"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0012"
+        },
+        "effectiveDateTime": "2024-07-06T10:11:00Z",
+        "valueQuantity": {
+          "value": 36.9,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0036"
+      }
+    },
+    {
+      "fullUrl": "Encounter/p-000838-e-0013",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "p-000838-e-0013",
+        "status": "finished",
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "185347001",
+                "display": "Encounter for problem"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "participant": [
+          {
+            "individual": {
+              "reference": "Practitioner/pract-0008",
+              "display": "Dr. Henry Hayes"
+            }
+          }
+        ],
+        "period": {
+          "start": "2024-09-12T10:57:00Z",
+          "end": "2024-09-12T11:57:00Z"
+        },
+        "serviceProvider": {
+          "reference": "Organization/org-0003",
+          "display": "Austin Community Health"
+        },
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "AMB",
+          "display": "ambulatory"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Encounter/p-000838-e-0013"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0037",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0037",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            }
+          ],
+          "text": "Body weight"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0013"
+        },
+        "effectiveDateTime": "2024-09-12T10:57:00Z",
+        "valueQuantity": {
+          "value": 64.4,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0037"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0038",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0038",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Heart rate"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0013"
+        },
+        "effectiveDateTime": "2024-09-12T10:57:00Z",
+        "valueQuantity": {
+          "value": 69.0,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0038"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0039",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0039",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            }
+          ],
+          "text": "Body temperature"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0013"
+        },
+        "effectiveDateTime": "2024-09-12T10:57:00Z",
+        "valueQuantity": {
+          "value": 37.3,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0039"
+      }
+    },
+    {
+      "fullUrl": "Encounter/p-000838-e-0014",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "p-000838-e-0014",
+        "status": "finished",
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "185347001",
+                "display": "Encounter for problem"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "participant": [
+          {
+            "individual": {
+              "reference": "Practitioner/pract-0002",
+              "display": "Dr. Bob Baker"
+            }
+          }
+        ],
+        "period": {
+          "start": "2026-02-01T08:05:00Z",
+          "end": "2026-02-03T23:05:00Z"
+        },
+        "serviceProvider": {
+          "reference": "Organization/org-0002",
+          "display": "Portland Medical Center"
+        },
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "IMP",
+          "display": "inpatient encounter"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Encounter/p-000838-e-0014"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0040",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0040",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            }
+          ],
+          "text": "Body weight"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0014"
+        },
+        "effectiveDateTime": "2026-02-01T08:05:00Z",
+        "valueQuantity": {
+          "value": 94.9,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0040"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0041",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0041",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Heart rate"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0014"
+        },
+        "effectiveDateTime": "2026-02-01T08:05:00Z",
+        "valueQuantity": {
+          "value": 64.0,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0041"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0042",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0042",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            }
+          ],
+          "text": "Body temperature"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0014"
+        },
+        "effectiveDateTime": "2026-02-01T08:05:00Z",
+        "valueQuantity": {
+          "value": 36.8,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0042"
+      }
+    },
+    {
+      "fullUrl": "Encounter/p-000838-e-0015",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "p-000838-e-0015",
+        "status": "finished",
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "185347001",
+                "display": "Encounter for problem"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "participant": [
+          {
+            "individual": {
+              "reference": "Practitioner/pract-0028",
+              "display": "Dr. David Diaz"
+            }
+          }
+        ],
+        "period": {
+          "start": "2026-02-07T17:16:00Z",
+          "end": "2026-02-07T18:16:00Z"
+        },
+        "serviceProvider": {
+          "reference": "Organization/org-0005",
+          "display": "Seattle Mercy Hospital"
+        },
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "WELLNESS",
+          "display": "wellness"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Encounter/p-000838-e-0015"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0043",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0043",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            }
+          ],
+          "text": "Body weight"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0015"
+        },
+        "effectiveDateTime": "2026-02-07T17:16:00Z",
+        "valueQuantity": {
+          "value": 69.5,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0043"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0044",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0044",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Heart rate"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0015"
+        },
+        "effectiveDateTime": "2026-02-07T17:16:00Z",
+        "valueQuantity": {
+          "value": 87.0,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0044"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0045",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0045",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            }
+          ],
+          "text": "Body temperature"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0015"
+        },
+        "effectiveDateTime": "2026-02-07T17:16:00Z",
+        "valueQuantity": {
+          "value": 37.2,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0045"
+      }
+    },
+    {
+      "fullUrl": "Encounter/p-000838-e-0016",
+      "resource": {
+        "resourceType": "Encounter",
+        "id": "p-000838-e-0016",
+        "status": "finished",
+        "type": [
+          {
+            "coding": [
+              {
+                "system": "http://snomed.info/sct",
+                "code": "185347001",
+                "display": "Encounter for problem"
+              }
+            ]
+          }
+        ],
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "participant": [
+          {
+            "individual": {
+              "reference": "Practitioner/pract-0074",
+              "display": "Dr. Bob Baker"
+            }
+          }
+        ],
+        "period": {
+          "start": "2026-02-12T12:16:00Z",
+          "end": "2026-02-14T04:16:00Z"
+        },
+        "serviceProvider": {
+          "reference": "Organization/org-0007",
+          "display": "Boston Children's Medical Center"
+        },
+        "class": {
+          "system": "http://terminology.hl7.org/CodeSystem/v3-ActCode",
+          "code": "ACUTE",
+          "display": "inpatient acute"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Encounter/p-000838-e-0016"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0046",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0046",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "29463-7",
+              "display": "Body weight"
+            }
+          ],
+          "text": "Body weight"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0016"
+        },
+        "effectiveDateTime": "2026-02-12T12:16:00Z",
+        "valueQuantity": {
+          "value": 76.9,
+          "unit": "kg",
+          "system": "http://unitsofmeasure.org",
+          "code": "kg"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0046"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0047",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0047",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8867-4",
+              "display": "Heart rate"
+            }
+          ],
+          "text": "Heart rate"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0016"
+        },
+        "effectiveDateTime": "2026-02-12T12:16:00Z",
+        "valueQuantity": {
+          "value": 67.0,
+          "unit": "/min",
+          "system": "http://unitsofmeasure.org",
+          "code": "/min"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0047"
+      }
+    },
+    {
+      "fullUrl": "Observation/p-000838-o-0048",
+      "resource": {
+        "resourceType": "Observation",
+        "id": "p-000838-o-0048",
+        "status": "final",
+        "category": [
+          {
+            "coding": [
+              {
+                "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+                "code": "vital-signs",
+                "display": "Vital Signs"
+              }
+            ]
+          }
+        ],
+        "code": {
+          "coding": [
+            {
+              "system": "http://loinc.org",
+              "code": "8310-5",
+              "display": "Body temperature"
+            }
+          ],
+          "text": "Body temperature"
+        },
+        "subject": {
+          "reference": "Patient/p-000838"
+        },
+        "encounter": {
+          "reference": "Encounter/p-000838-e-0016"
+        },
+        "effectiveDateTime": "2026-02-12T12:16:00Z",
+        "valueQuantity": {
+          "value": 37.0,
+          "unit": "Cel",
+          "system": "http://unitsofmeasure.org",
+          "code": "Cel"
+        }
+      },
+      "request": {
+        "method": "PUT",
+        "url": "Observation/p-000838-o-0048"
+      }
+    }
+  ]
+}

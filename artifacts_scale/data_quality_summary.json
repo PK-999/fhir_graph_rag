@@ -1,0 +1,26 @@
+{
+  "seed": 20260830,
+  "patient_count": 1000,
+  "encounter_count": 15118,
+  "resource_counts": {
+    "Organization": 8,
+    "Practitioner": 57,
+    "Patient": 1000,
+    "Encounter": 15118,
+    "Observation": 62024,
+    "Condition": 1384,
+    "MedicationRequest": 768,
+    "DiagnosticReport": 219,
+    "Procedure": 43
+  },
+  "total_resources": 80621,
+  "dangling_references": 0,
+  "duplicate_ids": 0,
+  "reference_count": 174998,
+  "encounters_per_patient": {
+    "min": 10,
+    "max": 20,
+    "mean": 15.1
+  },
+  "validation_failures": []
+}

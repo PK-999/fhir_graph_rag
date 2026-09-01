@@ -1,0 +1,120 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: fhirgraph-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:?POSTGRES_DB required}
+      POSTGRES_USER: ${POSTGRES_USER:?POSTGRES_USER required}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD required}
+    # No host ports by default — only reachable via the internal Compose network.
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-fhirgraph}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  neo4j:
+    image: neo4j:5-community
+    container_name: fhirgraph-neo4j
+    environment:
+      NEO4J_AUTH: ${NEO4J_USER:?NEO4J_USER required}/${NEO4J_PASSWORD:?NEO4J_PASSWORD required}
+      NEO4J_PLUGINS: '["apoc"]'
+    # No host ports by default — only reachable via the internal Compose network.
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+    healthcheck:
+      test: ["CMD", "cypher-shell", "-u", "neo4j", "-p", "${NEO4J_PASSWORD}", "RETURN 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+
+  hapi-fhir:
+    image: hapiproject/hapi:latest
+    container_name: fhirgraph-hapi
+    environment:
+      hapi.fhir.fhir_version: R4
+      hapi.fhir.allow_multiple_delete: "true"
+      hapi.fhir.reuse_cached_search_results_millis: "-1"
+    # No host ports by default — only reachable via the internal Compose network.
+    volumes:
+      - hapi_data:/data/hapi
+    healthcheck:
+      test: ["CMD-SHELL", "curl -f http://localhost:8080/fhir/metadata || exit 1"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+
+  api:
+    build:
+      context: ..
+      dockerfile: apps/api/Dockerfile
+    container_name: fhirgraph-api
+    ports:
+      - "8000:8000"
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: ${POSTGRES_DB:?POSTGRES_DB required}
+      POSTGRES_USER: ${POSTGRES_USER:?POSTGRES_USER required}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD required}
+      NEO4J_URI: bolt://neo4j:7687
+      NEO4J_USER: ${NEO4J_USER:?NEO4J_USER required}
+      NEO4J_PASSWORD: ${NEO4J_PASSWORD:?NEO4J_PASSWORD required}
+      HAPI_FHIR_URL: http://hapi-fhir:8080/fhir
+      API_HOST: 0.0.0.0
+      API_PORT: 8000
+      API_LOG_LEVEL: info
+    depends_on:
+      postgres:
+        condition: service_healthy
+      neo4j:
+        condition: service_healthy
+      hapi-fhir:
+        condition: service_healthy
+
+  web:
+    build:
+      context: ..
+      dockerfile: apps/web/Dockerfile
+    container_name: fhirgraph-web
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://api:8000/api/v1
+    depends_on:
+      - api
+
+  # ── Debug profile ──
+  # Exposes stateful service management ports on localhost for local development.
+  # Usage: docker compose --profile debug up
+  postgres-debug:
+    extends:
+      service: postgres
+    profiles: ["debug"]
+    ports:
+      - "127.0.0.1:5432:5432"
+
+  neo4j-debug:
+    extends:
+      service: neo4j
+    profiles: ["debug"]
+    ports:
+      - "127.0.0.1:7474:7474"
+      - "127.0.0.1:7687:7687"
+
+  hapi-fhir-debug:
+    extends:
+      service: hapi-fhir
+    profiles: ["debug"]
+    ports:
+      - "127.0.0.1:8080:8080"
+
+volumes:
+  pg_data:
+  neo4j_data:
+  neo4j_logs:
+  hapi_data:

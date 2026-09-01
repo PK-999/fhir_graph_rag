@@ -1,0 +1,23 @@
+# Dev overrides: mount source for hot-reload, skip builds for infra-only
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: apps/api/Dockerfile
+      target: dev
+    volumes:
+      - ../apps/api:/app/apps/api
+      - ../libs:/app/libs
+      - ../pipelines:/app/pipelines
+    command: ["uvicorn", "apps.api.app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
+
+  web:
+    build:
+      context: ..
+      dockerfile: apps/web/Dockerfile
+      target: dev
+    volumes:
+      - ../apps/web/src:/app/apps/web/src
+      - ../apps/web/public:/app/apps/web/public
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8000/api/v1

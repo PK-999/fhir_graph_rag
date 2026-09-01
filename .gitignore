@@ -1,0 +1,47 @@
+
+# Python
+
+.venv/
+
+venv/
+
+__pycache__/
+
+*.py[cod]
+
+.pytest_cache/
+
+.mypy_cache/
+
+.ruff_cache/
+
+# Environment / secrets
+
+.env
+
+.env.*
+
+!.env.example
+
+# macOS
+
+.DS_Store
+
+# IDE
+
+.vscode/
+
+.idea/
+
+# Node, if your frontend uses it
+
+node_modules/
+
+dist/
+
+.next/
+
+# Logs
+
+*.log
+
