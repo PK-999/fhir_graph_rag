@@ -1,5 +1,5 @@
 {
-  "verified_at": "2026-10-09T07:40:33.770290+00:00",
+  "verified_at": "2026-10-09T13:03:38.739670+00:00",
   "demo": {
     "patients": 100,
     "seed": 20260830,
@@ -64,6 +64,36 @@
       "hash_scope": "canonical artifact JSON before server-managed metadata",
       "events": [
         {
+          "run_id": "58990912-4f75-4f52-9faa-6fd8e17680a8",
+          "target_system": "neo4j",
+          "canonical_id": "Observation/p-000044-o-0096",
+          "source_artifact": "ndjson/Observation.ndjson",
+          "source_location": "line:2757",
+          "source_line": 2757,
+          "content_sha256": "b274be7ef1b9a7bf159687521d98e86eda12554cee6551a02499bbed2d955de0",
+          "dataset_hash": "901b6d7cc89b097b5034901e934796aee5e020bb289d0036baba0d0b323b0d7e",
+          "transformer_version": "fhirgraph-r4-v2",
+          "target_identity": "bolt://localhost:57687|user=neo4j",
+          "confirmed_stage": "build_graph",
+          "ingested_at": "2026-10-09T13:03:26.154634Z",
+          "run_status": "success"
+        },
+        {
+          "run_id": "58990912-4f75-4f52-9faa-6fd8e17680a8",
+          "target_system": "hapi_fhir",
+          "canonical_id": "Observation/p-000044-o-0096",
+          "source_artifact": "bundles/p-000044.json",
+          "source_location": "entry:114",
+          "source_line": null,
+          "content_sha256": "b274be7ef1b9a7bf159687521d98e86eda12554cee6551a02499bbed2d955de0",
+          "dataset_hash": "901b6d7cc89b097b5034901e934796aee5e020bb289d0036baba0d0b323b0d7e",
+          "transformer_version": "fhirgraph-r4-v2",
+          "target_identity": "http://localhost:58080/fhir",
+          "confirmed_stage": "load_fhir",
+          "ingested_at": "2026-10-09T13:03:20.787296Z",
+          "run_status": "success"
+        },
+        {
           "run_id": "1c61d368-8909-4fd0-87dc-913c25e36b3d",
           "target_system": "neo4j",
           "canonical_id": "Observation/p-000044-o-0096",
@@ -127,5 +157,51 @@
       "note": null
     }
   },
-  "benchmark": null
+  "benchmark": {
+    "status": "pass",
+    "patients": 1000,
+    "resources": 80621,
+    "references": 174998,
+    "evaluation": {
+      "case_count": 33,
+      "passed_case_count": 33,
+      "source_checks": {
+        "failed": 0,
+        "passed": 1670,
+        "total": 1670
+      },
+      "status": "pass",
+      "page_count": 493,
+      "release_asset": {
+        "name": "fhirgraph-evaluation-1000.json.gz",
+        "uncompressed_sha256": "fee92bf0cfc985f9b58051ca4d5ad3d5e374e11d1f15d4763666f91da3da5245",
+        "gzip_sha256": "dec862e425fb840952146098c7606142d31fa93b43d317172ed1249602ba13fd"
+      }
+    },
+    "initial_fresh_pipeline_seconds": 303.318507,
+    "checkpoint_verification_pipeline_seconds": 240.4036,
+    "latency": {
+      "scope": "20 sequential first-page supported questions, local synthetic data, summaries disabled; not a concurrent load test",
+      "sample_count": 20,
+      "p50_ms": 8.235166547819972,
+      "p95_ms": 23.341417079791427,
+      "percentile_method": "p50 median; p95 nearest rank"
+    },
+    "recovery": {
+      "batch_size": 500,
+      "confirmed_batches_after_interrupt": 2,
+      "confirmed_batches_after_resume": 512,
+      "confirmed_batches_at_signal": 2,
+      "interrupted_exit_code": 1,
+      "scope": "SIGINT only the graph child, then resume and exact reconciliation; idempotent replay against the already populated graph, not an empty-store interruption",
+      "status": "pass"
+    },
+    "presentation_lines": [
+      "1,000 patients \u00b7 80,621 FHIR resources / nodes \u00b7 174,998 exact reference edges.",
+      "33 / 33 cases passed across 493 pages; 1,670 distinct live FHIR sources checked.",
+      "Initial fresh pipeline: 303.3s, excluding startup. Verification with existing data/checkpoints: 240.4s.",
+      "20 sequential first-page queries, summaries off: p50 8.2ms / p95 23.3ms. Local workload only.",
+      "Graph child interrupted after 2 confirmed batches; resumed to 512 and reconciled exactly."
+    ]
+  }
 }

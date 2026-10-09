@@ -39,9 +39,28 @@ flowchart TD
 
 Release verification uses an independent raw-NDJSON oracle with complete page traversal and exact live resource checks. Unit regressions exercise adversarial filters, wrong units/statuses, timestamp ties, missing/non-numeric values, source drift, claim rejection, changed checkpoint bindings, interrupted writes and legacy schemas. Live reconciliation checks exact graph identities and references plus per-type HAPI counts.
 
-The 100-patient release has 1,468 encounters, 7,957 resources, 17,130 reference edges and eight passing data-quality rules. All 33 deterministic evaluation cases pass across 79 pages; 246 distinct live sources match. The selected local-model clinical cases pass with 36 live sources checked. The full quality gate includes 438 Python tests, strict types/lint and a production frontend build; 21 controlled Chromium regressions and the real local walkthrough pass.
+The 100-patient release has 1,468 encounters, 7,957 resources, 17,130 reference edges and eight passing data-quality rules. All 33 deterministic evaluation cases pass across 79 pages; 246 distinct live sources match. The selected local-model clinical cases pass with 36 live sources checked. The full quality gate includes 439 Python tests, strict types/lint and a production frontend build; 21 controlled Chromium regressions and the real local walkthrough pass.
 
 See the [recorded walkthrough](../portfolio/dist/assets/walkthrough.mp4), [machine-readable release evidence](evidence/portfolio-release.json) and [benchmark report](evidence/benchmark-1000.json) for measured scale evidence. The benchmark is isolated from the original demo, preserves all volumes, and records exact workload/timing/memory/latency scope. Recovery replays an already populated graph with an interrupted child process; it does not claim interrupted initial empty-store ingestion or store-recreation recovery.
+
+## Measured scale
+
+Both datasets use seed `20260830`. The final 1,000-patient run uses the already registered stores and content-bound checkpoints; the separate initial ingestion record measures the fresh pipeline.
+
+| Measurement | 100-patient demo | 1,000-patient benchmark |
+|---|---:|---:|
+| FHIR resources / graph nodes | 7,957 | 80,621 |
+| Exact reference edges | 17,130 | 174,998 |
+| Passing retrieval cases | 33 / 33 | 33 / 33 |
+| Traversed result pages | 79 | 493 |
+| Distinct live FHIR sources checked | 246 | 1,670 |
+| Initial fresh pipeline, excluding startup | — | 303.3s |
+| Verification pipeline with existing data/checkpoints | — | 240.4s |
+| Sequential API latency p50 / p95 | — | 8.2ms / 23.3ms |
+
+Latency covers 20 local first-page questions with summaries disabled; p50 is the median and p95 uses nearest rank. Docker Desktop provided 10 CPUs and approximately 8GB VM memory on Apple Silicon. Observed working-set peaks were 930.1MiB for HAPI, 817.7MiB for Neo4j and 144.2MiB for the API. These sampled container metrics exclude the host pipeline, evaluator and Ollama, and are not process RSS or concurrent production-load results.
+
+The graph child was interrupted after two confirmed node batches. Resumption retained those confirmations, completed 512 batches, and reconciled every source node and reference. The evaluator's raw oracle is indexed independently by patient so the scale run checks all 33 cases rather than weakening coverage to accommodate runtime.
 
 ## Tradeoffs and future extensions
 

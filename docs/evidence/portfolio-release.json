@@ -1,4 +1,53 @@
 {
+  "benchmark": {
+    "checkpoint_verification_pipeline_seconds": 240.4036,
+    "evaluation": {
+      "case_count": 33,
+      "page_count": 493,
+      "passed_case_count": 33,
+      "release_asset": {
+        "gzip_sha256": "dec862e425fb840952146098c7606142d31fa93b43d317172ed1249602ba13fd",
+        "name": "fhirgraph-evaluation-1000.json.gz",
+        "uncompressed_sha256": "fee92bf0cfc985f9b58051ca4d5ad3d5e374e11d1f15d4763666f91da3da5245"
+      },
+      "source_checks": {
+        "failed": 0,
+        "passed": 1670,
+        "total": 1670
+      },
+      "status": "pass"
+    },
+    "initial_fresh_pipeline_seconds": 303.318507,
+    "initial_ingestion_report": "initial-ingestion-1000.json",
+    "latency": {
+      "p50_ms": 8.235166547819972,
+      "p95_ms": 23.341417079791427,
+      "percentile_method": "p50 median; p95 nearest rank",
+      "sample_count": 20,
+      "scope": "20 sequential first-page supported questions, local synthetic data, summaries disabled; not a concurrent load test"
+    },
+    "patients": 1000,
+    "presentation_lines": [
+      "1,000 patients \u00b7 80,621 FHIR resources / nodes \u00b7 174,998 exact reference edges.",
+      "33 / 33 cases passed across 493 pages; 1,670 distinct live FHIR sources checked.",
+      "Initial fresh pipeline: 303.3s, excluding startup. Verification with existing data/checkpoints: 240.4s.",
+      "20 sequential first-page queries, summaries off: p50 8.2ms / p95 23.3ms. Local workload only.",
+      "Graph child interrupted after 2 confirmed batches; resumed to 512 and reconciled exactly."
+    ],
+    "recovery": {
+      "batch_size": 500,
+      "confirmed_batches_after_interrupt": 2,
+      "confirmed_batches_after_resume": 512,
+      "confirmed_batches_at_signal": 2,
+      "interrupted_exit_code": 1,
+      "scope": "SIGINT only the graph child, then resume and exact reconciliation; idempotent replay against the already populated graph, not an empty-store interruption",
+      "status": "pass"
+    },
+    "references": 174998,
+    "report": "benchmark-1000.json",
+    "resources": 80621,
+    "status": "pass"
+  },
   "dataset": {
     "dangling_references": 0,
     "dataset_hash": "901b6d7cc89b097b5034901e934796aee5e020bb289d0036baba0d0b323b0d7e",
@@ -193,6 +242,36 @@
           "confirmed_stage": "build_graph",
           "content_sha256": "b274be7ef1b9a7bf159687521d98e86eda12554cee6551a02499bbed2d955de0",
           "dataset_hash": "901b6d7cc89b097b5034901e934796aee5e020bb289d0036baba0d0b323b0d7e",
+          "ingested_at": "2026-10-09T13:03:26.154634Z",
+          "run_id": "58990912-4f75-4f52-9faa-6fd8e17680a8",
+          "run_status": "success",
+          "source_artifact": "ndjson/Observation.ndjson",
+          "source_line": 2757,
+          "source_location": "line:2757",
+          "target_identity": "bolt://localhost:57687|user=neo4j",
+          "target_system": "neo4j",
+          "transformer_version": "fhirgraph-r4-v2"
+        },
+        {
+          "canonical_id": "Observation/p-000044-o-0096",
+          "confirmed_stage": "load_fhir",
+          "content_sha256": "b274be7ef1b9a7bf159687521d98e86eda12554cee6551a02499bbed2d955de0",
+          "dataset_hash": "901b6d7cc89b097b5034901e934796aee5e020bb289d0036baba0d0b323b0d7e",
+          "ingested_at": "2026-10-09T13:03:20.787296Z",
+          "run_id": "58990912-4f75-4f52-9faa-6fd8e17680a8",
+          "run_status": "success",
+          "source_artifact": "bundles/p-000044.json",
+          "source_line": null,
+          "source_location": "entry:114",
+          "target_identity": "http://localhost:58080/fhir",
+          "target_system": "hapi_fhir",
+          "transformer_version": "fhirgraph-r4-v2"
+        },
+        {
+          "canonical_id": "Observation/p-000044-o-0096",
+          "confirmed_stage": "build_graph",
+          "content_sha256": "b274be7ef1b9a7bf159687521d98e86eda12554cee6551a02499bbed2d955de0",
+          "dataset_hash": "901b6d7cc89b097b5034901e934796aee5e020bb289d0036baba0d0b323b0d7e",
           "ingested_at": "2026-10-09T07:37:53.503046Z",
           "run_id": "1c61d368-8909-4fd0-87dc-913c25e36b3d",
           "run_status": "success",
@@ -256,10 +335,74 @@
     }
   },
   "pipeline_run": {
-    "completed_at": "2026-10-09 07:37:58.489450+00:00",
-    "run_id": "1c61d368-8909-4fd0-87dc-913c25e36b3d",
-    "started_at": "2026-10-09 07:37:34.785704+00:00",
+    "completed_at": "2026-10-09T13:03:31.621935+00:00",
+    "config_snapshot": {
+      "dataset_hash": "901b6d7cc89b097b5034901e934796aee5e020bb289d0036baba0d0b323b0d7e",
+      "output": "artifacts/release-demo",
+      "patient_count": 100,
+      "seed": 20260830,
+      "stage_timings": {
+        "build_graph": {
+          "completed_at": "2026-10-09T13:03:26.691143+00:00",
+          "elapsed_seconds": 5.33979179081507,
+          "started_at": "2026-10-09T13:03:21.351292+00:00",
+          "status": "success"
+        },
+        "generate": {
+          "completed_at": "2026-10-09T13:03:12.623556+00:00",
+          "elapsed_seconds": 6.149952499894425,
+          "started_at": "2026-10-09T13:03:06.473541+00:00",
+          "status": "success"
+        },
+        "load_fhir": {
+          "completed_at": "2026-10-09T13:03:21.350505+00:00",
+          "elapsed_seconds": 3.6206771249417216,
+          "started_at": "2026-10-09T13:03:17.729785+00:00",
+          "status": "success"
+        },
+        "reconcile": {
+          "completed_at": "2026-10-09T13:03:31.621925+00:00",
+          "elapsed_seconds": 4.929768540896475,
+          "started_at": "2026-10-09T13:03:26.692088+00:00",
+          "status": "success"
+        },
+        "validate": {
+          "completed_at": "2026-10-09T13:03:17.726692+00:00",
+          "elapsed_seconds": 5.101445666048676,
+          "started_at": "2026-10-09T13:03:12.625195+00:00",
+          "status": "success"
+        }
+      },
+      "stages": {
+        "build_graph": "success",
+        "generate": "success",
+        "load_fhir": "success",
+        "reconcile": "success",
+        "validate": "success"
+      },
+      "targets": {
+        "hapi_fhir": "http://localhost:58080/fhir",
+        "neo4j": "bolt://localhost:57687|user=neo4j"
+      }
+    },
+    "run_id": "58990912-4f75-4f52-9faa-6fd8e17680a8",
+    "started_at": "2026-10-09T13:03:06.470044+00:00",
     "status": "success"
+  },
+  "production_api": {
+    "checks": [
+      "liveness",
+      "readiness",
+      "five-patient graph retrieval",
+      "exact live Patient source",
+      "confirmed resource provenance",
+      "OpenAPI version"
+    ],
+    "image_id": "sha256:419ff0b428540313102d917e71ef9fa039d6be5a46a7301e42aa075e222ca86a",
+    "non_root_user": "fhirgraph",
+    "scope": "Trimmed production image against the preserved synthetic release stores.",
+    "status": "pass",
+    "version": "1.0.0"
   },
   "project_version": "1.0.0",
   "retrieval_evaluation": {
@@ -464,7 +607,7 @@
         "status": "pass"
       }
     ],
-    "evaluated_at": "2026-10-09T07:40:33.770290+00:00",
+    "evaluated_at": "2026-10-09T13:03:38.739670+00:00",
     "page_count": 79,
     "patient_count": 100,
     "source_checks": {
@@ -575,7 +718,30 @@
     "controlled_chromium_tests": 21,
     "frontend_lint_types_unit_and_build": true,
     "python_lint_and_format": true,
-    "python_tests": 438,
+    "python_tests": 439,
     "strict_mypy": true
+  },
+  "source_verification": {
+    "clean_checkout": {
+      "controlled_chromium_tests": 21,
+      "node_version": "v26.5.0",
+      "python_tests": 439,
+      "python_version": "3.14.6",
+      "quality_gate": "pass",
+      "scope": "Independent clone with fresh locked dependency installs; complete source checks and browser regressions.",
+      "setup": "pass"
+    },
+    "implementation_commit": "d2d7daaea1ef3cf81a84342b7d124ad909afb07a",
+    "initial_remote_ci": {
+      "jobs": {
+        "containers": "pass",
+        "frontend": "pass",
+        "integration": "pass",
+        "python": "pass"
+      },
+      "scope": "Python 3.12, Node 22, image builds, fresh full demo and real browser walkthrough. Final release head is checked again before merging.",
+      "source_commit": "154c6e8238e5b317151b78a5bf80e868b1596b3b",
+      "url": "https://github.com/PK-999/fhir_graph_rag/actions/runs/37932387086"
+    }
   }
 }

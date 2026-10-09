@@ -1,7 +1,5 @@
 # FHIRGraph
 
-[Portfolio](https://pk-999.github.io/fhir_graph_rag/) · [Case study](docs/CASE_STUDY.md) · [Release evidence](docs/evidence/portfolio-release.json)
-
 **Synthetic FHIR → reference graph → answers with inspectable evidence.** A personal portfolio project demonstrating healthcare data engineering, grounded graph retrieval and ingestion provenance with fictional records.
 
 [Portfolio case study](https://pk-999.github.io/fhir_graph_rag/) · [Recorded walkthrough](portfolio/dist/assets/walkthrough.mp4) · [Engineering case study](docs/CASE_STUDY.md) · [Release evidence](docs/evidence/portfolio-release.json)
@@ -93,9 +91,11 @@ make benchmark          # isolated 1,000-patient stack, measurements and recover
 
 The evaluator independently reads raw NDJSON, checks all six intents, complete ordering/pagination, code displays, source fields, combined filters, zero matches and abstention. It fetches each distinct cited FHIR resource and validates identity, patient association and exact facts. Optional `--use-summary-model` plus repeated `--case-id` selects explicit local-model evaluation coverage; the default evaluates all 33 retrieval cases.
 
-Fresh release evidence includes 438 Python tests, 21 controlled browser regressions, a live walkthrough, eight passing DQ rules, and a 100-patient demo with **7,957 resources / graph nodes and 17,130 exact references**. All 33 retrieval cases pass across 79 pages with 246 distinct source checks. The local `llama3.1:latest` model passed the selected latest-lab/medication and medication-cohort cases with 36 distinct sources checked; this does not claim model coverage of every query intent.
+Fresh release evidence includes 439 Python tests, 21 controlled browser regressions, a live walkthrough, eight passing DQ rules, and a 100-patient demo with **7,957 resources / graph nodes and 17,130 exact references**. All 33 retrieval cases pass across 79 pages with 246 distinct source checks. The local `llama3.1:latest` model passed the selected latest-lab/medication and medication-cohort cases with 36 distinct sources checked; this does not claim model coverage of every query intent.
 
-The benchmark creates independent credentials, ports and volumes under `fhirgraph-benchmark`, writes `artifacts/release-scale/benchmark.json`, and stops its containers while retaining data. It records actual stage durations, store counts, 20 sequential API latency samples, Docker memory observations and graph-child interruption/resumption. These are local workload measurements, not production capacity estimates. Full measured results appear in the release evidence and case study.
+The benchmark creates independent credentials, ports and volumes under `fhirgraph-benchmark`, writes `artifacts/release-scale/benchmark.json`, and stops its containers while retaining data. It records actual stage durations, store counts, 20 sequential API latency samples, Docker memory observations and graph-child interruption/resumption. These are local workload measurements, not production capacity estimates. The verified workload contains **80,621 resources / nodes and 174,998 references**; 33/33 cases pass across 493 pages with 1,670 distinct live sources checked. Initial fresh ingestion took 303.3s excluding startup; the verification pipeline with existing data/checkpoints took 240.4s. Sequential first-page API latency was p50 8.2ms / p95 23.3ms with summaries off. [Full measured report](docs/evidence/benchmark-1000.json) and [case study](docs/CASE_STUDY.md) explain the workload and measurement scope.
+
+`make record-demo` records and verifies the default 100-patient UI walkthrough. Exporting its MP4 requires `ffmpeg`; browser tools are installed by `make setup`.
 
 ## Scope and code map
 
