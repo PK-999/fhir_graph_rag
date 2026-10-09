@@ -153,10 +153,10 @@ class RunAudit:
         timings = self.snapshot.setdefault("stage_timings", {})
         timing = timings.setdefault(module, {})
         timing["status"] = status
-        if status == "running":
+        if status == "running" and module not in self._stage_started:
             self._stage_started[module] = time.monotonic()
             timing["started_at"] = datetime.now(UTC).isoformat()
-        elif module in self._stage_started:
+        elif status != "running" and module in self._stage_started:
             timing["elapsed_seconds"] = time.monotonic() - self._stage_started.pop(module)
             timing["completed_at"] = datetime.now(UTC).isoformat()
         await self.connection.execute(
