@@ -1,7 +1,6 @@
 services:
   postgres:
     image: postgres:16-alpine
-    container_name: fhirgraph-postgres
     environment:
       POSTGRES_DB: ${POSTGRES_DB:?POSTGRES_DB required}
       POSTGRES_USER: ${POSTGRES_USER:?POSTGRES_USER required}
@@ -18,10 +17,8 @@ services:
 
   neo4j:
     image: neo4j:5-community
-    container_name: fhirgraph-neo4j
     environment:
       NEO4J_AUTH: ${NEO4J_USER:?NEO4J_USER required}/${NEO4J_PASSWORD:?NEO4J_PASSWORD required}
-      NEO4J_PLUGINS: '["apoc"]'
     # No host ports by default — only reachable via the internal Compose network.
     volumes:
       - neo4j_data:/data
@@ -33,28 +30,29 @@ services:
       retries: 10
 
   hapi-fhir:
-    image: hapiproject/hapi:latest
-    container_name: fhirgraph-hapi
+    image: hapiproject/hapi@sha256:55213612779ab3eeec919226b7bad378f0061ade823393a61d7dd46dd5087a3d
     environment:
       hapi.fhir.fhir_version: R4
+      # Keep exact evidence across restarts in a schema separate from audit data.
+      spring.datasource.url: jdbc:postgresql://postgres:5432/${POSTGRES_DB:?POSTGRES_DB required}?currentSchema=hapi
+      spring.datasource.username: ${POSTGRES_USER:?POSTGRES_USER required}
+      spring.datasource.password: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD required}
+      spring.datasource.driver-class-name: org.postgresql.Driver
+      HIBERNATE_DIALECT: ca.uhn.fhir.jpa.model.dialect.HapiFhirPostgresDialect
       hapi.fhir.allow_multiple_delete: "true"
       hapi.fhir.reuse_cached_search_results_millis: "-1"
     # No host ports by default — only reachable via the internal Compose network.
-    volumes:
-      - hapi_data:/data/hapi
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:8080/fhir/metadata || exit 1"]
-      interval: 10s
-      timeout: 10s
-      retries: 10
+    depends_on:
+      postgres:
+        condition: service_healthy
+    # Distroless image: API readiness performs the bounded FHIR HTTP probe.
 
   api:
     build:
       context: ..
       dockerfile: apps/api/Dockerfile
-    container_name: fhirgraph-api
     ports:
-      - "8000:8000"
+      - "127.0.0.1:${FHIRGRAPH_API_PORT:-8010}:8000"
     environment:
       POSTGRES_HOST: postgres
       POSTGRES_PORT: 5432
@@ -65,56 +63,50 @@ services:
       NEO4J_USER: ${NEO4J_USER:?NEO4J_USER required}
       NEO4J_PASSWORD: ${NEO4J_PASSWORD:?NEO4J_PASSWORD required}
       HAPI_FHIR_URL: http://hapi-fhir:8080/fhir
+      LLM_BASE_URL: ${FHIRGRAPH_LLM_BASE_URL:-http://host.docker.internal:11434/v1}
+      LLM_MODEL: ${LLM_MODEL:-llama3.1}
+      LLM_API_KEY: ${LLM_API_KEY:-ollama}
       API_HOST: 0.0.0.0
       API_PORT: 8000
       API_LOG_LEVEL: info
+      READINESS_TIMEOUT_SECONDS: 2
+      CORS_ORIGINS: http://localhost:${FHIRGRAPH_WEB_PORT:-4010},http://127.0.0.1:${FHIRGRAPH_WEB_PORT:-4010}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     depends_on:
       postgres:
         condition: service_healthy
       neo4j:
         condition: service_healthy
       hapi-fhir:
-        condition: service_healthy
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health/ready', timeout=2)"]
+      interval: 10s
+      timeout: 3s
+      retries: 12
 
   web:
     build:
       context: ..
       dockerfile: apps/web/Dockerfile
-    container_name: fhirgraph-web
+      args:
+        NEXT_PUBLIC_API_URL: ${FHIRGRAPH_PUBLIC_API_URL:-http://localhost:8010/api/v1}
     ports:
-      - "3000:3000"
+      - "127.0.0.1:${FHIRGRAPH_WEB_PORT:-4010}:3000"
     environment:
-      NEXT_PUBLIC_API_URL: http://api:8000/api/v1
+      NEXT_PUBLIC_API_URL: ${FHIRGRAPH_PUBLIC_API_URL:-http://localhost:8010/api/v1}
+      API_INTERNAL_URL: http://api:8000/api/v1
     depends_on:
-      - api
-
-  # ── Debug profile ──
-  # Exposes stateful service management ports on localhost for local development.
-  # Usage: docker compose --profile debug up
-  postgres-debug:
-    extends:
-      service: postgres
-    profiles: ["debug"]
-    ports:
-      - "127.0.0.1:5432:5432"
-
-  neo4j-debug:
-    extends:
-      service: neo4j
-    profiles: ["debug"]
-    ports:
-      - "127.0.0.1:7474:7474"
-      - "127.0.0.1:7687:7687"
-
-  hapi-fhir-debug:
-    extends:
-      service: hapi-fhir
-    profiles: ["debug"]
-    ports:
-      - "127.0.0.1:8080:8080"
+      api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:3000/"]
+      interval: 10s
+      timeout: 3s
+      retries: 12
 
 volumes:
   pg_data:
   neo4j_data:
   neo4j_logs:
-  hapi_data:

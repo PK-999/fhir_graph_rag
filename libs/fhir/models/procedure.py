@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import datetime
+from typing import Any
 
 from libs.fhir.models.base import FHIRResource
 from libs.fhir.models.datatypes import CodeableConcept, Reference
@@ -17,7 +18,7 @@ class Procedure(FHIRResource):
     subject: Reference | None = None
     encounter: Reference | None = None
     performedDateTime: datetime | None = None
-    performer: list[dict] | None = None  # simplified
+    performer: list[dict[str, Any]] | None = None  # simplified
     reasonCode: list[CodeableConcept] | None = None
 
 

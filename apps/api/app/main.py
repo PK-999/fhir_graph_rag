@@ -4,11 +4,10 @@ from __future__ import annotations
 
 import uuid
 from contextlib import asynccontextmanager
-import structlog
-from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
-from prometheus_fastapi_instrumentator import Instrumentator
 from typing import TYPE_CHECKING
 
+import structlog
+from apps.api.app.config import settings
 from apps.api.app.dependencies import db
 from apps.api.app.routers import (
     assistant,
@@ -19,10 +18,13 @@ from apps.api.app.routers import (
     health,
     lineage,
     patients,
+    resources,
     timeline,
 )
 from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
+from opentelemetry.instrumentation.fastapi import FastAPIInstrumentor
+from prometheus_fastapi_instrumentator import Instrumentator
 
 if TYPE_CHECKING:
     from collections.abc import AsyncGenerator
@@ -32,8 +34,10 @@ if TYPE_CHECKING:
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
     """Connect to databases on startup; disconnect on shutdown."""
     await db.connect()
-    yield
-    await db.disconnect()
+    try:
+        yield
+    finally:
+        await db.disconnect()
 
 
 def create_app() -> FastAPI:
@@ -41,14 +45,14 @@ def create_app() -> FastAPI:
     app = FastAPI(
         title="FHIRGraph API",
         description="Synthetic healthcare knowledge-graph platform API",
-        version="0.1.0",
+        version="1.0.0",
         lifespan=lifespan,
     )
 
     # ── CORS ──
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=["http://localhost:3000", "http://127.0.0.1:3000", "http://localhost:4000", "http://127.0.0.1:4000"],
+        allow_origins=settings.allowed_origins,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
@@ -81,6 +85,7 @@ def create_app() -> FastAPI:
     app.include_router(data_quality.router, prefix="/api/v1", tags=["data_quality"])
     app.include_router(lineage.router, prefix="/api/v1", tags=["lineage"])
     app.include_router(assistant.router, prefix="/api/v1", tags=["assistant"])
+    app.include_router(resources.router, prefix="/api/v1", tags=["resources"])
 
     # ── Observability ──
     structlog.configure(

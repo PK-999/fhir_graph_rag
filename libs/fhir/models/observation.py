@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import datetime
+from typing import Any
 
 from libs.fhir.models.base import FHIRResource
 from libs.fhir.models.datatypes import CodeableConcept, Quantity, Reference
@@ -20,4 +21,4 @@ class Observation(FHIRResource):
     effectiveDateTime: datetime | None = None
     valueQuantity: Quantity | None = None
     interpretation: list[CodeableConcept] | None = None
-    referenceRange: list[dict] | None = None  # simplified
+    referenceRange: list[dict[str, Any]] | None = None  # simplified

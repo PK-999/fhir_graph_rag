@@ -1,8 +1,11 @@
 # Build Plan
 
-> **Current finish-line program (2026-09-01):** The original milestone record below is retained for history. Verified current status and the approved 100,000-patient modernization program are tracked in [`FINISH_LINE_TRACKER.md`](FINISH_LINE_TRACKER.md) and specified in [`superpowers/specs/2026-09-01-fhirgraph-finish-line-design.md`](superpowers/specs/2026-09-01-fhirgraph-finish-line-design.md). Historical completion marks are not evidence that the current implementation passes its release gates.
+> **Historical roadmap:** The milestone record below and the September [finish-line tracker](FINISH_LINE_TRACKER.md) retain earlier plans, including a proposed 100,000-patient target. They do not describe the current release or establish that scale as verified. For the verified 100-patient portfolio demo, current checks, and remaining work, see the [README](../README.md) and [project review](PROJECT_REVIEW.md), updated 2026-10-05.
 
 ## Milestone 0 — repository bootstrap
+
+**Status (verified 2026-09-02): complete.** Evidence: [`evidence/milestone-0-verification.md`](evidence/milestone-0-verification.md).
+
 Deliver:
 - monorepo structure
 - Docker Compose

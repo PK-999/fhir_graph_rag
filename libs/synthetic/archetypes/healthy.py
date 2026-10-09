@@ -18,7 +18,7 @@ from libs.fhir.models.datatypes import (
     make_reference,
 )
 from libs.fhir.models.observation import Observation
-from libs.synthetic.archetypes.base import ClinicalArchetype, PatientState
+from libs.synthetic.archetypes.base import ClinicalArchetype, IdFactoryFn, PatientState
 
 
 class HealthyArchetype(ClinicalArchetype):
@@ -36,10 +36,10 @@ class HealthyArchetype(ClinicalArchetype):
         state: PatientState,
         rng: random.Random,
         practitioner_ref: Reference,
-        id_factory_fn: object,
+        id_factory_fn: IdFactoryFn,
     ) -> list[FHIRResource]:
         resources: list[FHIRResource] = []
-        get_id = id_factory_fn  # type: ignore[assignment]
+        get_id = id_factory_fn
 
         patient_ref = make_reference("Patient", patient_id)
         encounter_ref = make_reference("Encounter", encounter_id)
@@ -57,7 +57,7 @@ class HealthyArchetype(ClinicalArchetype):
         # Body weight (kg)
         weight = round(rng.gauss(75, 12), 1)
         weight = max(40.0, min(150.0, weight))
-        obs_id = get_id("Observation")  # type: ignore[operator]
+        obs_id = get_id("Observation")
         resources.append(
             Observation(
                 id=obs_id,
@@ -67,14 +67,16 @@ class HealthyArchetype(ClinicalArchetype):
                 subject=patient_ref,
                 encounter=encounter_ref,
                 effectiveDateTime=encounter_time,
-                valueQuantity=Quantity(value=weight, unit="kg", system="http://unitsofmeasure.org", code="kg"),
+                valueQuantity=Quantity(
+                    value=weight, unit="kg", system="http://unitsofmeasure.org", code="kg"
+                ),
             )
         )
         state.latest_observations["29463-7"] = weight
 
         # Heart rate
         hr = rng.randint(60, 95)
-        obs_id = get_id("Observation")  # type: ignore[operator]
+        obs_id = get_id("Observation")
         resources.append(
             Observation(
                 id=obs_id,
@@ -84,7 +86,9 @@ class HealthyArchetype(ClinicalArchetype):
                 subject=patient_ref,
                 encounter=encounter_ref,
                 effectiveDateTime=encounter_time,
-                valueQuantity=Quantity(value=float(hr), unit="/min", system="http://unitsofmeasure.org", code="/min"),
+                valueQuantity=Quantity(
+                    value=float(hr), unit="/min", system="http://unitsofmeasure.org", code="/min"
+                ),
             )
         )
         state.latest_observations["8867-4"] = float(hr)
@@ -92,7 +96,7 @@ class HealthyArchetype(ClinicalArchetype):
         # Temperature
         temp = round(rng.gauss(36.8, 0.3), 1)
         temp = max(36.0, min(37.5, temp))
-        obs_id = get_id("Observation")  # type: ignore[operator]
+        obs_id = get_id("Observation")
         resources.append(
             Observation(
                 id=obs_id,
@@ -102,7 +106,9 @@ class HealthyArchetype(ClinicalArchetype):
                 subject=patient_ref,
                 encounter=encounter_ref,
                 effectiveDateTime=encounter_time,
-                valueQuantity=Quantity(value=temp, unit="Cel", system="http://unitsofmeasure.org", code="Cel"),
+                valueQuantity=Quantity(
+                    value=temp, unit="Cel", system="http://unitsofmeasure.org", code="Cel"
+                ),
             )
         )
         state.latest_observations["8310-5"] = temp

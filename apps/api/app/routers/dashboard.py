@@ -2,21 +2,18 @@
 
 from typing import Any
 
-from apps.api.app.dependencies import db
-from fastapi import APIRouter, Depends, HTTPException
+from apps.api.app.dependencies import get_neo4j_session
+from fastapi import APIRouter, Depends
+from neo4j import Query
 
 router = APIRouter(prefix="/dashboard")
-
-
-async def get_neo4j_session():
-    if not db.neo4j_driver:
-        raise HTTPException(status_code=503, detail="Neo4j not connected")
-    async with db.neo4j_driver.session() as session:
-        yield session
+QUERY_TIMEOUT_SECONDS = 30
 
 
 @router.get("/summary")
-async def get_dashboard_summary(session=Depends(get_neo4j_session)) -> dict[str, Any]:
+async def get_dashboard_summary(
+    session: Any = Depends(get_neo4j_session),
+) -> dict[str, Any]:
     """Get high-level summary counts from Neo4j."""
     query = """
     CALL { MATCH (p:Patient) RETURN count(p) AS patients }
@@ -30,7 +27,7 @@ async def get_dashboard_summary(session=Depends(get_neo4j_session)) -> dict[str,
     RETURN patients, encounters, conditions, observations, medications, procedures, graph_nodes, graph_edges
     """
 
-    result = await session.run(query)
+    result = await session.run(Query(query, timeout=QUERY_TIMEOUT_SECONDS))
     record = await result.single()
 
     if not record:

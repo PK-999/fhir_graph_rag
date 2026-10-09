@@ -76,15 +76,16 @@ def generate_encounters(
 
     for _enc_idx, enc_date in enumerate(encounter_dates, start=1):
         # Pick encounter class
-        classes, weights = zip(
-            *[(c[:2], c[2]) for c in ENCOUNTER_CLASSES], strict=True
-        )
+        classes, weights = zip(*[(c[:2], c[2]) for c in ENCOUNTER_CLASSES], strict=True)
         enc_class_code, enc_class_display = rng.choices(classes, weights=weights, k=1)[0]
 
         # Encounter timing
         enc_start = datetime(
-            enc_date.year, enc_date.month, enc_date.day,
-            rng.randint(7, 17), rng.randint(0, 59),
+            enc_date.year,
+            enc_date.month,
+            enc_date.day,
+            rng.randint(7, 17),
+            rng.randint(0, 59),
             tzinfo=UTC,
         )
         # Duration depends on class
@@ -136,18 +137,13 @@ def generate_encounters(
         )
         all_resources.append(encounter)
 
-        # Register encounter
-        registry.register("Encounter", enc_id)
-        registry.add_reference(f"Encounter/{enc_id}", "subject", f"Patient/{patient_id}")
-        registry.add_reference(
-            f"Encounter/{enc_id}", "participant.individual", f"Practitioner/{practitioner.id}"
-        )
-        registry.add_reference(
-            f"Encounter/{enc_id}", "serviceProvider", f"Organization/{organization.id}"
-        )
+        # Register the encounter and all serialized references generically.
+        registry.register_resource("Encounter", enc_id, encounter.to_dict())
 
         # Apply archetypes to generate clinical resources
-        practitioner_ref = make_reference("Practitioner", practitioner.id, practitioner.display_name)
+        practitioner_ref = make_reference(
+            "Practitioner", practitioner.id, practitioner.display_name
+        )
 
         def _make_id(resource_type: str) -> str:
             return id_factory.resource_id(patient_seq, resource_type)
@@ -167,34 +163,11 @@ def generate_encounters(
             )
 
             for resource in resources:
-                # Register and track references
-                registry.register(resource.resourceType, resource.id)
-                resource_dict = resource.to_dict()
-
-                # Track subject reference
-                if "subject" in resource_dict:
-                    ref = resource_dict["subject"].get("reference", "")
-                    if ref:
-                        registry.add_reference(
-                            f"{resource.resourceType}/{resource.id}", "subject", ref
-                        )
-
-                # Track encounter reference
-                if "encounter" in resource_dict:
-                    ref = resource_dict["encounter"].get("reference", "")
-                    if ref:
-                        registry.add_reference(
-                            f"{resource.resourceType}/{resource.id}", "encounter", ref
-                        )
-
-                # Track requester reference
-                if "requester" in resource_dict:
-                    ref = resource_dict["requester"].get("reference", "")
-                    if ref:
-                        registry.add_reference(
-                            f"{resource.resourceType}/{resource.id}", "requester", ref
-                        )
-
+                registry.register_resource(
+                    resource.resourceType,
+                    resource.id,
+                    resource.to_dict(),
+                )
                 all_resources.append(resource)
 
     return all_resources

@@ -2,8 +2,9 @@
 
 from typing import Any
 
-from apps.api.app.dependencies import db
+from apps.api.app.dependencies import get_neo4j_session
 from fastapi import APIRouter, Depends, HTTPException, Query
+from neo4j import Query as Neo4jQuery
 
 router = APIRouter(prefix="/graph")
 
@@ -14,18 +15,11 @@ MAX_DEPTH = 3
 QUERY_TIMEOUT_SECONDS = 30
 
 
-async def get_neo4j_session():
-    if not db.neo4j_driver:
-        raise HTTPException(status_code=503, detail="Neo4j not connected")
-    async with db.neo4j_driver.session() as session:
-        yield session
-
-
 @router.get("/neighbors/{node_id:path}")
 async def get_neighbors(
     node_id: str,
     depth: int = Query(default=1, ge=1, le=MAX_DEPTH),
-    session=Depends(get_neo4j_session)
+    session: Any = Depends(get_neo4j_session),
 ) -> dict[str, Any]:
     """Get graph neighbors up to a certain depth.
 
@@ -47,24 +41,23 @@ async def get_neighbors(
     """
 
     result = await session.run(
-        query,
+        Neo4jQuery(query, timeout=QUERY_TIMEOUT_SECONDS),
         {"id": node_id},
-        timeout=QUERY_TIMEOUT_SECONDS,
     )
     record = await result.single()
 
     if not record:
         return {"nodes": [], "edges": [], "truncated": False}
 
-    def _format_node(n):
+    def _format_node(n: Any) -> dict[str, Any]:
         return {"id": n["id"], "labels": list(n.labels), "properties": dict(n)}
 
-    def _format_edge(r):
+    def _format_edge(r: Any) -> dict[str, Any]:
         return {
             "type": r.type,
             "source": r.start_node["id"],
             "target": r.end_node["id"],
-            "properties": dict(r)
+            "properties": dict(r),
         }
 
     nodes = [_format_node(n) for n in record["nodes"]]
@@ -82,8 +75,8 @@ async def expand_node(
     node_id: str,
     relationship: str = Query(..., description="The relationship type to expand"),
     target_label: str = Query(..., description="The target node label to expand"),
-    limit: int = Query(default=25, le=100),
-    session=Depends(get_neo4j_session),
+    limit: int = Query(default=25, ge=1, le=100),
+    session: Any = Depends(get_neo4j_session),
 ) -> dict[str, Any]:
     """Fetch specific neighbors based on relationship and label for additive expansion."""
     # Ensure relationship and label are alphanumeric to prevent injection since they are dynamic
@@ -96,20 +89,22 @@ async def expand_node(
     LIMIT $limit
     """
 
-    result = await session.run(query, {"id": node_id, "limit": limit})
-    
-    nodes = []
-    edges = []
-    
-    def _format_node(n):
+    result = await session.run(
+        Neo4jQuery(query, timeout=QUERY_TIMEOUT_SECONDS), {"id": node_id, "limit": limit}
+    )
+
+    nodes: list[dict[str, Any]] = []
+    edges: list[dict[str, Any]] = []
+
+    def _format_node(n: Any) -> dict[str, Any]:
         return {"id": n["id"], "labels": list(n.labels), "properties": dict(n)}
 
-    def _format_edge(r):
+    def _format_edge(r: Any) -> dict[str, Any]:
         return {
             "type": r.type,
             "source": r.start_node["id"],
             "target": r.end_node["id"],
-            "properties": dict(r)
+            "properties": dict(r),
         }
 
     async for record in result:
@@ -124,7 +119,7 @@ async def expand_node(
 @router.get("/explore/{node_id:path}")
 async def explore_node(
     node_id: str,
-    session=Depends(get_neo4j_session),
+    session: Any = Depends(get_neo4j_session),
 ) -> dict[str, Any]:
     """Return categorized expansion options for a node.
 
@@ -151,20 +146,16 @@ async def explore_node(
            }) AS categories
     """
 
-    result = await session.run(query, {"id": node_id}, timeout=QUERY_TIMEOUT_SECONDS)
+    result = await session.run(Neo4jQuery(query, timeout=QUERY_TIMEOUT_SECONDS), {"id": node_id})
     record = await result.single()
 
     if not record:
         return {"node_id": node_id, "labels": [], "categories": []}
 
-    categories = [
-        c for c in record["categories"]
-        if c["relationship"] is not None
-    ]
+    categories = [c for c in record["categories"] if c["relationship"] is not None]
 
     return {
         "node_id": node_id,
         "labels": record["source_labels"],
         "categories": categories,
     }
-

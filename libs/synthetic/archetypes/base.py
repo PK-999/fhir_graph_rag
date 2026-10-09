@@ -8,10 +8,13 @@ from __future__ import annotations
 
 import random
 from abc import ABC, abstractmethod
+from collections.abc import Callable
 from datetime import datetime
 
 from libs.fhir.models.base import FHIRResource
 from libs.fhir.models.datatypes import Reference
+
+type IdFactoryFn = Callable[[str], str]
 
 
 class PatientState:
@@ -21,7 +24,7 @@ class PatientState:
         self.active_conditions: dict[str, datetime] = {}  # code -> onset datetime
         self.active_medications: dict[str, str] = {}  # code -> medication_request_id
         self.latest_observations: dict[str, float] = {}  # code -> latest value
-        self.flags: dict[str, bool] = {}  # arbitrary flags for state machines
+        self.flags: dict[str, bool | int] = {}  # arbitrary flags for state machines
 
 
 class ClinicalArchetype(ABC):
@@ -42,7 +45,7 @@ class ClinicalArchetype(ABC):
         state: PatientState,
         rng: random.Random,
         practitioner_ref: Reference,
-        id_factory_fn: object,
+        id_factory_fn: IdFactoryFn,
     ) -> list[FHIRResource]:
         """Generate resources for a single encounter.
 

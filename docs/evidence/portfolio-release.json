@@ -1,0 +1,747 @@
+{
+  "benchmark": {
+    "checkpoint_verification_pipeline_seconds": 240.4036,
+    "evaluation": {
+      "case_count": 33,
+      "page_count": 493,
+      "passed_case_count": 33,
+      "release_asset": {
+        "gzip_sha256": "dec862e425fb840952146098c7606142d31fa93b43d317172ed1249602ba13fd",
+        "name": "fhirgraph-evaluation-1000.json.gz",
+        "uncompressed_sha256": "fee92bf0cfc985f9b58051ca4d5ad3d5e374e11d1f15d4763666f91da3da5245"
+      },
+      "source_checks": {
+        "failed": 0,
+        "passed": 1670,
+        "total": 1670
+      },
+      "status": "pass"
+    },
+    "initial_fresh_pipeline_seconds": 303.318507,
+    "initial_ingestion_report": "initial-ingestion-1000.json",
+    "latency": {
+      "p50_ms": 8.235166547819972,
+      "p95_ms": 23.341417079791427,
+      "percentile_method": "p50 median; p95 nearest rank",
+      "sample_count": 20,
+      "scope": "20 sequential first-page supported questions, local synthetic data, summaries disabled; not a concurrent load test"
+    },
+    "patients": 1000,
+    "presentation_lines": [
+      "1,000 patients \u00b7 80,621 FHIR resources / nodes \u00b7 174,998 exact reference edges.",
+      "33 / 33 cases passed across 493 pages; 1,670 distinct live FHIR sources checked.",
+      "Initial fresh pipeline: 303.3s, excluding startup. Verification with existing data/checkpoints: 240.4s.",
+      "20 sequential first-page queries, summaries off: p50 8.2ms / p95 23.3ms. Local workload only.",
+      "Graph child interrupted after 2 confirmed batches; resumed to 512 and reconciled exactly."
+    ],
+    "recovery": {
+      "batch_size": 500,
+      "confirmed_batches_after_interrupt": 2,
+      "confirmed_batches_after_resume": 512,
+      "confirmed_batches_at_signal": 2,
+      "interrupted_exit_code": 1,
+      "scope": "SIGINT only the graph child, then resume and exact reconciliation; idempotent replay against the already populated graph, not an empty-store interruption",
+      "status": "pass"
+    },
+    "references": 174998,
+    "report": "benchmark-1000.json",
+    "resources": 80621,
+    "status": "pass"
+  },
+  "dataset": {
+    "dangling_references": 0,
+    "dataset_hash": "901b6d7cc89b097b5034901e934796aee5e020bb289d0036baba0d0b323b0d7e",
+    "duplicate_ids": 0,
+    "encounter_count": 1468,
+    "encounters_per_patient": {
+      "max": 20,
+      "mean": 14.7,
+      "min": 10
+    },
+    "patient_count": 100,
+    "reference_count": 17130,
+    "resource_counts": {
+      "Condition": 141,
+      "DiagnosticReport": 23,
+      "Encounter": 1468,
+      "MedicationRequest": 78,
+      "Observation": 6077,
+      "Organization": 8,
+      "Patient": 100,
+      "Practitioner": 57,
+      "Procedure": 5
+    },
+    "rules": {
+      "aggregate_distribution": {
+        "checked": 7957,
+        "details": {
+          "gender_counts": {
+            "female": 48,
+            "male": 52
+          },
+          "patient_count": 100,
+          "resource_counts": {
+            "Condition": 141,
+            "DiagnosticReport": 23,
+            "Encounter": 1468,
+            "MedicationRequest": 78,
+            "Observation": 6077,
+            "Organization": 8,
+            "Patient": 100,
+            "Practitioner": 57,
+            "Procedure": 5
+          },
+          "total_resources": 7957
+        },
+        "failures": [],
+        "name": "aggregate_distribution",
+        "status": "pass"
+      },
+      "clinical_scenario_consistency": {
+        "checked": 32,
+        "details": {},
+        "failures": [],
+        "name": "clinical_scenario_consistency",
+        "status": "pass"
+      },
+      "coded_values": {
+        "checked": 14216,
+        "details": {},
+        "failures": [],
+        "name": "coded_values",
+        "status": "pass"
+      },
+      "duplicate_ids": {
+        "checked": 7957,
+        "details": {},
+        "failures": [],
+        "name": "duplicate_ids",
+        "status": "pass"
+      },
+      "encounter_count": {
+        "checked": 100,
+        "details": {
+          "configured_maximum": 20,
+          "configured_minimum": 10,
+          "maximum": 20,
+          "mean": 14.7,
+          "minimum": 10
+        },
+        "failures": [],
+        "name": "encounter_count",
+        "status": "pass"
+      },
+      "reference_resolution": {
+        "checked": 17130,
+        "details": {
+          "bundle_references_checked": 17130,
+          "service_base_url": null,
+          "statuses": {
+            "resolved": 17130
+          }
+        },
+        "failures": [],
+        "name": "reference_resolution",
+        "status": "pass"
+      },
+      "schema_validation": {
+        "checked": 7957,
+        "details": {
+          "additional_checks": [
+            "Complex elements must be JSON objects, including singleton maximum cardinality 1.",
+            "Arrays must contain at least one item when present."
+          ],
+          "artifact": "fhir-r4.schema.json",
+          "bundles_checked": 101,
+          "bytes": 3386892,
+          "copyright": "Copyright 2011+ HL7. HL7 and FHIR are registered trademarks of Health Level Seven International; use does not imply endorsement.",
+          "fhir_version": "4.0.1",
+          "json_schema_dialect": "http://json-schema.org/draft-06/schema#",
+          "license": "CC0-1.0",
+          "license_source": "https://hl7.org/fhir/R4/license.html",
+          "limitations": [
+            "Passing structural validation does not establish full FHIR conformance.",
+            "Profiles, FHIRPath invariants, choice exclusivity, all minimum cardinalities, terminology bindings and code membership are not comprehensively validated.",
+            "The official R4 schema has omissions; separate labeled JSON shape checks address complex object shape and empty arrays only.",
+            "The official schema can also reject some valid FHIR JSON representations, such as null placeholders in repeating primitive value arrays; it is not a complete FHIR validator.",
+            "Schema acceptance is not a guarantee of clinical validity or suitability."
+          ],
+          "release": "R4 (Technical Correction #1)",
+          "retrieved_on": "2026-10-09",
+          "sha256": "2230406893b4cf002a4ee1e5e2bbeca22ac5d2d4931b3e9ef7b9594bbc376a01",
+          "source": "https://hl7.org/fhir/R4/fhir.schema.json",
+          "source_documentation": "https://hl7.org/fhir/R4/json.html",
+          "upstream_artifact_modified": false,
+          "validation_scope": "FHIR R4 structural JSON schema and JSON shape checks"
+        },
+        "failures": [],
+        "name": "schema_validation",
+        "status": "pass"
+      },
+      "temporal_consistency": {
+        "checked": 1468,
+        "details": {},
+        "failures": [],
+        "name": "temporal_consistency",
+        "status": "pass"
+      }
+    },
+    "seed": 20260830,
+    "status": "pass",
+    "total_resources": 7957,
+    "validation_failures": []
+  },
+  "example": {
+    "live_fhir": {
+      "category": [
+        {
+          "coding": [
+            {
+              "code": "laboratory",
+              "display": "Laboratory",
+              "system": "http://terminology.hl7.org/CodeSystem/observation-category"
+            }
+          ]
+        }
+      ],
+      "code": {
+        "coding": [
+          {
+            "code": "4548-4",
+            "display": "Hemoglobin A1c",
+            "system": "http://loinc.org"
+          }
+        ],
+        "text": "Hemoglobin A1c"
+      },
+      "effectiveDateTime": "2026-05-27T08:10:00Z",
+      "encounter": {
+        "reference": "Encounter/p-000044-e-0014"
+      },
+      "id": "p-000044-o-0096",
+      "meta": {
+        "lastUpdated": "2026-10-09T07:35:16.668+00:00",
+        "versionId": "1"
+      },
+      "resourceType": "Observation",
+      "status": "final",
+      "subject": {
+        "reference": "Patient/p-000044"
+      },
+      "valueQuantity": {
+        "code": "%",
+        "system": "http://unitsofmeasure.org",
+        "unit": "%",
+        "value": 9.1
+      }
+    },
+    "provenance": {
+      "events": [
+        {
+          "canonical_id": "Observation/p-000044-o-0096",
+          "confirmed_stage": "build_graph",
+          "content_sha256": "b274be7ef1b9a7bf159687521d98e86eda12554cee6551a02499bbed2d955de0",
+          "dataset_hash": "901b6d7cc89b097b5034901e934796aee5e020bb289d0036baba0d0b323b0d7e",
+          "ingested_at": "2026-10-09T13:03:26.154634Z",
+          "run_id": "58990912-4f75-4f52-9faa-6fd8e17680a8",
+          "run_status": "success",
+          "source_artifact": "ndjson/Observation.ndjson",
+          "source_line": 2757,
+          "source_location": "line:2757",
+          "target_identity": "bolt://localhost:57687|user=neo4j",
+          "target_system": "neo4j",
+          "transformer_version": "fhirgraph-r4-v2"
+        },
+        {
+          "canonical_id": "Observation/p-000044-o-0096",
+          "confirmed_stage": "load_fhir",
+          "content_sha256": "b274be7ef1b9a7bf159687521d98e86eda12554cee6551a02499bbed2d955de0",
+          "dataset_hash": "901b6d7cc89b097b5034901e934796aee5e020bb289d0036baba0d0b323b0d7e",
+          "ingested_at": "2026-10-09T13:03:20.787296Z",
+          "run_id": "58990912-4f75-4f52-9faa-6fd8e17680a8",
+          "run_status": "success",
+          "source_artifact": "bundles/p-000044.json",
+          "source_line": null,
+          "source_location": "entry:114",
+          "target_identity": "http://localhost:58080/fhir",
+          "target_system": "hapi_fhir",
+          "transformer_version": "fhirgraph-r4-v2"
+        },
+        {
+          "canonical_id": "Observation/p-000044-o-0096",
+          "confirmed_stage": "build_graph",
+          "content_sha256": "b274be7ef1b9a7bf159687521d98e86eda12554cee6551a02499bbed2d955de0",
+          "dataset_hash": "901b6d7cc89b097b5034901e934796aee5e020bb289d0036baba0d0b323b0d7e",
+          "ingested_at": "2026-10-09T07:37:53.503046Z",
+          "run_id": "1c61d368-8909-4fd0-87dc-913c25e36b3d",
+          "run_status": "success",
+          "source_artifact": "ndjson/Observation.ndjson",
+          "source_line": 2757,
+          "source_location": "line:2757",
+          "target_identity": "bolt://localhost:57687|user=neo4j",
+          "target_system": "neo4j",
+          "transformer_version": "fhirgraph-r4-v2"
+        },
+        {
+          "canonical_id": "Observation/p-000044-o-0096",
+          "confirmed_stage": "load_fhir",
+          "content_sha256": "b274be7ef1b9a7bf159687521d98e86eda12554cee6551a02499bbed2d955de0",
+          "dataset_hash": "901b6d7cc89b097b5034901e934796aee5e020bb289d0036baba0d0b323b0d7e",
+          "ingested_at": "2026-10-09T07:37:48.463999Z",
+          "run_id": "1c61d368-8909-4fd0-87dc-913c25e36b3d",
+          "run_status": "success",
+          "source_artifact": "bundles/p-000044.json",
+          "source_line": null,
+          "source_location": "entry:114",
+          "target_identity": "http://localhost:58080/fhir",
+          "target_system": "hapi_fhir",
+          "transformer_version": "fhirgraph-r4-v2"
+        },
+        {
+          "canonical_id": "Observation/p-000044-o-0096",
+          "confirmed_stage": "build_graph",
+          "content_sha256": "b274be7ef1b9a7bf159687521d98e86eda12554cee6551a02499bbed2d955de0",
+          "dataset_hash": "901b6d7cc89b097b5034901e934796aee5e020bb289d0036baba0d0b323b0d7e",
+          "ingested_at": "2026-10-09T07:35:28.426862Z",
+          "run_id": "883ce122-8342-412f-82b3-deb42340ae8a",
+          "run_status": "failed",
+          "source_artifact": "ndjson/Observation.ndjson",
+          "source_line": 2757,
+          "source_location": "line:2757",
+          "target_identity": "bolt://localhost:57687|user=neo4j",
+          "target_system": "neo4j",
+          "transformer_version": "fhirgraph-r4-v2"
+        },
+        {
+          "canonical_id": "Observation/p-000044-o-0096",
+          "confirmed_stage": "load_fhir",
+          "content_sha256": "b274be7ef1b9a7bf159687521d98e86eda12554cee6551a02499bbed2d955de0",
+          "dataset_hash": "901b6d7cc89b097b5034901e934796aee5e020bb289d0036baba0d0b323b0d7e",
+          "ingested_at": "2026-10-09T07:35:19.175619Z",
+          "run_id": "883ce122-8342-412f-82b3-deb42340ae8a",
+          "run_status": "failed",
+          "source_artifact": "bundles/p-000044.json",
+          "source_line": null,
+          "source_location": "entry:114",
+          "target_identity": "http://localhost:58080/fhir",
+          "target_system": "hapi_fhir",
+          "transformer_version": "fhirgraph-r4-v2"
+        }
+      ],
+      "hash_scope": "canonical artifact JSON before server-managed metadata",
+      "note": null,
+      "resource_id": "Observation/p-000044-o-0096",
+      "status": "available"
+    }
+  },
+  "pipeline_run": {
+    "completed_at": "2026-10-09T13:03:31.621935+00:00",
+    "config_snapshot": {
+      "dataset_hash": "901b6d7cc89b097b5034901e934796aee5e020bb289d0036baba0d0b323b0d7e",
+      "output": "artifacts/release-demo",
+      "patient_count": 100,
+      "seed": 20260830,
+      "stage_timings": {
+        "build_graph": {
+          "completed_at": "2026-10-09T13:03:26.691143+00:00",
+          "elapsed_seconds": 5.33979179081507,
+          "started_at": "2026-10-09T13:03:21.351292+00:00",
+          "status": "success"
+        },
+        "generate": {
+          "completed_at": "2026-10-09T13:03:12.623556+00:00",
+          "elapsed_seconds": 6.149952499894425,
+          "started_at": "2026-10-09T13:03:06.473541+00:00",
+          "status": "success"
+        },
+        "load_fhir": {
+          "completed_at": "2026-10-09T13:03:21.350505+00:00",
+          "elapsed_seconds": 3.6206771249417216,
+          "started_at": "2026-10-09T13:03:17.729785+00:00",
+          "status": "success"
+        },
+        "reconcile": {
+          "completed_at": "2026-10-09T13:03:31.621925+00:00",
+          "elapsed_seconds": 4.929768540896475,
+          "started_at": "2026-10-09T13:03:26.692088+00:00",
+          "status": "success"
+        },
+        "validate": {
+          "completed_at": "2026-10-09T13:03:17.726692+00:00",
+          "elapsed_seconds": 5.101445666048676,
+          "started_at": "2026-10-09T13:03:12.625195+00:00",
+          "status": "success"
+        }
+      },
+      "stages": {
+        "build_graph": "success",
+        "generate": "success",
+        "load_fhir": "success",
+        "reconcile": "success",
+        "validate": "success"
+      },
+      "targets": {
+        "hapi_fhir": "http://localhost:58080/fhir",
+        "neo4j": "bolt://localhost:57687|user=neo4j"
+      }
+    },
+    "run_id": "58990912-4f75-4f52-9faa-6fd8e17680a8",
+    "started_at": "2026-10-09T13:03:06.470044+00:00",
+    "status": "success"
+  },
+  "production_api": {
+    "checks": [
+      "liveness",
+      "readiness",
+      "five-patient graph retrieval",
+      "exact live Patient source",
+      "confirmed resource provenance",
+      "OpenAPI version"
+    ],
+    "image_id": "sha256:419ff0b428540313102d917e71ef9fa039d6be5a46a7301e42aa075e222ca86a",
+    "non_root_user": "fhirgraph",
+    "scope": "Trimmed production image against the preserved synthetic release stores.",
+    "status": "pass",
+    "version": "1.0.0"
+  },
+  "project_version": "1.0.0",
+  "retrieval_evaluation": {
+    "case_count": 33,
+    "cases": [
+      {
+        "errors": [],
+        "name": "patient_list_example",
+        "page_count": 20,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "patient_list_all",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "condition_cohort_example",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "condition_cohort_all",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "latest_lab_medication_example",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "latest_lab_medication_all",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "patient_history_example",
+        "page_count": 4,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "patient_history_all",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "patient_history_missing",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "hypertension_cohort",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "latest_lab_with_diabetes",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "latest_lab_at_least",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "latest_lab_below",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "latest_lab_zero_matches",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "unsupported_treatment",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "unsupported_age_filter",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "unsupported_negated_medication",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "unsupported_medication_age_filter",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "unsupported_lab_date_filter",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "unsupported_medication_negation",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "unsupported_lab_threshold_filter",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "medication_cohort_example",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "medication_cohort_all",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "medication_cohort_paraphrase",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "medication_cohort_with_diabetes",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "patient_lab_history_example",
+        "page_count": 3,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "patient_lab_history_all",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "patient_hba1c_history_example",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "patient_lab_history_paraphrase",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "patient_list_paraphrase",
+        "page_count": 20,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "condition_cohort_paraphrase",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "latest_lab_paraphrase",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "patient_history_paraphrase",
+        "page_count": 4,
+        "status": "pass"
+      }
+    ],
+    "evaluated_at": "2026-10-09T13:03:38.739670+00:00",
+    "page_count": 79,
+    "patient_count": 100,
+    "source_checks": {
+      "failed": 0,
+      "passed": 246,
+      "total": 246
+    },
+    "status": "pass"
+  },
+  "schema_version": 1,
+  "scope": "Synthetic data only; measured local portfolio verification.",
+  "selected_local_model_evaluation": {
+    "case_count": 2,
+    "cases": [
+      {
+        "errors": [],
+        "name": "latest_lab_medication_example",
+        "page_count": 1,
+        "status": "pass"
+      },
+      {
+        "errors": [],
+        "name": "medication_cohort_example",
+        "page_count": 1,
+        "status": "pass"
+      }
+    ],
+    "claims": [
+      {
+        "name": "latest_lab_medication_example",
+        "pages": [
+          {
+            "claims": [
+              {
+                "evidence_id": "Observation/p-000044-o-0096",
+                "field": "Observation.code.coding[0].code",
+                "value": "4548-4"
+              },
+              {
+                "evidence_id": "Observation/p-000044-o-0096",
+                "field": "Observation.valueQuantity.value",
+                "value": 9.1
+              },
+              {
+                "evidence_id": "Observation/p-000044-o-0096",
+                "field": "Observation.valueQuantity.unit",
+                "value": "%"
+              }
+            ],
+            "summary": "Observation/p-000044-o-0096: Observation.code.coding[0].code = \"4548-4\".\nObservation/p-000044-o-0096: Observation.valueQuantity.value = 9.1.\nObservation/p-000044-o-0096: Observation.valueQuantity.unit = \"%\".",
+            "summary_metadata": {
+              "claim_count": 3,
+              "model": "llama3.1:latest",
+              "requested": true,
+              "status": "validated"
+            }
+          }
+        ],
+        "status": "pass"
+      },
+      {
+        "name": "medication_cohort_example",
+        "pages": [
+          {
+            "claims": [
+              {
+                "evidence_id": "MedicationRequest/p-000007-mr-0001",
+                "field": "MedicationRequest.medicationCodeableConcept.coding[0].code",
+                "value": "6809"
+              },
+              {
+                "evidence_id": "MedicationRequest/p-000007-mr-0001",
+                "field": "MedicationRequest.status",
+                "value": "active"
+              },
+              {
+                "evidence_id": "MedicationRequest/p-000007-mr-0001",
+                "field": "MedicationRequest.authoredOn",
+                "value": "2022-11-01T11:02:00Z"
+              }
+            ],
+            "summary": "MedicationRequest/p-000007-mr-0001: MedicationRequest.medicationCodeableConcept.coding[0].code = \"6809\".\nMedicationRequest/p-000007-mr-0001: MedicationRequest.status = \"active\".\nMedicationRequest/p-000007-mr-0001: MedicationRequest.authoredOn = \"2022-11-01T11:02:00Z\".",
+            "summary_metadata": {
+              "claim_count": 3,
+              "model": "llama3.1:latest",
+              "requested": true,
+              "status": "validated"
+            }
+          }
+        ],
+        "status": "pass"
+      }
+    ],
+    "digest": "46e0c10c039e019119339687c3c1757cc81b9da49709a3b3924863ba87ca666e",
+    "evaluated_at": "2026-10-09T12:24:37.349935+00:00",
+    "model": "llama3.1:latest",
+    "page_count": 2,
+    "patient_count": 100,
+    "source_checks": {
+      "failed": 0,
+      "passed": 36,
+      "total": 36
+    },
+    "status": "pass"
+  },
+  "source_quality": {
+    "compose_configuration": true,
+    "controlled_chromium_tests": 21,
+    "frontend_lint_types_unit_and_build": true,
+    "python_lint_and_format": true,
+    "python_tests": 439,
+    "strict_mypy": true
+  },
+  "source_verification": {
+    "clean_checkout": {
+      "controlled_chromium_tests": 21,
+      "node_version": "v26.5.0",
+      "python_tests": 439,
+      "python_version": "3.14.6",
+      "quality_gate": "pass",
+      "scope": "Independent clone with fresh locked dependency installs; complete source checks and browser regressions.",
+      "setup": "pass"
+    },
+    "implementation_commit": "d2d7daaea1ef3cf81a84342b7d124ad909afb07a",
+    "initial_remote_ci": {
+      "jobs": {
+        "containers": "pass",
+        "frontend": "pass",
+        "integration": "pass",
+        "python": "pass"
+      },
+      "scope": "Python 3.12, Node 22, image builds, fresh full demo and real browser walkthrough. Final release head is checked again before merging.",
+      "source_commit": "154c6e8238e5b317151b78a5bf80e868b1596b3b",
+      "url": "https://github.com/PK-999/fhir_graph_rag/actions/runs/37932387086"
+    }
+  }
+}

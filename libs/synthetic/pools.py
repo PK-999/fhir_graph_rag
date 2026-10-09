@@ -83,7 +83,7 @@ def create_organization_pool(
             telecom=[
                 ContactPoint(
                     system="phone",
-                    value=f"({rng.randint(200,999)}) {rng.randint(200,999)}-{rng.randint(1000,9999)}",
+                    value=f"({rng.randint(200, 999)}) {rng.randint(200, 999)}-{rng.randint(1000, 9999)}",
                 )
             ],
         )
@@ -100,14 +100,56 @@ def create_practitioner_pool(
     """Create a pool of shared Practitioner resources."""
     practitioners = []
     first_names = [
-        "Alice", "Bob", "Carol", "David", "Elena", "Frank", "Grace", "Henry",
-        "Irene", "Jack", "Karen", "Leo", "Maria", "Nathan", "Olivia", "Peter",
-        "Quinn", "Rachel", "Samuel", "Tina", "Uma", "Victor", "Wendy", "Xavier",
+        "Alice",
+        "Bob",
+        "Carol",
+        "David",
+        "Elena",
+        "Frank",
+        "Grace",
+        "Henry",
+        "Irene",
+        "Jack",
+        "Karen",
+        "Leo",
+        "Maria",
+        "Nathan",
+        "Olivia",
+        "Peter",
+        "Quinn",
+        "Rachel",
+        "Samuel",
+        "Tina",
+        "Uma",
+        "Victor",
+        "Wendy",
+        "Xavier",
     ]
     last_names = [
-        "Adams", "Baker", "Chen", "Diaz", "Evans", "Fisher", "Grant", "Hayes",
-        "Ibrahim", "Jensen", "Kumar", "Lawson", "Mitchell", "Novak", "O'Brien", "Patel",
-        "Quinn", "Reyes", "Singh", "Turner", "Ueda", "Vasquez", "Walsh", "Xu",
+        "Adams",
+        "Baker",
+        "Chen",
+        "Diaz",
+        "Evans",
+        "Fisher",
+        "Grant",
+        "Hayes",
+        "Ibrahim",
+        "Jensen",
+        "Kumar",
+        "Lawson",
+        "Mitchell",
+        "Novak",
+        "O'Brien",
+        "Patel",
+        "Quinn",
+        "Reyes",
+        "Singh",
+        "Turner",
+        "Ueda",
+        "Vasquez",
+        "Walsh",
+        "Xu",
     ]
 
     for i in range(1, count + 1):

@@ -1,0 +1,2806 @@
+{
+  "containers_kept_running": false,
+  "environment": {
+    "docker": {
+      "Architecture": "aarch64",
+      "MemTotal": 8321515520,
+      "NCPU": 10,
+      "OperatingSystem": "Docker Desktop",
+      "ServerVersion": "29.6.1"
+    },
+    "host_python_version": "3.14.6",
+    "implementation_commit": "d2d7daaea1ef3cf81a84342b7d124ad909afb07a"
+  },
+  "evaluation": {
+    "case_count": 33,
+    "page_count": 493,
+    "passed_case_count": 33,
+    "release_asset": {
+      "gzip_sha256": "dec862e425fb840952146098c7606142d31fa93b43d317172ed1249602ba13fd",
+      "name": "fhirgraph-evaluation-1000.json.gz",
+      "uncompressed_sha256": "fee92bf0cfc985f9b58051ca4d5ad3d5e374e11d1f15d4763666f91da3da5245"
+    },
+    "source_checks": {
+      "failed": 0,
+      "passed": 1670,
+      "total": 1670
+    },
+    "status": "pass"
+  },
+  "latency": {
+    "p50_ms": 8.235166547819972,
+    "p95_ms": 23.341417079791427,
+    "percentile_method": "p50 median; p95 nearest rank",
+    "sample_count": 20,
+    "samples": [
+      {
+        "elapsed_ms": 11.365625075995922,
+        "question": "List five patients"
+      },
+      {
+        "elapsed_ms": 8.208665996789932,
+        "question": "Find patients with type 2 diabetes"
+      },
+      {
+        "elapsed_ms": 19.954124931246042,
+        "question": "Find patients whose latest HbA1c is above 8% with active Metformin"
+      },
+      {
+        "elapsed_ms": 9.896292118355632,
+        "question": "Find patients on active Metformin"
+      },
+      {
+        "elapsed_ms": 6.805917015299201,
+        "question": "Show lab history for Patient/p-000001"
+      },
+      {
+        "elapsed_ms": 5.966417025774717,
+        "question": "List five patients"
+      },
+      {
+        "elapsed_ms": 8.136708056554198,
+        "question": "Find patients with type 2 diabetes"
+      },
+      {
+        "elapsed_ms": 19.249583827331662,
+        "question": "Find patients whose latest HbA1c is above 8% with active Metformin"
+      },
+      {
+        "elapsed_ms": 7.568000117316842,
+        "question": "Find patients on active Metformin"
+      },
+      {
+        "elapsed_ms": 11.430332902818918,
+        "question": "Show lab history for Patient/p-000001"
+      },
+      {
+        "elapsed_ms": 6.120292004197836,
+        "question": "List five patients"
+      },
+      {
+        "elapsed_ms": 6.655208067968488,
+        "question": "Find patients with type 2 diabetes"
+      },
+      {
+        "elapsed_ms": 25.06070793606341,
+        "question": "Find patients whose latest HbA1c is above 8% with active Metformin"
+      },
+      {
+        "elapsed_ms": 7.088083075359464,
+        "question": "Find patients on active Metformin"
+      },
+      {
+        "elapsed_ms": 7.317167008295655,
+        "question": "Show lab history for Patient/p-000001"
+      },
+      {
+        "elapsed_ms": 13.295375043526292,
+        "question": "List five patients"
+      },
+      {
+        "elapsed_ms": 6.937958067283034,
+        "question": "Find patients with type 2 diabetes"
+      },
+      {
+        "elapsed_ms": 23.341417079791427,
+        "question": "Find patients whose latest HbA1c is above 8% with active Metformin"
+      },
+      {
+        "elapsed_ms": 8.261667098850012,
+        "question": "Find patients on active Metformin"
+      },
+      {
+        "elapsed_ms": 8.659250102937222,
+        "question": "Show lab history for Patient/p-000001"
+      }
+    ],
+    "scope": "20 sequential first-page supported questions, local synthetic data, summaries disabled; not a concurrent load test"
+  },
+  "measured_at": "2026-10-09T12:52:13.385353+00:00",
+  "measurement_scope": "Existing registered dataset and checkpoints; independent initial fresh-ingestion timing is in initial-ingestion-1000.json. Memory samples cover the five Docker services after readiness, excluding host pipeline/oracle and optional Ollama.",
+  "memory": {
+    "observed_peak_summed_working_set_bytes": 2707528088,
+    "observed_peak_working_set_bytes_by_container": {
+      "fhirgraph-benchmark-api-1": 151204659,
+      "fhirgraph-benchmark-hapi-fhir-1": 975280537,
+      "fhirgraph-benchmark-neo4j-1": 857420595,
+      "fhirgraph-benchmark-postgres-1": 184129945,
+      "fhirgraph-benchmark-web-1": 622749286
+    },
+    "requested_interval_seconds": 5,
+    "samples": [
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 134385664,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.31%",
+            "docker_memory_bytes": 139460608,
+            "docker_memory_display": "133MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.75%",
+            "docker_memory_bytes": 921174016,
+            "docker_memory_display": "878.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 486744064,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.66%",
+            "docker_memory_bytes": 504784486,
+            "docker_memory_display": "481.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 25108480,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.08%",
+            "docker_memory_bytes": 62180556,
+            "docker_memory_display": "59.3MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 386289664,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "83.19%",
+            "docker_memory_bytes": 622749286,
+            "docker_memory_display": "593.9MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 2.386088208993897
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 134447104,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.30%",
+            "docker_memory_bytes": 139565465,
+            "docker_memory_display": "133.1MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.76%",
+            "docker_memory_bytes": 921593446,
+            "docker_memory_display": "878.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 571994112,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "10.20%",
+            "docker_memory_bytes": 534144614,
+            "docker_memory_display": "509.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 26861568,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.06%",
+            "docker_memory_bytes": 64298680,
+            "docker_memory_display": "61.32MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 330305536,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 556059852,
+            "docker_memory_display": "530.3MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 9.738504084059969
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 134447104,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.43%",
+            "docker_memory_bytes": 139565465,
+            "docker_memory_display": "133.1MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.55%",
+            "docker_memory_bytes": 921698304,
+            "docker_memory_display": "879MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 488103936,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.73%",
+            "docker_memory_bytes": 506147635,
+            "docker_memory_display": "482.7MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 26865664,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.03%",
+            "docker_memory_bytes": 64906854,
+            "docker_memory_display": "61.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 312729600,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 538758348,
+            "docker_memory_display": "513.8MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 16.451611042022705
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 130367488,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.43%",
+            "docker_memory_bytes": 135476019,
+            "docker_memory_display": "129.2MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.35%",
+            "docker_memory_bytes": 922012876,
+            "docker_memory_display": "879.3MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 488685568,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "22.81%",
+            "docker_memory_bytes": 507615641,
+            "docker_memory_display": "484.1MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 26877952,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.03%",
+            "docker_memory_bytes": 64917340,
+            "docker_memory_display": "61.91MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 316256256,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 542323507,
+            "docker_memory_display": "517.2MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 23.784933374961838
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 134057984,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.53%",
+            "docker_memory_bytes": 139146035,
+            "docker_memory_display": "132.7MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.52%",
+            "docker_memory_bytes": 922432307,
+            "docker_memory_display": "879.7MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 488747008,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "2.09%",
+            "docker_memory_bytes": 506776780,
+            "docker_memory_display": "483.3MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 26918912,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.02%",
+            "docker_memory_bytes": 64969768,
+            "docker_memory_display": "61.96MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 317087744,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 542323507,
+            "docker_memory_display": "517.2MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 31.145848541986197
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 134057984,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.33%",
+            "docker_memory_bytes": 139146035,
+            "docker_memory_display": "132.7MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.99%",
+            "docker_memory_bytes": 922746880,
+            "docker_memory_display": "880MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 489201664,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "2.60%",
+            "docker_memory_bytes": 507301068,
+            "docker_memory_display": "483.8MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 26923008,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.06%",
+            "docker_memory_bytes": 64969768,
+            "docker_memory_display": "61.96MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 317087744,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 543162368,
+            "docker_memory_display": "518MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 38.40711566712707
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 134078464,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.34%",
+            "docker_memory_bytes": 139250892,
+            "docker_memory_display": "132.8MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "1.13%",
+            "docker_memory_bytes": 922956595,
+            "docker_memory_display": "880.2MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 489680896,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.91%",
+            "docker_memory_bytes": 507825356,
+            "docker_memory_display": "484.3MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 27799552,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.07%",
+            "docker_memory_bytes": 65997373,
+            "docker_memory_display": "62.94MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 319492096,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.05%",
+            "docker_memory_bytes": 545678950,
+            "docker_memory_display": "520.4MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 45.752209499944
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 130400256,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.42%",
+            "docker_memory_bytes": 135476019,
+            "docker_memory_display": "129.2MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.57%",
+            "docker_memory_bytes": 938685235,
+            "docker_memory_display": "895.2MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 489811968,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.44%",
+            "docker_memory_bytes": 507930214,
+            "docker_memory_display": "484.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 27762688,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.03%",
+            "docker_memory_bytes": 65944944,
+            "docker_memory_display": "62.89MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 321937408,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.02%",
+            "docker_memory_bytes": 548300390,
+            "docker_memory_display": "522.9MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 53.07600579201244
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 133849088,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.31%",
+            "docker_memory_bytes": 138936320,
+            "docker_memory_display": "132.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "1.85%",
+            "docker_memory_bytes": 938790092,
+            "docker_memory_display": "895.3MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 490344448,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.06%",
+            "docker_memory_bytes": 508454502,
+            "docker_memory_display": "484.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 27762688,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "1.31%",
+            "docker_memory_bytes": 66217574,
+            "docker_memory_display": "63.15MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 314966016,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "14.30%",
+            "docker_memory_bytes": 535298048,
+            "docker_memory_display": "510.5MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 60.440482625039294
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 133849088,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.22%",
+            "docker_memory_bytes": 138936320,
+            "docker_memory_display": "132.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.38%",
+            "docker_memory_bytes": 938580377,
+            "docker_memory_display": "895.1MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 490496000,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "38.88%",
+            "docker_memory_bytes": 508978790,
+            "docker_memory_display": "485.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 27762688,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.11%",
+            "docker_memory_bytes": 65944944,
+            "docker_memory_display": "62.89MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 314990592,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 541065216,
+            "docker_memory_display": "516MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 67.42204645904712
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 133844992,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.40%",
+            "docker_memory_bytes": 138936320,
+            "docker_memory_display": "132.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.27%",
+            "docker_memory_bytes": 938894950,
+            "docker_memory_display": "895.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 490565632,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.51%",
+            "docker_memory_bytes": 508769075,
+            "docker_memory_display": "485.2MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 27770880,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.74%",
+            "docker_memory_bytes": 65955430,
+            "docker_memory_display": "62.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 317493248,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 544001228,
+            "docker_memory_display": "518.8MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 74.7612318340689
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 130412544,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.48%",
+            "docker_memory_bytes": 135580876,
+            "docker_memory_display": "129.3MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.47%",
+            "docker_memory_bytes": 939104665,
+            "docker_memory_display": "895.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 491696128,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.76%",
+            "docker_memory_bytes": 509817651,
+            "docker_memory_display": "486.2MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 27578368,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 65756200,
+            "docker_memory_display": "62.71MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 321847296,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.04%",
+            "docker_memory_bytes": 548300390,
+            "docker_memory_display": "522.9MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 82.10372883407399
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 130416640,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.20%",
+            "docker_memory_bytes": 135476019,
+            "docker_memory_display": "129.2MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.28%",
+            "docker_memory_bytes": 938894950,
+            "docker_memory_display": "895.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 491823104,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "100.29%",
+            "docker_memory_bytes": 510761369,
+            "docker_memory_display": "487.1MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 27582464,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 65756200,
+            "docker_memory_display": "62.71MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 321851392,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 548090675,
+            "docker_memory_display": "522.7MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 89.43925529206172
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 133746688,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.36%",
+            "docker_memory_bytes": 138831462,
+            "docker_memory_display": "132.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.54%",
+            "docker_memory_bytes": 938894950,
+            "docker_memory_display": "895.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 491827200,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.72%",
+            "docker_memory_bytes": 510027366,
+            "docker_memory_display": "486.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 27586560,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 65777172,
+            "docker_memory_display": "62.73MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 322256896,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 548510105,
+            "docker_memory_display": "523.1MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 96.43871795898303
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 133754880,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.45%",
+            "docker_memory_bytes": 138831462,
+            "docker_memory_display": "132.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.68%",
+            "docker_memory_bytes": 938999808,
+            "docker_memory_display": "895.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 492220416,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.86%",
+            "docker_memory_bytes": 510446796,
+            "docker_memory_display": "486.8MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 27709440,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 65892515,
+            "docker_memory_display": "62.84MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 324726784,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.02%",
+            "docker_memory_bytes": 551236403,
+            "docker_memory_display": "525.7MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 103.80842145904899
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 136052736,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "19.69%",
+            "docker_memory_bytes": 141138329,
+            "docker_memory_display": "134.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "38.88%",
+            "docker_memory_bytes": 956930457,
+            "docker_memory_display": "912.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 725069824,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "183.01%",
+            "docker_memory_bytes": 713136537,
+            "docker_memory_display": "680.1MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 27701248,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.02%",
+            "docker_memory_bytes": 65892515,
+            "docker_memory_display": "62.84MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 318423040,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "14.42%",
+            "docker_memory_bytes": 538758348,
+            "docker_memory_display": "513.8MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 111.16012675012462
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 130465792,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.38%",
+            "docker_memory_bytes": 135580876,
+            "docker_memory_display": "129.3MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.98%",
+            "docker_memory_bytes": 946968985,
+            "docker_memory_display": "903.1MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 492503040,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.27%",
+            "docker_memory_bytes": 510656512,
+            "docker_memory_display": "487MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 27947008,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.41%",
+            "docker_memory_bytes": 66867691,
+            "docker_memory_display": "63.77MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 318423040,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 544525516,
+            "docker_memory_display": "519.3MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 118.4253374999389
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 133922816,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.47%",
+            "docker_memory_bytes": 139041177,
+            "docker_memory_display": "132.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.30%",
+            "docker_memory_bytes": 946968985,
+            "docker_memory_display": "903.1MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 492777472,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.67%",
+            "docker_memory_bytes": 510971084,
+            "docker_memory_display": "487.3MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 27959296,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "1.19%",
+            "docker_memory_bytes": 66228060,
+            "docker_memory_display": "63.16MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 320172032,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.39%",
+            "docker_memory_bytes": 546308096,
+            "docker_memory_display": "521MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 125.78046562499367
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 133935104,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.28%",
+            "docker_memory_bytes": 139041177,
+            "docker_memory_display": "132.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.34%",
+            "docker_memory_bytes": 946968985,
+            "docker_memory_display": "903.1MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 676188160,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "101.90%",
+            "docker_memory_bytes": 670249779,
+            "docker_memory_display": "639.2MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 27959296,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 66228060,
+            "docker_memory_display": "63.16MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 323956736,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "19.76%",
+            "docker_memory_bytes": 551131545,
+            "docker_memory_display": "525.6MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 133.13156637502834
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 133931008,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.41%",
+            "docker_memory_bytes": 139041177,
+            "docker_memory_display": "132.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "1.51%",
+            "docker_memory_bytes": 946968985,
+            "docker_memory_display": "903.1MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 492986368,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.33%",
+            "docker_memory_bytes": 511180800,
+            "docker_memory_display": "487.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 27959296,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "1.23%",
+            "docker_memory_bytes": 66899148,
+            "docker_memory_display": "63.8MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 323960832,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 550292684,
+            "docker_memory_display": "524.8MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 140.45614575012587
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 130506752,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.16%",
+            "docker_memory_bytes": 135580876,
+            "docker_memory_display": "129.3MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.18%",
+            "docker_memory_bytes": 946968985,
+            "docker_memory_display": "903.1MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 493187072,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "0.55%",
+            "docker_memory_bytes": 511390515,
+            "docker_memory_display": "487.7MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 28053504,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "67.58%",
+            "docker_memory_bytes": 79744204,
+            "docker_memory_display": "76.05MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 325582848,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 551865548,
+            "docker_memory_display": "526.3MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 147.48489270894788
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 133967872,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.40%",
+            "docker_memory_bytes": 139041177,
+            "docker_memory_display": "132.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "1.89%",
+            "docker_memory_bytes": 947283558,
+            "docker_memory_display": "903.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 493322240,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.14%",
+            "docker_memory_bytes": 511495372,
+            "docker_memory_display": "487.8MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 28061696,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.02%",
+            "docker_memory_bytes": 133798297,
+            "docker_memory_display": "127.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 325869568,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 552180121,
+            "docker_memory_display": "526.6MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 154.82090779207647
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 133980160,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "19.66%",
+            "docker_memory_bytes": 139355750,
+            "docker_memory_display": "132.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.48%",
+            "docker_memory_bytes": 947073843,
+            "docker_memory_display": "903.2MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 493584384,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "4.43%",
+            "docker_memory_bytes": 511705088,
+            "docker_memory_display": "488MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 28389376,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.05%",
+            "docker_memory_bytes": 134112870,
+            "docker_memory_display": "127.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 327766016,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "15.46%",
+            "docker_memory_bytes": 554277273,
+            "docker_memory_display": "528.6MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 162.14274554210715
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 133980160,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.32%",
+            "docker_memory_bytes": 139146035,
+            "docker_memory_display": "132.7MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.87%",
+            "docker_memory_bytes": 947073843,
+            "docker_memory_display": "903.2MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 493723648,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.50%",
+            "docker_memory_bytes": 511914803,
+            "docker_memory_display": "488.2MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 28393472,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.02%",
+            "docker_memory_bytes": 134112870,
+            "docker_memory_display": "127.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 327770112,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.01%",
+            "docker_memory_bytes": 554172416,
+            "docker_memory_display": "528.5MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 169.47309820912778
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 134012928,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.37%",
+            "docker_memory_bytes": 139146035,
+            "docker_memory_display": "132.7MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.40%",
+            "docker_memory_bytes": 947178700,
+            "docker_memory_display": "903.3MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 493789184,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.38%",
+            "docker_memory_bytes": 511914803,
+            "docker_memory_display": "488.2MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 28409856,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "1.10%",
+            "docker_memory_bytes": 134951731,
+            "docker_memory_display": "128.7MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 319025152,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.13%",
+            "docker_memory_bytes": 545154662,
+            "docker_memory_display": "519.9MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 176.43507929192856
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 136208384,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.72%",
+            "docker_memory_bytes": 141348044,
+            "docker_memory_display": "134.8MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "4.57%",
+            "docker_memory_bytes": 947493273,
+            "docker_memory_display": "903.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 525783040,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.61%",
+            "docker_memory_bytes": 544106086,
+            "docker_memory_display": "518.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 28835840,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.03%",
+            "docker_memory_bytes": 134846873,
+            "docker_memory_display": "128.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 321380352,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 547566387,
+            "docker_memory_display": "522.2MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 183.78481250000186
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 136212480,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.19%",
+            "docker_memory_bytes": 141348044,
+            "docker_memory_display": "134.8MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.37%",
+            "docker_memory_bytes": 947493273,
+            "docker_memory_display": "903.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 525910016,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.63%",
+            "docker_memory_bytes": 544210944,
+            "docker_memory_display": "519MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 28798976,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "1.13%",
+            "docker_memory_bytes": 135161446,
+            "docker_memory_display": "128.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 321380352,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 547566387,
+            "docker_memory_display": "522.2MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 191.14406845904887
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 134045696,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.18%",
+            "docker_memory_bytes": 139146035,
+            "docker_memory_display": "132.7MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.20%",
+            "docker_memory_bytes": 947912704,
+            "docker_memory_display": "904MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 525979648,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "0.56%",
+            "docker_memory_bytes": 544315801,
+            "docker_memory_display": "519.1MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 28688384,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "68.59%",
+            "docker_memory_bytes": 157496115,
+            "docker_memory_display": "150.2MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 324186112,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.02%",
+            "docker_memory_bytes": 550397542,
+            "docker_memory_display": "524.9MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 198.46112475008704
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 134070272,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.45%",
+            "docker_memory_bytes": 139250892,
+            "docker_memory_display": "132.8MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.48%",
+            "docker_memory_bytes": 951582720,
+            "docker_memory_display": "907.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 526237696,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.53%",
+            "docker_memory_bytes": 544525516,
+            "docker_memory_display": "519.3MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 28905472,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.02%",
+            "docker_memory_bytes": 183815372,
+            "docker_memory_display": "175.3MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 326258688,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.01%",
+            "docker_memory_bytes": 552494694,
+            "docker_memory_display": "526.9MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 205.81478291703388
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 147197952,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "10.60%",
+            "docker_memory_bytes": 151204659,
+            "docker_memory_display": "144.2MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.17%",
+            "docker_memory_bytes": 951582720,
+            "docker_memory_display": "907.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 526573568,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.58%",
+            "docker_memory_bytes": 544840089,
+            "docker_memory_display": "519.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 28901376,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 183815372,
+            "docker_memory_display": "175.3MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 326602752,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 552494694,
+            "docker_memory_display": "526.9MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 213.1815968749579
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 136257536,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.17%",
+            "docker_memory_bytes": 141348044,
+            "docker_memory_display": "134.8MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.86%",
+            "docker_memory_bytes": 951792435,
+            "docker_memory_display": "907.7MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 526573568,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "0.53%",
+            "docker_memory_bytes": 544840089,
+            "docker_memory_display": "519.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 29044736,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.34%",
+            "docker_memory_bytes": 184025088,
+            "docker_memory_display": "175.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 326598656,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 552914124,
+            "docker_memory_display": "527.3MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 220.51504291710444
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 134098944,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.40%",
+            "docker_memory_bytes": 139250892,
+            "docker_memory_display": "132.8MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.35%",
+            "docker_memory_bytes": 952107008,
+            "docker_memory_display": "908MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 526704640,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.84%",
+            "docker_memory_bytes": 545049804,
+            "docker_memory_display": "519.8MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 29040640,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.03%",
+            "docker_memory_bytes": 184025088,
+            "docker_memory_display": "175.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 328630272,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.09%",
+            "docker_memory_bytes": 555011276,
+            "docker_memory_display": "529.3MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 227.4871426669415
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 134217728,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.17%",
+            "docker_memory_bytes": 139355750,
+            "docker_memory_display": "132.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.54%",
+            "docker_memory_bytes": 952421580,
+            "docker_memory_display": "908.3MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 526778368,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "135.03%",
+            "docker_memory_bytes": 544106086,
+            "docker_memory_display": "518.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 29032448,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "35.41%",
+            "docker_memory_bytes": 184025088,
+            "docker_memory_display": "175.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 320282624,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.04%",
+            "docker_memory_bytes": 546308096,
+            "docker_memory_display": "521MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 234.82532679196447
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 134217728,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.17%",
+            "docker_memory_bytes": 139355750,
+            "docker_memory_display": "132.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.20%",
+            "docker_memory_bytes": 952526438,
+            "docker_memory_display": "908.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 588681216,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "21.17%",
+            "docker_memory_bytes": 606181785,
+            "docker_memory_display": "578.1MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 29032448,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.01%",
+            "docker_memory_bytes": 184129945,
+            "docker_memory_display": "175.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 320282624,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 546308096,
+            "docker_memory_display": "521MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 242.17306741699576
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 134303744,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "9.10%",
+            "docker_memory_bytes": 139984896,
+            "docker_memory_display": "133.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "30.97%",
+            "docker_memory_bytes": 954728448,
+            "docker_memory_display": "910.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 594702336,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "41.11%",
+            "docker_memory_bytes": 612263526,
+            "docker_memory_display": "583.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 27070464,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 181403648,
+            "docker_memory_display": "173MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 321716224,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 547880960,
+            "docker_memory_display": "522.5MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 249.5410172920674
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 136560640,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "47.44%",
+            "docker_memory_bytes": 142082048,
+            "docker_memory_display": "135.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "51.22%",
+            "docker_memory_bytes": 970247372,
+            "docker_memory_display": "925.3MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 791044096,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "124.52%",
+            "docker_memory_bytes": 795344896,
+            "docker_memory_display": "758.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 27107328,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "3.79%",
+            "docker_memory_bytes": 182032793,
+            "docker_memory_display": "173.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 325468160,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 551760691,
+            "docker_memory_display": "526.2MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 256.47671379195526
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 136785920,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "49.93%",
+            "docker_memory_bytes": 142186905,
+            "docker_memory_display": "135.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "80.24%",
+            "docker_memory_bytes": 975280537,
+            "docker_memory_display": "930.1MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 598052864,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "5.68%",
+            "docker_memory_bytes": 615409254,
+            "docker_memory_display": "586.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 27107328,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "2.81%",
+            "docker_memory_bytes": 182137651,
+            "docker_memory_display": "173.7MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 327729152,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 551760691,
+            "docker_memory_display": "526.2MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 263.8305467921309
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 137240576,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "52.84%",
+            "docker_memory_bytes": 143025766,
+            "docker_memory_display": "136.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "46.60%",
+            "docker_memory_bytes": 974022246,
+            "docker_memory_display": "928.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 616828928,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "6.59%",
+            "docker_memory_bytes": 634283622,
+            "docker_memory_display": "604.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 25825280,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "3.01%",
+            "docker_memory_bytes": 180984217,
+            "docker_memory_display": "172.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 327729152,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 553962700,
+            "docker_memory_display": "528.3MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 271.17763408413157
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 138547200,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "33.79%",
+            "docker_memory_bytes": 144703488,
+            "docker_memory_display": "138MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.47%",
+            "docker_memory_bytes": 974336819,
+            "docker_memory_display": "929.2MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 686043136,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "79.13%",
+            "docker_memory_bytes": 656828006,
+            "docker_memory_display": "626.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 25808896,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.12%",
+            "docker_memory_bytes": 180669644,
+            "docker_memory_display": "172.3MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 327917568,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 554172416,
+            "docker_memory_display": "528.5MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 278.496501167072
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 138543104,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.26%",
+            "docker_memory_bytes": 144179200,
+            "docker_memory_display": "137.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "7.93%",
+            "docker_memory_bytes": 974651392,
+            "docker_memory_display": "929.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 606822400,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.43%",
+            "docker_memory_bytes": 623273574,
+            "docker_memory_display": "594.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 26013696,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.39%",
+            "docker_memory_bytes": 181298790,
+            "docker_memory_display": "172.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 330674176,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.01%",
+            "docker_memory_bytes": 557108428,
+            "docker_memory_display": "531.3MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 285.84309491701424
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 138547200,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.58%",
+            "docker_memory_bytes": 144179200,
+            "docker_memory_display": "137.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.38%",
+            "docker_memory_bytes": 974546534,
+            "docker_memory_display": "929.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 606826496,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "2.07%",
+            "docker_memory_bytes": 623273574,
+            "docker_memory_display": "594.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 26005504,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.38%",
+            "docker_memory_bytes": 181089075,
+            "docker_memory_display": "172.7MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 330907648,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 557003571,
+            "docker_memory_display": "531.2MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 293.17804420902394
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 140468224,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.41%",
+            "docker_memory_bytes": 146066636,
+            "docker_memory_display": "139.3MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.68%",
+            "docker_memory_bytes": 974651392,
+            "docker_memory_display": "929.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 608899072,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.58%",
+            "docker_memory_bytes": 625370726,
+            "docker_memory_display": "596.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 26005504,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.60%",
+            "docker_memory_bytes": 181298790,
+            "docker_memory_display": "172.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 331198464,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 557632716,
+            "docker_memory_display": "531.8MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 300.51308670896105
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 140468224,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.39%",
+            "docker_memory_bytes": 146066636,
+            "docker_memory_display": "139.3MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.30%",
+            "docker_memory_bytes": 974651392,
+            "docker_memory_display": "929.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 608903168,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.29%",
+            "docker_memory_bytes": 625370726,
+            "docker_memory_display": "596.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 25960448,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "1.39%",
+            "docker_memory_bytes": 181403648,
+            "docker_memory_display": "173MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 331546624,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 557947289,
+            "docker_memory_display": "532.1MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 307.46428541699424
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 140464128,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.30%",
+            "docker_memory_bytes": 145961779,
+            "docker_memory_display": "139.2MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "1.05%",
+            "docker_memory_bytes": 974651392,
+            "docker_memory_display": "929.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 624922624,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "2.60%",
+            "docker_memory_bytes": 641623654,
+            "docker_memory_display": "611.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 25956352,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.15%",
+            "docker_memory_bytes": 181193932,
+            "docker_memory_display": "172.8MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 331513856,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.05%",
+            "docker_memory_bytes": 557947289,
+            "docker_memory_display": "532.1MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 314.79336716700345
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 140468224,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.36%",
+            "docker_memory_bytes": 145856921,
+            "docker_memory_display": "139.1MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.47%",
+            "docker_memory_bytes": 974651392,
+            "docker_memory_display": "929.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 625778688,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "2.15%",
+            "docker_memory_bytes": 642252800,
+            "docker_memory_display": "612.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 25960448,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "1.67%",
+            "docker_memory_bytes": 181403648,
+            "docker_memory_display": "173MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 331517952,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 557947289,
+            "docker_memory_display": "532.1MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 322.1574964169413
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 140476416,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.39%",
+            "docker_memory_bytes": 145752064,
+            "docker_memory_display": "139MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.74%",
+            "docker_memory_bytes": 974651392,
+            "docker_memory_display": "929.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 625778688,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "2.02%",
+            "docker_memory_bytes": 642252800,
+            "docker_memory_display": "612.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 25956352,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.44%",
+            "docker_memory_bytes": 181508505,
+            "docker_memory_display": "173.1MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 331743232,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.10%",
+            "docker_memory_bytes": 558157004,
+            "docker_memory_display": "532.3MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 329.5196625839453
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 140476416,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "18.15%",
+            "docker_memory_bytes": 145647206,
+            "docker_memory_display": "138.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "4.67%",
+            "docker_memory_bytes": 974651392,
+            "docker_memory_display": "929.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 625848320,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "3.70%",
+            "docker_memory_bytes": 642357657,
+            "docker_memory_display": "612.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 25964544,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.46%",
+            "docker_memory_bytes": 181193932,
+            "docker_memory_display": "172.8MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 331931648,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.01%",
+            "docker_memory_bytes": 558366720,
+            "docker_memory_display": "532.5MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 336.4554114169441
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 140480512,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.19%",
+            "docker_memory_bytes": 145647206,
+            "docker_memory_display": "138.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.18%",
+            "docker_memory_bytes": 974756249,
+            "docker_memory_display": "929.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 637988864,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "62.76%",
+            "docker_memory_bytes": 655045427,
+            "docker_memory_display": "624.7MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 26193920,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.14%",
+            "docker_memory_bytes": 181718220,
+            "docker_memory_display": "173.3MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 332316672,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 558261862,
+            "docker_memory_display": "532.4MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 343.78297654213384
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 140480512,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.16%",
+            "docker_memory_bytes": 145647206,
+            "docker_memory_display": "138.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.20%",
+            "docker_memory_bytes": 974756249,
+            "docker_memory_display": "929.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 643932160,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "29.55%",
+            "docker_memory_bytes": 661127168,
+            "docker_memory_display": "630.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 26136576,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.24%",
+            "docker_memory_bytes": 181403648,
+            "docker_memory_display": "173MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 332271616,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 558681292,
+            "docker_memory_display": "532.8MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 351.1484193750657
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 140480512,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "21.51%",
+            "docker_memory_bytes": 145647206,
+            "docker_memory_display": "138.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "12.76%",
+            "docker_memory_bytes": 974756249,
+            "docker_memory_display": "929.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 851525632,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "201.23%",
+            "docker_memory_bytes": 857420595,
+            "docker_memory_display": "817.7MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 26140672,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "1.25%",
+            "docker_memory_bytes": 181403648,
+            "docker_memory_display": "173MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 322260992,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 548300390,
+            "docker_memory_display": "522.9MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 357.51408675010316
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 140480512,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.41%",
+            "docker_memory_bytes": 145647206,
+            "docker_memory_display": "138.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.20%",
+            "docker_memory_bytes": 974756249,
+            "docker_memory_display": "929.6MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 647876608,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "33.55%",
+            "docker_memory_bytes": 664902041,
+            "docker_memory_display": "634.1MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 26103808,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.07%",
+            "docker_memory_bytes": 181403648,
+            "docker_memory_display": "173MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 324485120,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "12.97%",
+            "docker_memory_bytes": 550712115,
+            "docker_memory_display": "525.2MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 364.8449356670026
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 140480512,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.33%",
+            "docker_memory_bytes": 145647206,
+            "docker_memory_display": "138.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.70%",
+            "docker_memory_bytes": 974861107,
+            "docker_memory_display": "929.7MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 649584640,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.53%",
+            "docker_memory_bytes": 666160332,
+            "docker_memory_display": "635.3MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 26112000,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.10%",
+            "docker_memory_bytes": 181403648,
+            "docker_memory_display": "173MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 324481024,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 550712115,
+            "docker_memory_display": "525.2MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 372.193958084099
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 140480512,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.34%",
+            "docker_memory_bytes": 145647206,
+            "docker_memory_display": "138.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.35%",
+            "docker_memory_bytes": 975175680,
+            "docker_memory_display": "930MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 797442048,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "60.10%",
+            "docker_memory_bytes": 760427315,
+            "docker_memory_display": "725.2MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 26116096,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.06%",
+            "docker_memory_bytes": 181403648,
+            "docker_memory_display": "173MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 328159232,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.15%",
+            "docker_memory_bytes": 554486988,
+            "docker_memory_display": "528.8MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 379.55553258396685
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 140480512,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.34%",
+            "docker_memory_bytes": 145647206,
+            "docker_memory_display": "138.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.38%",
+            "docker_memory_bytes": 975175680,
+            "docker_memory_display": "930MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 649715712,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.99%",
+            "docker_memory_bytes": 666265190,
+            "docker_memory_display": "635.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 26116096,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.05%",
+            "docker_memory_bytes": 181403648,
+            "docker_memory_display": "173MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 330633216,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.04%",
+            "docker_memory_bytes": 557108428,
+            "docker_memory_display": "531.3MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 386.4405902919825
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 140480512,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.38%",
+            "docker_memory_bytes": 145647206,
+            "docker_memory_display": "138.9MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "0.26%",
+            "docker_memory_bytes": 975175680,
+            "docker_memory_display": "930MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 649846784,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.60%",
+            "docker_memory_bytes": 666370048,
+            "docker_memory_display": "635.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 26120192,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.06%",
+            "docker_memory_bytes": 181823078,
+            "docker_memory_display": "173.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 330551296,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 556898713,
+            "docker_memory_display": "531.1MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 393.7739152919967
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 142430208,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "0.41%",
+            "docker_memory_bytes": 147534643,
+            "docker_memory_display": "140.7MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "3.94%",
+            "docker_memory_bytes": 975175680,
+            "docker_memory_display": "930MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 649850880,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "1.29%",
+            "docker_memory_bytes": 666370048,
+            "docker_memory_display": "635.5MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 26255360,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "0.08%",
+            "docker_memory_bytes": 181823078,
+            "docker_memory_display": "173.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 330739712,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.00%",
+            "docker_memory_bytes": 557108428,
+            "docker_memory_display": "531.3MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 401.16806729207747
+      },
+      {
+        "containers": [
+          {
+            "cgroup_rss_proxy_bytes": 142426112,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-api-1",
+            "cpu_percent_display": "19.25%",
+            "docker_memory_bytes": 147639500,
+            "docker_memory_display": "140.8MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": null,
+            "cgroup_rss_proxy_field": null,
+            "container": "fhirgraph-benchmark-hapi-fhir-1",
+            "cpu_percent_display": "4.60%",
+            "docker_memory_bytes": 975175680,
+            "docker_memory_display": "930MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 650182656,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-neo4j-1",
+            "cpu_percent_display": "25.29%",
+            "docker_memory_bytes": 667313766,
+            "docker_memory_display": "636.4MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 26255360,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-postgres-1",
+            "cpu_percent_display": "1.19%",
+            "docker_memory_bytes": 181613363,
+            "docker_memory_display": "173.2MiB / 7.75GiB"
+          },
+          {
+            "cgroup_rss_proxy_bytes": 331767808,
+            "cgroup_rss_proxy_field": "anon",
+            "container": "fhirgraph-benchmark-web-1",
+            "cpu_percent_display": "0.01%",
+            "docker_memory_bytes": 558157004,
+            "docker_memory_display": "532.3MiB / 7.75GiB"
+          }
+        ],
+        "elapsed_seconds": 408.4589120419696
+      }
+    ],
+    "sampling_errors": [],
+    "scope": "Local sequential synthetic benchmark; Docker working-set memory, not process RSS. cgroup anon (v2) or total_rss (v1) is an RSS proxy when available."
+  },
+  "patients_requested": 1000,
+  "pipeline_audit": {
+    "completed_at": "2026-10-09T12:57:31.899168+00:00",
+    "dataset_hash": "1c9b91595eac25800b21be9a35a0ca8ef9c54d29fa9845081284b30d216b5efb",
+    "elapsed_seconds": 240.4036,
+    "run_id": "6a93ee60-1eb9-42bf-803c-95cdd25802e4",
+    "stage_timings": {
+      "build_graph": {
+        "completed_at": "2026-10-09T12:56:49.815498+00:00",
+        "elapsed_seconds": 49.23707029200159,
+        "started_at": "2026-10-09T12:56:00.578020+00:00",
+        "status": "success"
+      },
+      "generate": {
+        "completed_at": "2026-10-09T12:54:35.145598+00:00",
+        "elapsed_seconds": 63.639812000095844,
+        "started_at": "2026-10-09T12:53:31.505263+00:00",
+        "status": "success"
+      },
+      "load_fhir": {
+        "completed_at": "2026-10-09T12:56:00.577162+00:00",
+        "elapsed_seconds": 33.73355795815587,
+        "started_at": "2026-10-09T12:55:26.843320+00:00",
+        "status": "success"
+      },
+      "reconcile": {
+        "completed_at": "2026-10-09T12:57:31.895151+00:00",
+        "elapsed_seconds": 42.07835824997164,
+        "started_at": "2026-10-09T12:56:49.816445+00:00",
+        "status": "success"
+      },
+      "validate": {
+        "completed_at": "2026-10-09T12:55:26.841453+00:00",
+        "elapsed_seconds": 51.69346783310175,
+        "started_at": "2026-10-09T12:54:35.147565+00:00",
+        "status": "success"
+      }
+    },
+    "started_at": "2026-10-09T12:53:31.495568+00:00",
+    "status": "success"
+  },
+  "project": "fhirgraph-benchmark",
+  "recovery": {
+    "batch_size": 500,
+    "confirmed_batches_after_interrupt": 2,
+    "confirmed_batches_after_resume": 512,
+    "confirmed_batches_at_signal": 2,
+    "interrupted_exit_code": 1,
+    "scope": "SIGINT only the graph child, then resume and exact reconciliation; idempotent replay against the already populated graph, not an empty-store interruption",
+    "status": "pass"
+  },
+  "schema_version": 1,
+  "seed": 20260830,
+  "status": "pass",
+  "stores": {
+    "graph_node_count": 80621,
+    "graph_node_counts": {
+      "Condition": 1384,
+      "DiagnosticReport": 219,
+      "Encounter": 15118,
+      "MedicationRequest": 768,
+      "Observation": 62024,
+      "Organization": 8,
+      "Patient": 1000,
+      "Practitioner": 57,
+      "Procedure": 43
+    },
+    "graph_reference_count": 174998,
+    "graph_reference_counts": {
+      "ENCOUNTER": 64438,
+      "INDIVIDUAL": 15118,
+      "PROVIDER": 15118,
+      "REQUESTER": 768,
+      "SUBJECT": 79556
+    },
+    "hapi_counts": {
+      "Condition": 1384,
+      "DiagnosticReport": 219,
+      "Encounter": 15118,
+      "MedicationRequest": 768,
+      "Observation": 62024,
+      "Organization": 8,
+      "Patient": 1000,
+      "Practitioner": 57,
+      "Procedure": 43
+    },
+    "source_counts": {
+      "Condition": 1384,
+      "DiagnosticReport": 219,
+      "Encounter": 15118,
+      "MedicationRequest": 768,
+      "Observation": 62024,
+      "Organization": 8,
+      "Patient": 1000,
+      "Practitioner": 57,
+      "Procedure": 43
+    }
+  },
+  "wall_seconds": {
+    "compose_up": 75.43118887511082,
+    "evaluation": 35.30190062499605,
+    "overall_including_startup_and_teardown": 491.16637412505224,
+    "pipeline": 240.61519337492064,
+    "recovery": 129.69993454194628
+  }
+}

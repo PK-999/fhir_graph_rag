@@ -21,10 +21,17 @@ class Settings(BaseSettings):
     # HAPI FHIR
     hapi_fhir_url: str = "http://localhost:8080/fhir"
 
+    # Local OpenAI-compatible model server (Ollama by default)
+    llm_base_url: str = "http://localhost:11434/v1"
+    llm_api_key: str = "ollama"
+    llm_model: str = "llama3.1"
+
     # API
     api_host: str = "0.0.0.0"
     api_port: int = 8000
     api_log_level: str = "info"
+    readiness_timeout_seconds: float = 2.0
+    cors_origins: str = "http://localhost:4010,http://127.0.0.1:4010"
 
     @property
     def postgres_dsn(self) -> str:
@@ -34,7 +41,12 @@ class Settings(BaseSettings):
             f"@{self.postgres_host}:{self.postgres_port}/{self.postgres_db}"
         )
 
+    @property
+    def allowed_origins(self) -> list[str]:
+        """Parse the comma-separated browser origins accepted by CORS."""
+        return [origin.strip() for origin in self.cors_origins.split(",") if origin.strip()]
+
     model_config = {"env_file": ".env", "env_file_encoding": "utf-8", "extra": "ignore"}
 
 
-settings = Settings()
+settings = Settings()  # type: ignore[call-arg]  # Values are loaded from environment variables.

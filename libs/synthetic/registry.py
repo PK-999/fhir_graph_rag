@@ -7,6 +7,9 @@ Used for referential integrity validation.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Any
+
+from libs.fhir.references import extract_references
 
 
 @dataclass
@@ -38,6 +41,18 @@ class ResourceRegistry:
     def add_reference(self, source: str, field_name: str, target: str) -> None:
         """Record a reference edge from source to target."""
         self._references.append(ReferenceEdge(source=source, field_name=field_name, target=target))
+
+    def register_resource(
+        self,
+        resource_type: str,
+        resource_id: str,
+        payload: dict[str, Any],
+    ) -> str:
+        """Register a resource and every nested FHIR reference in its payload."""
+        full_id = self.register(resource_type, resource_id)
+        for target in extract_references(payload):
+            self.add_reference(full_id, "reference", target)
+        return full_id
 
     def get_dangling_references(self) -> list[ReferenceEdge]:
         """Return references that point to unregistered resources."""
@@ -76,9 +91,7 @@ class ResourceRegistry:
         """Raise if any referential integrity violations exist."""
         dangling = self.get_dangling_references()
         if dangling:
-            details = "\n".join(
-                f"  {r.source}.{r.field_name} -> {r.target}" for r in dangling[:20]
-            )
+            details = "\n".join(f"  {r.source}.{r.field_name} -> {r.target}" for r in dangling[:20])
             raise ValueError(
                 f"Referential integrity violation: {len(dangling)} dangling references:\n{details}"
             )

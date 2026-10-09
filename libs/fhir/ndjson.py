@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+from typing import Any
 
 from libs.fhir.models.base import FHIRResource
 
@@ -23,9 +24,9 @@ def write_ndjson(resources: list[FHIRResource], output_path: Path) -> int:
     return count
 
 
-def read_ndjson(input_path: Path) -> list[dict]:
+def read_ndjson(input_path: Path) -> list[dict[str, Any]]:
     """Read an NDJSON file and return a list of resource dicts."""
-    resources = []
+    resources: list[dict[str, Any]] = []
     with input_path.open() as f:
         for line in f:
             line = line.strip()

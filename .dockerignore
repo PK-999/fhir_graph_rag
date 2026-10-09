@@ -1,0 +1,17 @@
+.env
+.env.*
+!.env.example
+.git
+**/.git
+.venv
+**/__pycache__
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+apps/web/node_modules
+apps/web/.next
+apps/web/playwright-report
+apps/web/test-results
+artifacts
+artifacts_scale
+.local-history

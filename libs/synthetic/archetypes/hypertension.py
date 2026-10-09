@@ -24,7 +24,7 @@ from libs.fhir.models.datatypes import (
 )
 from libs.fhir.models.medication import MedicationRequest
 from libs.fhir.models.observation import Observation
-from libs.synthetic.archetypes.base import ClinicalArchetype, PatientState
+from libs.synthetic.archetypes.base import ClinicalArchetype, IdFactoryFn, PatientState
 
 HTN_CODE = "38341003"
 HTN_DISPLAY = "Hypertension"
@@ -55,10 +55,10 @@ class HypertensionArchetype(ClinicalArchetype):
         state: PatientState,
         rng: random.Random,
         practitioner_ref: Reference,
-        id_factory_fn: object,
+        id_factory_fn: IdFactoryFn,
     ) -> list[FHIRResource]:
         resources: list[FHIRResource] = []
-        get_id = id_factory_fn  # type: ignore[assignment]
+        get_id = id_factory_fn
 
         patient_ref = make_reference("Patient", patient_id)
         encounter_ref = make_reference("Encounter", encounter_id)
@@ -97,13 +97,15 @@ class HypertensionArchetype(ClinicalArchetype):
         diastolic = max(55, min(120, diastolic))
 
         # Systolic BP
-        obs_id = get_id("Observation")  # type: ignore[operator]
+        obs_id = get_id("Observation")
         resources.append(
             Observation(
                 id=obs_id,
                 status="final",
                 category=[vital_signs_category],
-                code=make_codeable_concept(SYSTOLIC_CODE, "Systolic blood pressure", "http://loinc.org"),
+                code=make_codeable_concept(
+                    SYSTOLIC_CODE, "Systolic blood pressure", "http://loinc.org"
+                ),
                 subject=patient_ref,
                 encounter=encounter_ref,
                 effectiveDateTime=encounter_time,
@@ -115,13 +117,15 @@ class HypertensionArchetype(ClinicalArchetype):
         state.latest_observations[SYSTOLIC_CODE] = systolic
 
         # Diastolic BP
-        obs_id = get_id("Observation")  # type: ignore[operator]
+        obs_id = get_id("Observation")
         resources.append(
             Observation(
                 id=obs_id,
                 status="final",
                 category=[vital_signs_category],
-                code=make_codeable_concept(DIASTOLIC_CODE, "Diastolic blood pressure", "http://loinc.org"),
+                code=make_codeable_concept(
+                    DIASTOLIC_CODE, "Diastolic blood pressure", "http://loinc.org"
+                ),
                 subject=patient_ref,
                 encounter=encounter_ref,
                 effectiveDateTime=encounter_time,
@@ -134,16 +138,18 @@ class HypertensionArchetype(ClinicalArchetype):
 
         # Diagnose after 2 elevated readings
         if not diagnosed and enc_count >= 2:
-            condition_id = get_id("Condition")  # type: ignore[operator]
+            condition_id = get_id("Condition")
             resources.append(
                 Condition(
                     id=condition_id,
                     clinicalStatus=make_codeable_concept(
-                        "active", "Active",
+                        "active",
+                        "Active",
                         "http://terminology.hl7.org/CodeSystem/condition-clinical",
                     ),
                     verificationStatus=make_codeable_concept(
-                        "confirmed", "Confirmed",
+                        "confirmed",
+                        "Confirmed",
                         "http://terminology.hl7.org/CodeSystem/condition-ver-status",
                     ),
                     code=make_codeable_concept(HTN_CODE, HTN_DISPLAY, "http://snomed.info/sct"),
@@ -156,14 +162,15 @@ class HypertensionArchetype(ClinicalArchetype):
             state.active_conditions[HTN_CODE] = encounter_time
 
             # Prescribe Lisinopril
-            mr_id = get_id("MedicationRequest")  # type: ignore[operator]
+            mr_id = get_id("MedicationRequest")
             resources.append(
                 MedicationRequest(
                     id=mr_id,
                     status="active",
                     intent="order",
                     medicationCodeableConcept=make_codeable_concept(
-                        LISINOPRIL_CODE, LISINOPRIL_DISPLAY,
+                        LISINOPRIL_CODE,
+                        LISINOPRIL_DISPLAY,
                         "http://www.nlm.nih.gov/research/umls/rxnorm",
                     ),
                     subject=patient_ref,

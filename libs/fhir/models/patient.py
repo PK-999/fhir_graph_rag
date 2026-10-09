@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import date
+from typing import Any
 
 from libs.fhir.models.base import FHIRResource
 from libs.fhir.models.datatypes import (
@@ -25,7 +26,7 @@ class Patient(FHIRResource):
     address: list[Address] | None = None
     telecom: list[ContactPoint] | None = None
     maritalStatus: CodeableConcept | None = None
-    communication: list[dict] | None = None  # simplified
+    communication: list[dict[str, Any]] | None = None  # simplified
 
     @property
     def display_name(self) -> str:

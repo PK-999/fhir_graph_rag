@@ -1,0 +1,44 @@
+{
+  "evaluation_followup": "The raw oracle was indexed independently by patient, preserving expected results; the completed benchmark is recorded separately in benchmark-1000.json.",
+  "excluded_timing": "The validation timer was reset by a quality snapshot refresh in this run. That field is omitted; total pipeline elapsed is valid. A regression fixed the timer for the final verification run.",
+  "pipeline_audit": {
+    "completed_at": "2026-10-09T12:32:07.782322+00:00",
+    "dataset_hash": "1c9b91595eac25800b21be9a35a0ca8ef9c54d29fa9845081284b30d216b5efb",
+    "elapsed_seconds": 303.318507,
+    "run_id": "3d488dd9-b26f-42f5-a295-e23929f04683",
+    "stage_timings": {
+      "build_graph": {
+        "completed_at": "2026-10-09T12:31:24.767883+00:00",
+        "elapsed_seconds": 69.6138280830346,
+        "started_at": "2026-10-09T12:30:15.153600+00:00",
+        "status": "success"
+      },
+      "generate": {
+        "completed_at": "2026-10-09T12:28:10.854508+00:00",
+        "elapsed_seconds": 66.37407579203136,
+        "started_at": "2026-10-09T12:27:04.466472+00:00",
+        "status": "success"
+      },
+      "load_fhir": {
+        "completed_at": "2026-10-09T12:30:15.152767+00:00",
+        "elapsed_seconds": 70.13288875017315,
+        "started_at": "2026-10-09T12:29:05.019410+00:00",
+        "status": "success"
+      },
+      "reconcile": {
+        "completed_at": "2026-10-09T12:32:07.777808+00:00",
+        "elapsed_seconds": 43.0086073752027,
+        "started_at": "2026-10-09T12:31:24.768915+00:00",
+        "status": "success"
+      }
+    },
+    "started_at": "2026-10-09T12:27:04.463815+00:00",
+    "status": "success"
+  },
+  "schema_version": 1,
+  "scope": "Initial fresh 1,000-patient ingestion; successful ingestion/reconciliation, followed by an intentionally interrupted slow evaluator. This is ingestion timing evidence, not a passing overall benchmark.",
+  "wall_seconds": {
+    "compose_up": 75.61829016683623,
+    "pipeline": 303.6854360420257
+  }
+}

@@ -5,10 +5,16 @@ import asyncio
 import json
 import logging
 import sys
+import tempfile
 import time
 from pathlib import Path
+from typing import cast
+
+from neo4j import AsyncGraphDatabase
 
 from libs.fhir.loader import FHIRLoader
+from libs.graph.schema import GraphEdge
+from pipelines.config import PipelineSettings
 
 logging.basicConfig(level=logging.INFO, format="%(message)s")
 logger = logging.getLogger(__name__)
@@ -48,11 +54,64 @@ async def reconcile_counts(dq_summary_path: Path, fhir_url: str) -> bool:
     return all_match
 
 
+async def reconcile_graph(ndjson_path: Path, config: PipelineSettings) -> bool:
+    """Compare exact graph identity/reference sets, including unexpected leftovers."""
+    from pipelines.build_graph import _graph_batches, _read_graph_input
+
+    if not config.neo4j_password:
+        raise ValueError("Set NEO4J_PASSWORD before graph reconciliation")
+    with tempfile.TemporaryFile(mode="w+", encoding="utf-8") as spool:
+        index, _, _ = _read_graph_input(ndjson_path, spool)
+        expected_nodes = index.known_ids
+        expected_edges = {
+            (edge.source_id, edge.type, edge.target_id)
+            for batch in _graph_batches(spool, index, "edges", 500)
+            for edge in cast("list[GraphEdge]", batch)
+        }
+    driver = AsyncGraphDatabase.driver(
+        config.neo4j_uri, auth=(config.neo4j_user, config.neo4j_password)
+    )
+    try:
+        async with driver.session() as session:
+            result = await session.run("MATCH (n) RETURN n.id AS id")
+            actual_nodes = {record["id"] async for record in result}
+            result = await session.run(
+                "MATCH (s)-[r]->(t) RETURN s.id AS source, type(r) AS kind, t.id AS target"
+            )
+            actual_edges = {
+                (record["source"], record["kind"], record["target"]) async for record in result
+            }
+        match = expected_nodes == actual_nodes and expected_edges == actual_edges
+        print(
+            f"Graph reconciliation: {len(actual_nodes)} nodes, {len(actual_edges)} references; {'MATCH' if match else 'MISMATCH'}"
+        )
+        if not match:
+            print(
+                f"Missing/extra nodes: {len(expected_nodes - actual_nodes)}/{len(actual_nodes - expected_nodes)}; missing/extra references: {len(expected_edges - actual_edges)}/{len(actual_edges - expected_edges)}"
+            )
+        return match
+    finally:
+        await driver.close()
+
+
 def main() -> None:
     """Run count reconciliation from command line."""
-    parser = argparse.ArgumentParser(description="Reconcile FHIR server resource counts with expected totals")
-    parser.add_argument("--input", type=str, default="artifacts/data_quality_summary.json", help="Path to DQ summary JSON")
-    parser.add_argument("--url", type=str, default="http://localhost:8080/fhir", help="FHIR Server base URL")
+    parser = argparse.ArgumentParser(
+        description="Reconcile FHIR server resource counts with expected totals"
+    )
+    config = PipelineSettings()
+    parser.add_argument(
+        "--input",
+        type=str,
+        default="artifacts/data_quality_summary.json",
+        help="Path to DQ summary JSON",
+    )
+    parser.add_argument(
+        "--url", type=str, default=config.hapi_fhir_url, help="FHIR Server base URL"
+    )
+    parser.add_argument(
+        "--graph", action="store_true", help="Also reconcile exact graph IDs and references"
+    )
     args = parser.parse_args()
 
     input_file = Path(args.input)
@@ -69,6 +128,8 @@ def main() -> None:
 
     try:
         success = asyncio.run(reconcile_counts(input_file, args.url))
+        if args.graph:
+            success = asyncio.run(reconcile_graph(input_file.parent / "ndjson", config)) and success
     except KeyboardInterrupt:
         print("\nReconciliation interrupted by user.")
         sys.exit(1)

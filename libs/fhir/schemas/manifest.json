@@ -1,0 +1,28 @@
+{
+  "artifact": "fhir-r4.schema.json",
+  "fhir_version": "4.0.1",
+  "release": "R4 (Technical Correction #1)",
+  "source": "https://hl7.org/fhir/R4/fhir.schema.json",
+  "source_documentation": "https://hl7.org/fhir/R4/json.html",
+  "retrieved_on": "2026-10-09",
+  "sha256": "2230406893b4cf002a4ee1e5e2bbeca22ac5d2d4931b3e9ef7b9594bbc376a01",
+  "bytes": 3386892,
+  "json_schema_dialect": "http://json-schema.org/draft-06/schema#",
+  "license": "CC0-1.0",
+  "license_source": "https://hl7.org/fhir/R4/license.html",
+  "copyright": "Copyright 2011+ HL7. HL7 and FHIR are registered trademarks of Health Level Seven International; use does not imply endorsement.",
+  "upstream_artifact_modified": false,
+  "validation_scope": "FHIR R4 structural JSON schema and JSON shape checks",
+  "additional_checks": [
+    "Complex elements must be JSON objects, including singleton maximum cardinality 1.",
+    "Arrays must contain at least one item when present.",
+    "JSON numbers must be finite; NaN and positive/negative Infinity are rejected recursively."
+  ],
+  "limitations": [
+    "Passing structural validation does not establish full FHIR conformance.",
+    "Profiles, FHIRPath invariants, choice exclusivity, all minimum cardinalities, terminology bindings and code membership are not comprehensively validated.",
+    "The official R4 schema has omissions; separate labeled JSON shape checks address complex object shape, empty arrays and finite JSON numbers only.",
+    "The official schema can also reject some valid FHIR JSON representations, such as null placeholders in repeating primitive value arrays; it is not a complete FHIR validator.",
+    "Schema acceptance is not a guarantee of clinical validity or suitability."
+  ]
+}

@@ -1,7 +1,7 @@
 """HAPI FHIR loader and client."""
 
 import logging
-from typing import Any
+from typing import Any, cast
 
 import httpx
 from tenacity import (
@@ -16,6 +16,7 @@ logger = logging.getLogger(__name__)
 
 class FHIRLoaderError(Exception):
     """Base exception for FHIR loader errors."""
+
     pass
 
 
@@ -54,10 +55,35 @@ class FHIRLoader:
             if response.status_code < 500 and response.status_code != 429:
                 logger.error(f"Client error {response.status_code}: {response.text}")
                 # Don't retry 400 Bad Request (usually validation error)
-                raise FHIRLoaderError(f"FHIR server rejected bundle: {response.status_code} {response.text}")
+                raise FHIRLoaderError(
+                    f"FHIR server rejected bundle: {response.status_code} {response.text}"
+                )
             response.raise_for_status()
 
-        return response.json()
+        data = response.json()
+        entries = data.get("entry") if isinstance(data, dict) else None
+        expected = bundle.get("entry", [])
+        if (
+            response.status_code != 200
+            or not isinstance(data, dict)
+            or data.get("resourceType") != "Bundle"
+            or data.get("type") != "transaction-response"
+            or not isinstance(entries, list)
+            or len(entries) != len(expected)
+        ):
+            raise FHIRLoaderError("FHIR transaction response did not confirm every input entry")
+        for entry in entries:
+            status = entry.get("response", {}).get("status", "") if isinstance(entry, dict) else ""
+            if (
+                not isinstance(status, str)
+                or not status.split()
+                or not status.split()[0].isdigit()
+                or int(status.split()[0]) not in {200, 201, 204}
+            ):
+                raise FHIRLoaderError(
+                    f"FHIR transaction entry failed or was unconfirmed: {status!r}"
+                )
+        return cast("dict[str, Any]", data)
 
     async def get_resource_count(self, resource_type: str) -> int:
         """Get the total count of a resource type using _summary=count."""
@@ -66,5 +92,5 @@ class FHIRLoader:
             params={"_summary": "count"},
         )
         response.raise_for_status()
-        data = response.json()
-        return data.get("total", 0)
+        data = cast("dict[str, Any]", response.json())
+        return int(data.get("total", 0))

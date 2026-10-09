@@ -1,5 +1,7 @@
 # FHIRGraph Finish-Line Tracker
 
+> **Historical September roadmap:** This tracker preserves earlier decisions and checks. Its 100,000-patient target and incomplete stages are future work; its baseline counts and blockers are historical. Current portfolio behavior and verification are documented in the [README](../README.md) and [project review](PROJECT_REVIEW.md), updated for the portfolio release. See [current case study](CASE_STUDY.md).
+
 **Source design:** `docs/superpowers/specs/2026-09-01-fhirgraph-finish-line-design.md`  
 **Status legend:** `[ ]` not started, `[~]` in progress, `[x]` verified, `[!]` blocked
 
@@ -20,29 +22,28 @@
 
 ## Verified baseline
 
-- [x] Python tests: 43 passed.
-- [!] Frontend lint: four errors and nine warnings.
-- [!] Ruff: 35 issues.
-- [!] Strict mypy: 100 errors in 39 files.
-- [x] Webpack production build completes.
-- [!] Default Turbopack build fails in the current execution environment.
-- [!] Neo4j and PostgreSQL were unavailable during the live check.
-- [!] Health endpoint reported database readiness incorrectly.
-- [!] Common data APIs returned HTTP 500 while health returned HTTP 200.
-- [!] Two unrelated projects occupied port 3000; the FHIRGraph web app was not the app being served there.
-- [!] Direct Chrome control attachment was rejected; accepted UX screenshots are pending.
+- [x] Python tests: 55 passed (including executable bootstrap and smoke contracts).
+- [x] Frontend ESLint passes with zero warnings.
+- [x] Ruff check and format verification pass.
+- [x] Strict mypy passes across 78 source files.
+- [x] Webpack production build completes with explicit Next.js standalone output.
+- [x] The five-service Compose stack builds and reaches healthy state on collision-safe ports.
+- [x] Liveness and dependency readiness are separate and truthful.
+- [x] Degraded readiness was verified by stopping and restoring Neo4j.
+- [x] API readiness and web root responded in approximately 53 ms and 82 ms respectively on the verification workstation.
+- [!] Direct Chrome control still rejects this chat's trusted-browser connection; accepted UX screenshots remain a Stage 8 gate.
 
 ## Stage 1 — Reliable development baseline
 
-- [ ] Define collision-free, configurable ports and a startup preflight.
-- [ ] Separate liveness from real dependency readiness.
-- [ ] Add deterministic local service startup and seed instructions.
-- [ ] Replace permissive API tests with exact contract/integration tests.
-- [ ] Resolve frontend lint errors and warnings.
-- [ ] Resolve Ruff findings.
-- [ ] Resolve strict mypy findings.
-- [ ] Make the supported production build path explicit and reproducible.
-- [ ] Establish a green CI-quality baseline.
+- [x] Define collision-free, configurable ports and executable Compose preflight checks.
+- [x] Separate liveness from real dependency readiness.
+- [x] Add deterministic one-command local service startup and safe shutdown instructions.
+- [x] Add exact health, startup, configuration, and smoke contract tests.
+- [x] Resolve frontend lint errors and warnings.
+- [x] Resolve Ruff findings.
+- [x] Resolve strict mypy findings.
+- [x] Make the supported production build path explicit and reproducible.
+- [x] Establish a green CI-quality baseline.
 
 ## Stage 2 — Registry and graph v2
 
@@ -117,4 +118,3 @@
 - [ ] Publish UX/accessibility audit and evidence limits.
 - [ ] Publish accuracy and performance reports.
 - [ ] Synchronize all architecture, API, schema, README, and tracker documents.
-
