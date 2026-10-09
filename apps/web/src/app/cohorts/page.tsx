@@ -29,15 +29,15 @@ function ConditionAutocomplete({ value, onChange, onRemove }: { value: string, o
     setQuery(ALL_CONDITIONS.find(c => c.code === value)?.name || value);
   }, [value]);
 
-  const results = ALL_CONDITIONS.filter(c => 
-    c.name.toLowerCase().includes(query.toLowerCase()) || 
+  const results = ALL_CONDITIONS.filter(c =>
+    c.name.toLowerCase().includes(query.toLowerCase()) ||
     c.code.includes(query)
   );
 
   return (
     <div className="flex items-center gap-2 relative w-full">
       <div className="relative w-full">
-        <Input 
+        <Input
           value={query}
           onChange={(e) => {
             setQuery(e.target.value);
@@ -52,8 +52,8 @@ function ConditionAutocomplete({ value, onChange, onRemove }: { value: string, o
         {isOpen && results.length > 0 && (
           <div className="absolute z-10 w-full mt-1 bg-background border border-border rounded-md shadow-lg max-h-60 overflow-auto">
             {results.map(r => (
-              <div 
-                key={r.code} 
+              <div
+                key={r.code}
                 className="p-2 hover:bg-muted cursor-pointer text-sm"
                 onMouseDown={(e) => e.preventDefault()} // Prevent blur before click fires
                 onClick={() => {
@@ -138,9 +138,9 @@ export default function CohortBuilderPage() {
               <label className="text-sm font-medium text-muted-foreground">Conditions (SNOMED Code or Name)</label>
               <div className="mt-2 space-y-2">
                 {conditions.map((c, i) => (
-                  <ConditionAutocomplete 
-                    key={i} 
-                    value={c} 
+                  <ConditionAutocomplete
+                    key={i}
+                    value={c}
                     onChange={(val) => {
                       const newC = [...conditions];
                       newC[i] = val;
@@ -149,9 +149,9 @@ export default function CohortBuilderPage() {
                     onRemove={() => setConditions(conditions.filter((_, idx) => idx !== i))}
                   />
                 ))}
-                <Button 
-                  variant="outline" 
-                  size="sm" 
+                <Button
+                  variant="outline"
+                  size="sm"
                   className="w-full border-dashed border-border bg-transparent hover:bg-secondary"
                   onClick={() => setConditions([...conditions, ""])}
                 >
@@ -163,7 +163,7 @@ export default function CohortBuilderPage() {
             <div className="grid grid-cols-2 gap-2 pt-4 border-t border-border">
               <div>
                 <label className="text-sm font-medium text-muted-foreground">Min Age</label>
-                <Input 
+                <Input
                   type="number"
                   value={minAge}
                   onChange={(e) => setMinAge(e.target.value)}
@@ -173,7 +173,7 @@ export default function CohortBuilderPage() {
               </div>
               <div>
                 <label className="text-sm font-medium text-muted-foreground">Max Age</label>
-                <Input 
+                <Input
                   type="number"
                   value={maxAge}
                   onChange={(e) => setMaxAge(e.target.value)}
@@ -183,7 +183,7 @@ export default function CohortBuilderPage() {
               </div>
             </div>
 
-            <Button 
+            <Button
               className="w-full mt-6 bg-blue-600 hover:bg-blue-700"
               onClick={handleQuery}
               disabled={loading}
@@ -205,7 +205,7 @@ export default function CohortBuilderPage() {
                 {result.query}
               </div>
             )}
-            
+
             <div className="rounded-md border border-border">
               <Table>
                 <TableHeader>

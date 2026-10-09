@@ -31,7 +31,7 @@ async function searchPatients(query: string, gender: string, dobStart: string, d
   url.searchParams.append("page", page.toString());
   url.searchParams.append("sort", sort);
   url.searchParams.append("order", order);
-  
+
   try {
     const res = await fetch(url.toString(), { cache: 'no-store' });
     if (!res.ok) throw new Error("Failed to search");
@@ -56,7 +56,7 @@ export default async function PatientsPage({
   const page = resolvedParams.page ? parseInt(resolvedParams.page) : 1;
   const sort = resolvedParams.sort || "name";
   const order = resolvedParams.order || "asc";
-  
+
   const { data: patients, pagination } = await searchPatients(q, gender, dobStart, dobEnd, page, sort, order);
 
   const filterParams = `&q=${encodeURIComponent(q)}&gender=${encodeURIComponent(gender)}&dob_start=${encodeURIComponent(dobStart)}&dob_end=${encodeURIComponent(dobEnd)}`;
@@ -73,13 +73,13 @@ export default async function PatientsPage({
           <h2 className="text-3xl font-bold tracking-tight">Patient Registry</h2>
           <p className="text-muted-foreground mt-1">Search and view synthetic patient records.</p>
         </div>
-        
+
         <form className="flex flex-wrap items-center gap-2 xl:justify-end">
-          <Input 
-            type="search" 
+          <Input
+            type="search"
             name="q"
             defaultValue={q}
-            placeholder="Name or ID..." 
+            placeholder="Name or ID..."
             className="bg-background border-input w-40"
           />
           <select name="gender" defaultValue={gender} className="flex h-10 w-32 items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">

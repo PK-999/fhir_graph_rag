@@ -25,7 +25,7 @@ export function PatientGraphTab({ patientId }: { patientId: string }) {
           initialNodeId={`Patient/${patientId}`}
           onNodeSelect={handleNodeSelect}
         />
-        
+
 
       </div>
 

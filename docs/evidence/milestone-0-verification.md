@@ -1,7 +1,7 @@
 # Milestone 0 Verification and Decision Record
 
-**Verified:** 2026-09-02  
-**Scope:** reliable repository bootstrap and development baseline  
+**Verified:** 2026-09-02
+**Scope:** reliable repository bootstrap and development baseline
 **Result:** passed; direct-Chrome visual verification remains a later release gate
 
 ## Outcome

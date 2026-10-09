@@ -49,7 +49,7 @@ export function GraphPageClient({ initialNodeId }: { initialNodeId: string }) {
   return (
     <div className="flex h-full border-t border-border bg-background">
       {isPatientActive && patientId && (
-        <PatientSidebar 
+        <PatientSidebar
           patientId={patientId}
           viewMode={viewMode}
           onViewModeChange={setViewMode}

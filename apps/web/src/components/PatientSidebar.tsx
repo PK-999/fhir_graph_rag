@@ -95,19 +95,19 @@ export function PatientSidebar({ patientId, viewMode, onViewModeChange, onStoryS
       <div className="p-4 border-b border-border/50">
         <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Visualization Mode</h3>
         <div className="flex flex-col gap-2">
-          <button 
+          <button
             onClick={() => onViewModeChange("patient-360")}
             className={`px-3 py-2 text-sm text-left rounded-md transition-colors ${viewMode === "patient-360" ? "bg-primary text-primary-foreground font-medium" : "hover:bg-muted text-foreground"}`}
           >
             Patient 360 Graph
           </button>
-          <button 
+          <button
             onClick={() => onViewModeChange("clinical-journey")}
             className={`px-3 py-2 text-sm text-left rounded-md transition-colors ${viewMode === "clinical-journey" ? "bg-primary text-primary-foreground font-medium" : "hover:bg-muted text-foreground"}`}
           >
             Clinical Journey
           </button>
-          <button 
+          <button
             onClick={() => onViewModeChange("explorer")}
             className={`px-3 py-2 text-sm text-left rounded-md transition-colors ${viewMode === "explorer" ? "bg-primary text-primary-foreground font-medium" : "hover:bg-muted text-foreground"}`}
           >
@@ -121,7 +121,7 @@ export function PatientSidebar({ patientId, viewMode, onViewModeChange, onStoryS
         <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-3">Highlight Resource Types</h3>
         <div className="flex flex-col gap-1.5">
           {["Patient Overview", "Conditions and Labs", "Encounters and Procedures", "Medication History"].map((story) => (
-            <button 
+            <button
               key={story}
               onClick={() => onStorySelect(story)}
               className="px-3 py-1.5 text-sm text-left rounded-md hover:bg-muted text-muted-foreground hover:text-foreground transition-colors flex items-center gap-2"

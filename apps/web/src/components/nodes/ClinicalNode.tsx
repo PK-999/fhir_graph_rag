@@ -3,7 +3,7 @@ import { Activity, Pill, User, FileText, Calendar, Crosshair, AlertTriangle } fr
 
 export function ClinicalNode({ data }: { data: any }) {
   const type = data.type || "Unknown";
-  
+
   // Icon and Color mapping based on FHIR resource type
   let Icon = FileText;
   let bgClass = "bg-slate-100 dark:bg-slate-800";

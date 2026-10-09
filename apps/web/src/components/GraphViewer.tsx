@@ -101,7 +101,7 @@ export const GraphViewer = forwardRef<GraphViewerRef, GraphViewerProps>(({ initi
     setLoading(true);
     try {
       const url = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8010/api/v1";
-      
+
       let endpoint = `/graph/neighbors/${encodeURIComponent(id)}?depth=${d}`;
       if (mode === "patient-360" && id.startsWith("Patient/")) {
         endpoint = `/patients/${encodeURIComponent(id.split("/")[1])}/summary-graph`;
@@ -114,14 +114,14 @@ export const GraphViewer = forwardRef<GraphViewerRef, GraphViewerProps>(({ initi
       setTruncated(data.truncated || false);
 
       const { rfNodes, rfEdges } = formatGraph(data.nodes || [], data.edges || []);
-      
+
       let layouted;
       if (mode === "patient-360" && id.startsWith("Patient/")) {
         layouted = getRadialLayoutedElements(rfNodes, rfEdges, id);
       } else {
         layouted = getLayoutedElements(rfNodes, rfEdges, "TB");
       }
-      
+
       setNodes(layouted.nodes);
       setEdges(layouted.edges);
     } catch (err) {
@@ -138,19 +138,19 @@ export const GraphViewer = forwardRef<GraphViewerRef, GraphViewerProps>(({ initi
         const url = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8010/api/v1";
         const res = await fetch(`${url}/graph/explore/${encodeURIComponent(id)}/expand?relationship=${encodeURIComponent(relationship)}&target_label=${encodeURIComponent(targetLabel)}`);
         const data = await res.json();
-        
+
         const { rfNodes, rfEdges } = formatGraph(data.nodes || [], data.edges || []);
-        
+
         // Merge with existing
         const newNodes = [...nodes];
         const newEdges = [...edges];
-        
+
         rfNodes.forEach((n) => {
           if (!newNodes.find(existing => existing.id === n.id)) {
             newNodes.push(n);
           }
         });
-        
+
         const edgeIds = new Set(newEdges.map((edge) => edge.id));
         rfEdges.forEach((e) => {
           if (!edgeIds.has(e.id)) {
@@ -221,7 +221,7 @@ export const GraphViewer = forwardRef<GraphViewerRef, GraphViewerProps>(({ initi
   return (
     <div className="flex flex-col h-full overflow-hidden relative">
       <div className="flex-1 min-h-[500px] w-full bg-slate-50 dark:bg-zinc-950 relative rounded-2xl border border-border/50 shadow-sm overflow-hidden">
-        
+
         {/* Floating Toolbar */}
         <div className="absolute top-4 left-4 z-20 flex flex-wrap gap-2 items-center bg-background/80 backdrop-blur-xl p-2 rounded-xl border border-border/50 shadow-sm">
           <input

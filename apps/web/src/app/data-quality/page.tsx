@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 
 async function getDQSummary() {
   const apiUrl = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8010/api/v1";
-  
+
   try {
     const res = await fetch(`${apiUrl}/data-quality/summary`, { cache: 'no-store' });
     if (!res.ok) throw new Error("Failed to fetch DQ summary");
@@ -46,7 +46,7 @@ export default async function DataQualityPage() {
             </p>
           </CardContent>
         </Card>
-        
+
         <Card className="bg-card/50 border-border">
           <CardHeader className="pb-2">
             <CardTitle className="text-sm font-medium text-muted-foreground">Overall Status</CardTitle>
@@ -95,8 +95,8 @@ export default async function DataQualityPage() {
                     <TableCell>
                       <div className="flex items-center gap-2">
                         <div className="w-full bg-secondary h-2 rounded-full overflow-hidden w-24">
-                          <div 
-                            className={`h-full ${r.pass_rate >= 99 ? 'bg-emerald-500' : r.pass_rate >= 90 ? 'bg-amber-500' : 'bg-rose-500'}`} 
+                          <div
+                            className={`h-full ${r.pass_rate >= 99 ? 'bg-emerald-500' : r.pass_rate >= 90 ? 'bg-amber-500' : 'bg-rose-500'}`}
                             style={{ width: `${r.pass_rate === 100 ? "Pass" : "Fail"}` }}
                           />
                         </div>

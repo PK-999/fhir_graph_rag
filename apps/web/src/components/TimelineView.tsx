@@ -83,7 +83,7 @@ export function TimelineView({ patientId }: { patientId: string }) {
   // Second pass: attach items
   for (const ev of filtered) {
     if (ev.type === "Encounter") continue; // already handled
-    
+
     // If we're filtering, and we filter by Encounter, encounters will be empty but maybe we still show filtered children?
     // Actually, if we filter, we just want to see the matched events.
     if (ev.encounter_id && eventsByEncounter[ev.encounter_id]) {
@@ -158,7 +158,7 @@ export function TimelineView({ patientId }: { patientId: string }) {
       {/* Horizontal Timeline */}
       <div className="flex-1 overflow-x-auto overflow-y-hidden pb-4">
         <div className="flex gap-6 min-h-full items-stretch px-4 pt-8 border-t-2 border-border mt-4 relative">
-          
+
           {columns.map((col, idx) => {
             if (col.type === "encounter") {
               const encCfg = getConfig("Encounter");
@@ -171,7 +171,7 @@ export function TimelineView({ patientId }: { patientId: string }) {
                   </div>
                   {/* Date line */}
                   <div className="absolute -top-[24px] left-4 h-6 w-px bg-border" />
-                  
+
                   {/* Encounter Card */}
                   <div className={`rounded-md border px-3 py-2 text-sm ${encCfg.bgColor}`}>
                     <div className="flex items-center gap-2">
@@ -229,7 +229,7 @@ export function TimelineView({ patientId }: { patientId: string }) {
                   </div>
                   {/* Date line */}
                   <div className="absolute -top-[24px] left-4 h-6 w-px bg-border" />
-                  
+
                   <div className={`rounded-md border px-3 py-2 text-sm ${cfg.bgColor}`}>
                     <div className="flex items-center gap-2">
                       <Icon className={`w-3.5 h-3.5 ${cfg.color} shrink-0`} />

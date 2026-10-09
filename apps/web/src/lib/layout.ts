@@ -37,11 +37,11 @@ export const getLayoutedElements = (nodes: Node[], edges: Edge[], direction = "T
 
 export const getRadialLayoutedElements = (nodes: Node[], edges: Edge[], centerNodeId: string) => {
   const radius = 300;
-  
+
   const otherNodes = nodes.filter(n => n.id !== centerNodeId);
-  
+
   const angleStep = (2 * Math.PI) / (otherNodes.length || 1);
-  
+
   const newNodes = nodes.map((node) => {
     if (node.id === centerNodeId) {
       return {

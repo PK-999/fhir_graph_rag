@@ -384,4 +384,3 @@ Expected: liveness remains 200; readiness becomes 503 and names Neo4j as unavail
 - [x] **Step 6: Record evidence and synchronize trackers**
 
 Record exact commands, dates, exit codes, service URLs, health payloads, and any accepted limitations. Mark Milestone 0 complete only if every exit criterion has direct evidence.
-

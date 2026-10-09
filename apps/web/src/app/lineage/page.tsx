@@ -6,7 +6,7 @@ export const dynamic = "force-dynamic";
 
 async function getLineage() {
   const apiUrl = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8010/api/v1";
-  
+
   try {
     const res = await fetch(`${apiUrl}/lineage`, { cache: 'no-store' });
     if (!res.ok) throw new Error("Failed to fetch lineage");
