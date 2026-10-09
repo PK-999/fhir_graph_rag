@@ -1,5 +1,7 @@
 -- FHIRGraph PostgreSQL initialization
 -- This runs automatically on first container start
+-- HAPI owns its tables here; portfolio audit tables stay in public.
+CREATE SCHEMA IF NOT EXISTS hapi;
 
 -- Pipeline run tracking
 CREATE TABLE IF NOT EXISTS pipeline_runs (
@@ -29,11 +31,26 @@ CREATE TABLE IF NOT EXISTS ingestion_events (
     run_id          VARCHAR(64) NOT NULL REFERENCES pipeline_runs(run_id),
     resource_type   VARCHAR(64) NOT NULL,
     resource_id     VARCHAR(128) NOT NULL,
-    action          VARCHAR(20) NOT NULL,  -- 'created', 'updated', 'skipped', 'failed'
+    action          VARCHAR(20) NOT NULL,  -- 'upserted' after a complete successful stage
     target_system   VARCHAR(32) NOT NULL,  -- 'hapi_fhir', 'neo4j'
     error_message   TEXT,
     ingested_at     TIMESTAMPTZ NOT NULL DEFAULT NOW()
 );
+
+-- Idempotent upgrade for audit tables on an existing persistent volume.
+-- Historical rows retain NULL evidence rather than inferred provenance.
+ALTER TABLE ingestion_events ADD COLUMN IF NOT EXISTS canonical_id TEXT;
+ALTER TABLE ingestion_events ADD COLUMN IF NOT EXISTS source_artifact TEXT;
+ALTER TABLE ingestion_events ADD COLUMN IF NOT EXISTS source_location TEXT;
+ALTER TABLE ingestion_events ADD COLUMN IF NOT EXISTS source_line INTEGER;
+ALTER TABLE ingestion_events ADD COLUMN IF NOT EXISTS content_sha256 VARCHAR(64);
+ALTER TABLE ingestion_events ADD COLUMN IF NOT EXISTS dataset_hash VARCHAR(64);
+ALTER TABLE ingestion_events ADD COLUMN IF NOT EXISTS transformer_version VARCHAR(64);
+ALTER TABLE ingestion_events ADD COLUMN IF NOT EXISTS target_identity TEXT;
+ALTER TABLE ingestion_events ADD COLUMN IF NOT EXISTS confirmed_stage VARCHAR(32);
+CREATE INDEX IF NOT EXISTS idx_ingestion_canonical_id ON ingestion_events(canonical_id);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_ingestion_confirmed_event
+ON ingestion_events(run_id, target_system, resource_type, resource_id, confirmed_stage);
 
 -- Lineage mappings: business term → FHIR element
 CREATE TABLE IF NOT EXISTS lineage_mappings (

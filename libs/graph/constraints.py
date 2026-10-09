@@ -21,18 +21,19 @@ async def apply_constraints_and_indexes(loader: Neo4jLoader) -> None:
         "CREATE CONSTRAINT org_id IF NOT EXISTS FOR (n:Organization) REQUIRE n.id IS UNIQUE",
         "CREATE CONSTRAINT proc_id IF NOT EXISTS FOR (n:Procedure) REQUIRE n.id IS UNIQUE",
         "CREATE CONSTRAINT diag_id IF NOT EXISTS FOR (n:DiagnosticReport) REQUIRE n.id IS UNIQUE",
-        "CREATE CONSTRAINT concept_id IF NOT EXISTS FOR (n:ClinicalConcept) REQUIRE n.id IS UNIQUE",
-
-        # Indexes for fast lookup
-        "CREATE INDEX pat_name IF NOT EXISTS FOR (n:Patient) ON (n.display_name)",
-        "CREATE INDEX concept_code IF NOT EXISTS FOR (n:ClinicalConcept) ON (n.code)",
-        "CREATE INDEX enc_start IF NOT EXISTS FOR (n:Encounter) ON (n.start)",
+        "CREATE CONSTRAINT allergy_id IF NOT EXISTS FOR (n:AllergyIntolerance) REQUIRE n.id IS UNIQUE",
+        "CREATE CONSTRAINT medication_id IF NOT EXISTS FOR (n:Medication) REQUIRE n.id IS UNIQUE",
+        "CREATE CONSTRAINT service_req_id IF NOT EXISTS FOR (n:ServiceRequest) REQUIRE n.id IS UNIQUE",
+        # The flattened schema stores the original FHIR paths in snake_case.
+        "CREATE INDEX patient_family IF NOT EXISTS FOR (n:Patient) ON (n.name_0_family)",
+        "CREATE INDEX patient_given IF NOT EXISTS FOR (n:Patient) ON (n.name_0_given_0)",
+        "CREATE INDEX condition_code IF NOT EXISTS FOR (n:Condition) ON (n.code_coding_0_code)",
+        "CREATE INDEX observation_code IF NOT EXISTS FOR (n:Observation) ON (n.code_coding_0_code)",
+        "CREATE INDEX medication_request_code IF NOT EXISTS FOR (n:MedicationRequest) ON (n.medication_codeable_concept_coding_0_code)",
+        "CREATE INDEX encounter_period_start IF NOT EXISTS FOR (n:Encounter) ON (n.period_start)",
     ]
 
     for stmt in statements:
-        try:
-            await loader.run_query(stmt)
-        except Exception as e:
-            logger.error(f"Failed to execute schema statement '{stmt}': {e}")
+        await loader.run_query(stmt)
 
     logger.info("Constraints and indexes applied.")

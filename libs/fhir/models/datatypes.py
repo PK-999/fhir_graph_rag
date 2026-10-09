@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import date, datetime
+from typing import Any
 
 from pydantic import BaseModel, Field
 
@@ -92,9 +93,9 @@ class Dosage(BaseModel):
     """Dosage instructions for a medication."""
 
     text: str | None = None
-    timing: dict | None = None  # Simplified
+    timing: dict[str, Any] | None = None  # Simplified
     route: CodeableConcept | None = None
-    doseAndRate: list[dict] | None = None  # Simplified
+    doseAndRate: list[dict[str, Any]] | None = None  # Simplified
 
 
 class BundleEntryRequest(BaseModel):
@@ -108,7 +109,7 @@ class BundleEntry(BaseModel):
     """An entry in a FHIR Bundle."""
 
     fullUrl: str | None = None
-    resource: dict  # Serialized resource
+    resource: dict[str, Any]  # Serialized resource
     request: BundleEntryRequest | None = None
 
 

@@ -1,0 +1,411 @@
+{
+  "schema_version": 1,
+  "verified_on": "2026-10-05",
+  "scope": "Local synthetic FHIR portfolio demo; measured on this workstation. Remote CI not executed.",
+  "dataset": {
+    "patient_count": 100,
+    "seed": 20260830,
+    "dataset_hash": "8d5d941bf0a520b90eec6e915d007dbac38b48a70e8e1766dbe5507c366b91c8",
+    "encounter_count": 1468,
+    "total_resources": 7957,
+    "reference_count": 17130,
+    "resource_counts": {
+      "Condition": 141,
+      "DiagnosticReport": 23,
+      "Encounter": 1468,
+      "MedicationRequest": 78,
+      "Observation": 6077,
+      "Organization": 8,
+      "Patient": 100,
+      "Practitioner": 57,
+      "Procedure": 5
+    },
+    "dangling_references": 0,
+    "duplicate_ids": 0
+  },
+  "quality_rules": {
+    "aggregate_distribution": "pass",
+    "clinical_scenario_consistency": "pass",
+    "coded_values": "pass",
+    "duplicate_ids": "pass",
+    "encounter_count": "pass",
+    "reference_resolution": "pass",
+    "schema_validation": "pass",
+    "temporal_consistency": "pass"
+  },
+  "live_evaluation": {
+    "status": "pass",
+    "evaluated_at": "2026-10-05T02:08:28.087970+00:00",
+    "cases": [
+      {
+        "name": "patient_list_example",
+        "status": "pass",
+        "expected_rows": 100,
+        "actual_rows": 100,
+        "pages": 20,
+        "page_sizes": [
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5,
+          5
+        ]
+      },
+      {
+        "name": "patient_list_all",
+        "status": "pass",
+        "expected_rows": 100,
+        "actual_rows": 100,
+        "pages": 1,
+        "page_sizes": [
+          100
+        ]
+      },
+      {
+        "name": "condition_cohort_example",
+        "status": "pass",
+        "expected_rows": 17,
+        "actual_rows": 17,
+        "pages": 1,
+        "page_sizes": [
+          17
+        ]
+      },
+      {
+        "name": "condition_cohort_all",
+        "status": "pass",
+        "expected_rows": 17,
+        "actual_rows": 17,
+        "pages": 1,
+        "page_sizes": [
+          17
+        ]
+      },
+      {
+        "name": "latest_lab_medication_example",
+        "status": "pass",
+        "expected_rows": 2,
+        "actual_rows": 2,
+        "pages": 1,
+        "page_sizes": [
+          2
+        ]
+      },
+      {
+        "name": "latest_lab_medication_all",
+        "status": "pass",
+        "expected_rows": 2,
+        "actual_rows": 2,
+        "pages": 1,
+        "page_sizes": [
+          2
+        ]
+      },
+      {
+        "name": "patient_history_example",
+        "status": "pass",
+        "expected_rows": 80,
+        "actual_rows": 80,
+        "pages": 4,
+        "page_sizes": [
+          20,
+          20,
+          20,
+          20
+        ]
+      },
+      {
+        "name": "patient_history_all",
+        "status": "pass",
+        "expected_rows": 80,
+        "actual_rows": 80,
+        "pages": 1,
+        "page_sizes": [
+          80
+        ]
+      },
+      {
+        "name": "patient_history_missing",
+        "status": "pass",
+        "expected_rows": 0,
+        "actual_rows": 0,
+        "pages": 1,
+        "page_sizes": [
+          0
+        ]
+      },
+      {
+        "name": "hypertension_cohort",
+        "status": "pass",
+        "expected_rows": 15,
+        "actual_rows": 15,
+        "pages": 1,
+        "page_sizes": [
+          15
+        ]
+      },
+      {
+        "name": "latest_lab_with_diabetes",
+        "status": "pass",
+        "expected_rows": 2,
+        "actual_rows": 2,
+        "pages": 1,
+        "page_sizes": [
+          2
+        ]
+      },
+      {
+        "name": "latest_lab_at_least",
+        "status": "pass",
+        "expected_rows": 2,
+        "actual_rows": 2,
+        "pages": 1,
+        "page_sizes": [
+          2
+        ]
+      },
+      {
+        "name": "latest_lab_below",
+        "status": "pass",
+        "expected_rows": 15,
+        "actual_rows": 15,
+        "pages": 1,
+        "page_sizes": [
+          15
+        ]
+      },
+      {
+        "name": "latest_lab_zero_matches",
+        "status": "pass",
+        "expected_rows": 0,
+        "actual_rows": 0,
+        "pages": 1,
+        "page_sizes": [
+          0
+        ]
+      },
+      {
+        "name": "unsupported_treatment",
+        "status": "pass",
+        "expected_rows": 0,
+        "actual_rows": 0,
+        "pages": 1,
+        "page_sizes": [
+          0
+        ]
+      },
+      {
+        "name": "unsupported_age_filter",
+        "status": "pass",
+        "expected_rows": 0,
+        "actual_rows": 0,
+        "pages": 1,
+        "page_sizes": [
+          0
+        ]
+      },
+      {
+        "name": "unsupported_negated_medication",
+        "status": "pass",
+        "expected_rows": 0,
+        "actual_rows": 0,
+        "pages": 1,
+        "page_sizes": [
+          0
+        ]
+      }
+    ],
+    "clinical_expected_rows": [
+      {
+        "family": "Davis",
+        "given": "Patricia",
+        "lab_code": "4548-4",
+        "lab_name": "Hemoglobin A1c",
+        "lab_status": "final",
+        "medication_code": "6809",
+        "medication_id": "MedicationRequest/p-000044-mr-0002",
+        "medication_status": "active",
+        "name": "Patricia Davis",
+        "observation_id": "Observation/p-000044-o-0096",
+        "observed_at": "2026-05-27T08:10:00Z",
+        "patient_id": "Patient/p-000044",
+        "unit": "%",
+        "value": 9.1
+      },
+      {
+        "family": "Hill",
+        "given": "James",
+        "lab_code": "4548-4",
+        "lab_name": "Hemoglobin A1c",
+        "lab_status": "final",
+        "medication_code": "6809",
+        "medication_id": "MedicationRequest/p-000081-mr-0001",
+        "medication_status": "active",
+        "name": "James Hill",
+        "observation_id": "Observation/p-000081-o-0064",
+        "observed_at": "2026-05-13T12:27:00Z",
+        "patient_id": "Patient/p-000081",
+        "unit": "%",
+        "value": 8.2
+      }
+    ],
+    "source_checks": {
+      "total": 246,
+      "passed": 246,
+      "failed": 0
+    },
+    "source_check_scope": "Cited FHIR fields, resource identity and patient association; not every upstream FHIR field or resource.",
+    "report_schema_version": 2,
+    "total_pages": 39,
+    "complete_traversal": true
+  },
+  "reconciliation": {
+    "hapi_counts": "pass",
+    "neo4j_exact_node_and_reference_sets": "pass"
+  },
+  "persistence": {
+    "hapi_service_restart_retains_resources": "pass",
+    "same_dataset_rerun": "pass"
+  },
+  "dataset_guard": {
+    "different_dataset_rejected_before_ingestion": "pass",
+    "rejected_run_id": "f35f60af-cfcc-4ef6-9335-b8132d3573b5",
+    "rejected_load_stage": "blocked",
+    "stores_unchanged": "pass",
+    "original_dataset_rerun_after_refusal": "pass",
+    "successful_rerun_id": "15ad965e-94b7-452a-9793-eb90e7e3f180"
+  },
+  "additional_live_checks": {
+    "patient_history": {
+      "status": "pass",
+      "patient_id": "Patient/p-000001",
+      "rows": 80,
+      "pages": 4,
+      "page_sizes": [
+        20,
+        20,
+        20,
+        20
+      ],
+      "evidence_resources": 81,
+      "checked_exact_field_facts": 422,
+      "dated_order_and_undated_last": "pass",
+      "live_browser_load_more_and_unique_patient_evidence": "pass"
+    },
+    "latest_lab_with_condition_filter": {
+      "status": "pass",
+      "result_count": 2
+    },
+    "optional_local_model_variation": {
+      "status": "pass",
+      "question": "Retrieve people whose most recent HbA1c exceeds 8 percent and who have an active Metformin medication request",
+      "result_count": 2,
+      "scope": "One experimental wording probe; not a semantic accuracy benchmark."
+    },
+    "allergy_history": {
+      "status": "pass",
+      "method": "Actual compiled query and citations inside an always-rolled-back Neo4j transaction; the demonstration dataset has no allergy resources."
+    },
+    "timestamp_ties": {
+      "status": "pass",
+      "method": "Read-only execution of the compiled sort for equal instants with different timezone offsets; independent unit cases preserve nanoseconds."
+    },
+    "pagination_beyond_100": {
+      "status": "pass",
+      "method": "always-rolled-back Neo4j fixture; HAPI and audit unchanged",
+      "before_nodes": 7957,
+      "after_nodes": 7957,
+      "checks": [
+        {
+          "intent": "patient_list",
+          "rows": 201,
+          "pages": 3,
+          "status": "pass"
+        },
+        {
+          "intent": "condition_cohort",
+          "rows": 101,
+          "pages": 2,
+          "status": "pass"
+        },
+        {
+          "intent": "latest_lab_medication",
+          "rows": 101,
+          "pages": 2,
+          "status": "pass"
+        },
+        {
+          "intent": "latest_lab_with_condition",
+          "rows": 101,
+          "pages": 2,
+          "status": "pass"
+        },
+        {
+          "intent": "patient_history",
+          "rows": 103,
+          "pages": 2,
+          "status": "pass"
+        }
+      ]
+    }
+  },
+  "quality_gate": {
+    "make_check": "pass",
+    "python_tests": 262,
+    "frontend_unit_tests": 1,
+    "controlled_chromium_tests": 19,
+    "live_chromium_walkthroughs": 1,
+    "frontend_production_build": "pass",
+    "python_host": "3.14.6",
+    "api_container_python": "3.12",
+    "remote_ci": "not_run"
+  },
+  "commands": [
+    "make setup",
+    "make demo",
+    "make check",
+    "make browser-check",
+    "make evaluate",
+    "LIVE_DEMO=1 PLAYWRIGHT_PORT=4010 npm --prefix apps/web run test:e2e -- demo.spec.ts",
+    "make verify-demo"
+  ],
+  "offline_scale": {
+    "scope": "Generation, validation and graph transformation only; not live ingestion.",
+    "patient_count": 1000,
+    "encounter_count": 15118,
+    "total_resources": 80621,
+    "reference_count": 174998,
+    "dataset_hash": "caf7b16900d4863f104920844a73a67caf3215af408fd8d2e31c40a5d04f5846",
+    "eight_quality_rules": "pass"
+  },
+  "limitations": [
+    "Partial FHIR R4 models and terminology coverage",
+    "Limited query intents; no vector search or open-ended clinical synthesis",
+    "Input held in memory; no global rollback or distributed checkpoints",
+    "Static mappings are not record-level provenance",
+    "Local synthetic-data demo without authentication",
+    "Offset pages are not snapshots under concurrent ingestion or manual store changes",
+    "Assistant pages are bounded to 100 rows; separate cohort builder and patient detail projections retain their own limits",
+    "Independent evaluator keeps input and expectations in memory; beyond-100 correctness is not a large-scale throughput benchmark"
+  ],
+  "independent_review": {
+    "scope": "Pagination continuation only; preceding refactor reviewed separately",
+    "material_findings": 3,
+    "resolution": "All three reproduced by failing tests and corrected: first-plan validation, displayed-source-fact validation, empty continuation rejection. Full quality and browser suites pass after fixes."
+  }
+}

@@ -1,4 +1,4 @@
-name: CI
+name: Quality Gates
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  lint-and-test:
+  python:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,19 +21,20 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -e ".[dev]"
-          pip install -e apps/api
+          pip install -c requirements.lock -e ".[dev]"
+          pip install -c requirements.lock -e apps/api
 
-      - name: Lint
-        run: |
-          ruff check libs/ apps/ pipelines/
-          ruff format --check libs/ apps/ pipelines/
+      - name: Compose configuration
+        run: make compose-check
 
-      - name: Type check
-        run: mypy libs/ apps/ pipelines/ --ignore-missing-imports
+      - name: Python lint and type check
+        run: make lint
 
-      - name: Test
-        run: pytest libs/ apps/ -v --tb=short
+      - name: Python tests
+        run: make test
+        env:
+          POSTGRES_PASSWORD: ci-postgres-password
+          NEO4J_PASSWORD: ci-neo4j-password
 
   frontend:
     runs-on: ubuntu-latest
@@ -44,7 +45,9 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
 
       - name: Install dependencies
         working-directory: apps/web
@@ -56,8 +59,68 @@ jobs:
 
       - name: Type check
         working-directory: apps/web
-        run: npx tsc --noEmit
+        run: npm run typecheck
+
+      - name: Unit tests
+        working-directory: apps/web
+        run: npm run test:unit
 
       - name: Build
         working-directory: apps/web
         run: npm run build
+
+      - name: Install Chromium
+        working-directory: apps/web
+        run: npx playwright install --with-deps chromium
+
+      - name: Browser regressions
+        run: make browser-check
+
+  containers:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate Compose model
+        run: docker compose --env-file .env.example -f infra/docker-compose.yml -f infra/docker-compose.dev.yml config --quiet
+
+      - name: Build application images
+        run: docker compose --env-file .env.example -f infra/docker-compose.yml build api web
+
+  integration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pipeline and browser tools
+        run: |
+          pip install -c requirements.lock -e . -e apps/api
+          npm --prefix apps/web ci
+          cd apps/web && npx playwright install --with-deps chromium
+      - name: Run complete portfolio demo
+        run: |
+          cp .env.example .env
+          make demo
+      - name: Live browser walkthrough
+        run: npm --prefix apps/web run test:e2e -- demo.spec.ts --reporter=line
+        env:
+          LIVE_DEMO: '1'
+          PLAYWRIGHT_PORT: '4010'
+          DEMO_SCREENSHOT: '/tmp/fhirgraph-portfolio-demo.png'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: portfolio-evaluation
+          path: |
+            artifacts/demo/evaluation.json
+            /tmp/fhirgraph-portfolio-demo.png
+      - name: Stop demo
+        if: always()
+        run: make down

@@ -26,7 +26,7 @@ from libs.fhir.models.datatypes import (
 )
 from libs.fhir.models.medication import MedicationRequest
 from libs.fhir.models.observation import Observation
-from libs.synthetic.archetypes.base import ClinicalArchetype, PatientState
+from libs.synthetic.archetypes.base import ClinicalArchetype, IdFactoryFn, PatientState
 
 # SNOMED code for Type 2 Diabetes
 DIABETES_CODE = "44054006"
@@ -60,10 +60,10 @@ class DiabetesArchetype(ClinicalArchetype):
         state: PatientState,
         rng: random.Random,
         practitioner_ref: Reference,
-        id_factory_fn: object,
+        id_factory_fn: IdFactoryFn,
     ) -> list[FHIRResource]:
         resources: list[FHIRResource] = []
-        get_id = id_factory_fn  # type: ignore[assignment]
+        get_id = id_factory_fn
 
         patient_ref = make_reference("Patient", patient_id)
         encounter_ref = make_reference("Encounter", encounter_id)
@@ -89,7 +89,7 @@ class DiabetesArchetype(ClinicalArchetype):
             glucose = round(rng.gauss(base_glucose, 10), 1)
             glucose = max(80, min(250, glucose))
 
-            obs_id = get_id("Observation")  # type: ignore[operator]
+            obs_id = get_id("Observation")
             resources.append(
                 Observation(
                     id=obs_id,
@@ -100,7 +100,10 @@ class DiabetesArchetype(ClinicalArchetype):
                     encounter=encounter_ref,
                     effectiveDateTime=encounter_time,
                     valueQuantity=Quantity(
-                        value=glucose, unit="mg/dL", system="http://unitsofmeasure.org", code="mg/dL"
+                        value=glucose,
+                        unit="mg/dL",
+                        system="http://unitsofmeasure.org",
+                        code="mg/dL",
                     ),
                 )
             )
@@ -111,7 +114,7 @@ class DiabetesArchetype(ClinicalArchetype):
             hba1c = round(rng.gauss(base_hba1c, 0.3), 1)
             hba1c = max(4.5, min(14.0, hba1c))
 
-            obs_id = get_id("Observation")  # type: ignore[operator]
+            obs_id = get_id("Observation")
             resources.append(
                 Observation(
                     id=obs_id,
@@ -131,16 +134,18 @@ class DiabetesArchetype(ClinicalArchetype):
         # Phase 3: Diagnosis
         elif not diagnosed and encounter_count >= 3:
             # Diagnose diabetes
-            condition_id = get_id("Condition")  # type: ignore[operator]
+            condition_id = get_id("Condition")
             resources.append(
                 Condition(
                     id=condition_id,
                     clinicalStatus=make_codeable_concept(
-                        "active", "Active",
+                        "active",
+                        "Active",
                         "http://terminology.hl7.org/CodeSystem/condition-clinical",
                     ),
                     verificationStatus=make_codeable_concept(
-                        "confirmed", "Confirmed",
+                        "confirmed",
+                        "Confirmed",
                         "http://terminology.hl7.org/CodeSystem/condition-ver-status",
                     ),
                     code=make_codeable_concept(
@@ -155,14 +160,16 @@ class DiabetesArchetype(ClinicalArchetype):
             state.active_conditions[DIABETES_CODE] = encounter_time
 
             # Start Metformin
-            mr_id = get_id("MedicationRequest")  # type: ignore[operator]
+            mr_id = get_id("MedicationRequest")
             resources.append(
                 MedicationRequest(
                     id=mr_id,
                     status="active",
                     intent="order",
                     medicationCodeableConcept=make_codeable_concept(
-                        METFORMIN_CODE, METFORMIN_DISPLAY, "http://www.nlm.nih.gov/research/umls/rxnorm"
+                        METFORMIN_CODE,
+                        METFORMIN_DISPLAY,
+                        "http://www.nlm.nih.gov/research/umls/rxnorm",
                     ),
                     subject=patient_ref,
                     encounter=encounter_ref,
@@ -175,7 +182,7 @@ class DiabetesArchetype(ClinicalArchetype):
             # Elevated HbA1c at diagnosis
             hba1c = round(rng.gauss(8.5, 0.8), 1)
             hba1c = max(7.0, min(13.0, hba1c))
-            obs_id = get_id("Observation")  # type: ignore[operator]
+            obs_id = get_id("Observation")
             resources.append(
                 Observation(
                     id=obs_id,
@@ -200,7 +207,7 @@ class DiabetesArchetype(ClinicalArchetype):
             hba1c = round(prev_hba1c + delta, 1)
             hba1c = max(5.0, min(13.0, hba1c))
 
-            obs_id = get_id("Observation")  # type: ignore[operator]
+            obs_id = get_id("Observation")
             resources.append(
                 Observation(
                     id=obs_id,
@@ -220,7 +227,7 @@ class DiabetesArchetype(ClinicalArchetype):
             # Glucose monitoring
             glucose = round(rng.gauss(130 + (hba1c - 7) * 15, 15), 1)
             glucose = max(70, min(300, glucose))
-            obs_id = get_id("Observation")  # type: ignore[operator]
+            obs_id = get_id("Observation")
             resources.append(
                 Observation(
                     id=obs_id,
@@ -231,7 +238,10 @@ class DiabetesArchetype(ClinicalArchetype):
                     encounter=encounter_ref,
                     effectiveDateTime=encounter_time,
                     valueQuantity=Quantity(
-                        value=glucose, unit="mg/dL", system="http://unitsofmeasure.org", code="mg/dL"
+                        value=glucose,
+                        unit="mg/dL",
+                        system="http://unitsofmeasure.org",
+                        code="mg/dL",
                     ),
                 )
             )

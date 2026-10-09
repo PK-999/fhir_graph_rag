@@ -5,6 +5,7 @@ from __future__ import annotations
 from datetime import date
 
 from libs.fhir.models.datatypes import HumanName
+from libs.fhir.models.encounter import Encounter
 from libs.fhir.models.patient import Patient
 from libs.fhir.references import extract_references, validate_references
 
@@ -26,9 +27,7 @@ class TestReferenceExtraction:
             "resourceType": "Encounter",
             "id": "e-001",
             "subject": {"reference": "Patient/p-001"},
-            "participant": [
-                {"individual": {"reference": "Practitioner/pract-0001"}}
-            ],
+            "participant": [{"individual": {"reference": "Practitioner/pract-0001"}}],
             "serviceProvider": {"reference": "Organization/org-0001"},
         }
         refs = list(extract_references(resource))
@@ -70,3 +69,29 @@ class TestPatientModel:
             name=[HumanName(family="Smith", given=["John"])],
         )
         assert p.display_name == "John Smith"
+
+
+def test_encounter_class_survives_fhir_round_trip() -> None:
+    payload = {
+        "resourceType": "Encounter",
+        "id": "e-001",
+        "status": "finished",
+        "class": {"system": "http://terminology.hl7.org/CodeSystem/v3-ActCode", "code": "AMB"},
+    }
+    encounter = Encounter.model_validate(payload)
+    assert encounter.class_ is not None
+    assert encounter.to_dict()["class"] == payload["class"]
+    assert "class_" not in encounter.to_dict()
+
+
+def test_resource_serialization_omits_empty_repeating_fields_without_mutating_model() -> None:
+    from libs.fhir.models.datatypes import Address
+    from libs.fhir.models.practitioner import Organization
+
+    organization = Organization(id="org1", address=[Address(city="Example City")])
+
+    payload = organization.to_dict()
+
+    assert payload["address"] == [{"city": "Example City"}]
+    assert organization.address is not None
+    assert organization.address[0].line == []

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 from libs.fhir.models.base import FHIRResource
 from libs.fhir.models.datatypes import (
     Address,
@@ -20,7 +22,7 @@ class Practitioner(FHIRResource):
     name: list[HumanName] | None = None
     gender: str | None = None
     telecom: list[ContactPoint] | None = None
-    qualification: list[dict] | None = None  # simplified
+    qualification: list[dict[str, Any]] | None = None  # simplified
 
     @property
     def display_name(self) -> str:

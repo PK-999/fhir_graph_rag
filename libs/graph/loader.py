@@ -1,20 +1,33 @@
 """Neo4j graph loader for batched idempotent ingestion."""
 
-import logging
+import re
 from typing import Any
 
 from neo4j import AsyncDriver, AsyncGraphDatabase
-from neo4j.exceptions import ClientError
 
 from libs.graph.schema import GraphEdge, GraphNode
 
-logger = logging.getLogger(__name__)
+_IDENTIFIER = re.compile(r"[A-Za-z_][A-Za-z0-9_]*")
+
+
+def _validate_identifier(value: str) -> None:
+    """Validate identifiers embedded in Cypher rather than passed as parameters."""
+    if _IDENTIFIER.fullmatch(value) is None:
+        raise ValueError(f"Invalid Cypher label or relationship type: {value!r}")
 
 
 class Neo4jLoader:
     """Client for loading GraphNodes and GraphEdges into Neo4j."""
 
-    def __init__(self, uri: str = "bolt://localhost:7687", auth: tuple[str, str] = ("neo4j", "password")) -> None:
+    def __init__(
+        self,
+        uri: str = "bolt://localhost:7687",
+        auth: tuple[str, str] = ("neo4j", "password"),
+        batch_size: int = 500,
+    ) -> None:
+        if batch_size < 1:
+            raise ValueError("batch_size must be positive")
+        self.batch_size = batch_size
         self.driver: AsyncDriver = AsyncGraphDatabase.driver(uri, auth=auth)
 
     async def close(self) -> None:
@@ -36,54 +49,34 @@ class Neo4jLoader:
         if not nodes:
             return 0
 
-        # Group nodes by their primary label to allow MERGE on label
-        grouped: dict[str, list[dict]] = {}
+        # Each label combination gets a static query, so secondary labels need no APOC.
+        grouped: dict[tuple[str, ...], list[dict[str, Any]]] = {}
         for node in nodes:
-            # First label is treated as the primary structural label
-            primary_label = node.labels[0]
-            if primary_label not in grouped:
-                grouped[primary_label] = []
-
-            # Neo4j cannot merge dynamically on variable labels,
-            # so we merge on primary, then SET remaining labels and props.
-            grouped[primary_label].append({
-                "id": node.id,
-                "labels": node.labels,
-                "props": node.properties
-            })
+            if not node.labels:
+                raise ValueError(f"Node {node.id!r} must have at least one label")
+            for label in node.labels:
+                _validate_identifier(label)
+            labels = tuple(dict.fromkeys(node.labels))
+            grouped.setdefault(labels, []).append({"id": node.id, "props": node.properties})
 
         total_loaded = 0
         async with self.driver.session() as session:
-            for label, batch in grouped.items():
+            for labels, batch in grouped.items():
+                secondary_labels = ":".join(labels[1:])
+                set_labels = f"SET n:{secondary_labels}" if secondary_labels else ""
                 query = f"""
                 UNWIND $batch AS row
-                MERGE (n:{label} {{id: row.id}})
+                MERGE (n:{labels[0]} {{id: row.id}})
                 SET n += row.props
-                WITH n, row
-                CALL apoc.create.addLabels(n, row.labels) YIELD node
-                RETURN count(node) as c
-                """
-
-                # Without APOC, we'd have to construct dynamic queries or ignore secondary labels.
-                # A fallback if APOC is not available:
-                fallback_query = f"""
-                UNWIND $batch AS row
-                MERGE (n:{label} {{id: row.id}})
-                SET n += row.props
+                {set_labels}
                 RETURN count(n) as c
                 """
-
-                try:
-                    result = await session.run(query, batch=batch)
-                except ClientError as e:
-                    if "apoc" in str(e).lower() or "procedure not found" in str(e).lower():
-                        logger.warning("APOC not installed. Falling back to primary labels only.")
-                        result = await session.run(fallback_query, batch=batch)
-                    else:
-                        raise e
-
-                record = await result.single()
-                if record:
+                for offset in range(0, len(batch), self.batch_size):
+                    chunk = batch[offset : offset + self.batch_size]
+                    result = await session.run(query, batch=chunk)
+                    record = await result.single()
+                    if record is None or record["c"] != len(chunk):
+                        raise ValueError("Not every graph input was loaded")
                     total_loaded += record["c"]
 
         return total_loaded
@@ -93,34 +86,37 @@ class Neo4jLoader:
         if not edges:
             return 0
 
-        # Group by edge type
-        grouped: dict[str, list[dict]] = {}
+        # Static endpoint labels allow Neo4j to use the per-resource ID indexes.
+        grouped: dict[tuple[str, str, str], list[dict[str, Any]]] = {}
         for edge in edges:
-            if edge.type not in grouped:
-                grouped[edge.type] = []
-
-            grouped[edge.type].append({
-                "source": edge.source_id,
-                "target": edge.target_id,
-                "props": edge.properties
-            })
+            _validate_identifier(edge.type)
+            labels = [
+                identifier.split("/", 1)[0] for identifier in (edge.source_id, edge.target_id)
+            ]
+            for label in labels:
+                _validate_identifier(label)
+            key = (edge.type, labels[0], labels[1])
+            grouped.setdefault(key, []).append(
+                {"source": edge.source_id, "target": edge.target_id, "props": edge.properties}
+            )
 
         total_loaded = 0
         async with self.driver.session() as session:
-            for edge_type, batch in grouped.items():
-                # We do not specify labels for source/target because we have globally unique IDs across types
-                # (e.g. "Patient/p-001" and "Concept/123").
+            for (edge_type, source_label, target_label), batch in grouped.items():
                 query = f"""
                 UNWIND $batch AS row
-                MATCH (s {{id: row.source}})
-                MATCH (t {{id: row.target}})
+                MATCH (s:{source_label} {{id: row.source}})
+                MATCH (t:{target_label} {{id: row.target}})
                 MERGE (s)-[r:{edge_type}]->(t)
                 SET r += row.props
                 RETURN count(r) as c
                 """
-                result = await session.run(query, batch=batch)
-                record = await result.single()
-                if record:
+                for offset in range(0, len(batch), self.batch_size):
+                    chunk = batch[offset : offset + self.batch_size]
+                    result = await session.run(query, batch=chunk)
+                    record = await result.single()
+                    if record is None or record["c"] != len(chunk):
+                        raise ValueError("Not every graph input was loaded")
                     total_loaded += record["c"]
 
         return total_loaded

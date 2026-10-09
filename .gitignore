@@ -38,6 +38,8 @@ __pycache__/
 node_modules/
 
 dist/
+!portfolio/dist/
+!portfolio/dist/**
 
 .next/
 
@@ -45,3 +47,10 @@ dist/
 
 *.log
 
+# Reproducible datasets and verification outputs
+artifacts/
+artifacts_scale/
+htmlcov/
+.coverage
+coverage.xml
+.local-history/

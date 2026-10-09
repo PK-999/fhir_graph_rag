@@ -7,12 +7,15 @@ from __future__ import annotations
 
 import json
 import random
+import shutil
 from datetime import date
 from pathlib import Path
+from typing import Any
 
 from libs.fhir.bundle import build_transaction_bundle
 from libs.fhir.models.base import FHIRResource
 from libs.fhir.ndjson import write_ndjson
+from libs.quality.runner import report_payload, validate_dataset
 from libs.synthetic.archetypes.ari import ARIArchetype
 from libs.synthetic.archetypes.asthma import AsthmaArchetype
 from libs.synthetic.archetypes.base import ClinicalArchetype
@@ -30,6 +33,7 @@ from libs.synthetic.config import GenerationConfig
 from libs.synthetic.demographics import generate_patient
 from libs.synthetic.encounter_gen import generate_encounters
 from libs.synthetic.id_factory import IdFactory
+from libs.synthetic.manifest import build_dataset_manifest
 from libs.synthetic.pools import create_organization_pool, create_practitioner_pool
 from libs.synthetic.registry import ResourceRegistry
 
@@ -50,7 +54,7 @@ ALL_ARCHETYPES: list[ClinicalArchetype] = [
 ]
 
 
-def run_generation(config: GenerationConfig) -> dict:
+def run_generation(config: GenerationConfig) -> dict[str, Any]:
     """Run the full synthetic data generation pipeline.
 
     Returns a data quality summary dict.
@@ -59,7 +63,21 @@ def run_generation(config: GenerationConfig) -> dict:
     id_factory = IdFactory()
     registry = ResourceRegistry()
     output_dir = Path(config.output_dir)
-    reference_date = date(2026, 8, 30)
+    reference_date = config.reference_date
+
+    output_dir.mkdir(parents=True, exist_ok=True)
+    for directory_name in ("bundles", "ndjson"):
+        managed_directory = output_dir / directory_name
+        if managed_directory.exists():
+            if not managed_directory.is_dir():
+                raise ValueError(f"Managed output path is not a directory: {managed_directory}")
+            shutil.rmtree(managed_directory)
+    for file_name in ("dataset_manifest.json", "data_quality_summary.json"):
+        managed_file = output_dir / file_name
+        if managed_file.exists():
+            if not managed_file.is_file():
+                raise ValueError(f"Managed output path is not a file: {managed_file}")
+            managed_file.unlink()
 
     # ── 1. Create shared pools ──
     org_count = rng.randint(8, 12)
@@ -74,7 +92,6 @@ def run_generation(config: GenerationConfig) -> dict:
     for pract in practitioners:
         registry.register("Practitioner", pract.id)
 
-    all_patients: list[FHIRResource] = []
     all_resources_flat: list[FHIRResource] = []  # for NDJSON
     encounter_counts: list[int] = []
 
@@ -83,16 +100,16 @@ def run_generation(config: GenerationConfig) -> dict:
         # Create patient
         patient = generate_patient(patient_seq, id_factory, rng, reference_date)
         registry.register("Patient", patient.id)
-        all_patients.append(patient)
-
         # Calculate age
         age = (reference_date - patient.birthDate).days // 365 if patient.birthDate else 30
 
         # Assign archetypes (0–3)
         num_archetypes = rng.choices([0, 1, 2, 3], weights=[0.1, 0.4, 0.35, 0.15], k=1)[0]
-        compatible = [a for a in ALL_ARCHETYPES if a.is_compatible(patient.gender or "unknown", age)]
+        compatible = [
+            a for a in ALL_ARCHETYPES if a.is_compatible(patient.gender or "unknown", age)
+        ]
         # Always include healthy as base
-        selected = [HealthyArchetype()]
+        selected: list[ClinicalArchetype] = [HealthyArchetype()]
         if num_archetypes > 0 and compatible:
             extra = rng.sample(compatible, min(num_archetypes, len(compatible)))
             for a in extra:
@@ -137,7 +154,7 @@ def run_generation(config: GenerationConfig) -> dict:
             json.dump(bundle.model_dump(exclude_none=True), f, indent=2, default=str)
 
     # ── 3. Add shared resources to flat list ──
-    shared_resources: list[FHIRResource] = [*organizations, *practitioners]  # type: ignore[list-item]
+    shared_resources: list[FHIRResource] = [*organizations, *practitioners]
     all_resources_flat = [*shared_resources, *all_resources_flat]
 
     # Write shared resources bundle
@@ -154,31 +171,19 @@ def run_generation(config: GenerationConfig) -> dict:
     for rtype, resources in resources_by_type.items():
         write_ndjson(resources, ndjson_dir / f"{rtype}.ndjson")
 
-    # ── 5. Validate ──
+    manifest = build_dataset_manifest(output_dir, config)
+    manifest_path = output_dir / "dataset_manifest.json"
+    manifest_path.write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
+
+    # ── 5. Validate in-memory registry, then independently reload artifacts ──
     registry.validate()  # raises on dangling references
+    report = validate_dataset(output_dir, write_report=False)
+    dq_summary = report_payload(report)
+    if report.status != "pass":
+        failures = "; ".join(report.summary["validation_failures"][:10])
+        raise ValueError(f"Serialized dataset validation failed: {failures}")
 
-    # ── 6. Build DQ summary ──
-    dq_summary = {
-        "seed": config.seed,
-        "patient_count": config.patient_count,
-        "encounter_count": sum(encounter_counts),
-        "resource_counts": registry.resource_counts,
-        "total_resources": registry.total_count(),
-        "dangling_references": len(registry.get_dangling_references()),
-        "duplicate_ids": len(registry.get_duplicate_ids()),
-        "reference_count": registry.reference_count,
-        "encounters_per_patient": {
-            "min": min(encounter_counts),
-            "max": max(encounter_counts),
-            "mean": round(sum(encounter_counts) / len(encounter_counts), 1),
-        },
-        "validation_failures": [],
-    }
-
-    # Write DQ summary
     dq_path = output_dir / "data_quality_summary.json"
-    dq_path.parent.mkdir(parents=True, exist_ok=True)
-    with dq_path.open("w") as f:
-        json.dump(dq_summary, f, indent=2)
+    dq_path.write_text(json.dumps(dq_summary, indent=2, sort_keys=True) + "\n")
 
     return dq_summary

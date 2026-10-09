@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from pydantic import ConfigDict
+from typing import Any
+
+from pydantic import ConfigDict, Field
 
 from libs.fhir.models.base import FHIRResource
 from libs.fhir.models.datatypes import (
@@ -28,19 +30,14 @@ class Encounter(FHIRResource):
     resourceType: str = "Encounter"
     identifier: list[Identifier] | None = None
     status: str = "finished"  # planned, arrived, triaged, in-progress, finished, etc.
-    class_: Coding | None = None  # AMB, IMP, EMER, etc.
+    class_: Coding | None = Field(
+        default=None, validation_alias="class", serialization_alias="class"
+    )  # AMB, IMP, EMER, etc.
     type: list[CodeableConcept] | None = None
     subject: Reference | None = None
-    participant: list[dict] | None = None  # simplified
+    participant: list[dict[str, Any]] | None = None  # simplified
     period: Period | None = None
     serviceProvider: Reference | None = None
     reasonCode: list[CodeableConcept] | None = None
 
     model_config = ConfigDict(populate_by_name=True)
-
-    def to_dict(self) -> dict:
-        """Override to rename class_ → class in output."""
-        d = super().to_dict()
-        if "class_" in d:
-            d["class"] = d.pop("class_")
-        return d
