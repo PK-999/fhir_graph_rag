@@ -77,7 +77,7 @@ export default async function DataQualityPage() {
               <TableRow className="border-border hover:bg-transparent">
                 <TableHead>Rule Name</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead>Records checked</TableHead>
+                <TableHead>Items checked</TableHead>
                 <TableHead>Details</TableHead>
               </TableRow>
             </TableHeader>

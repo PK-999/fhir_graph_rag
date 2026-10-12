@@ -8,7 +8,7 @@ This is a greenfield project. The repository contains only 9 specification docum
 
 ## Architecture Changes Made
 
-Updated [ARCHITECTURE.md](../file:/Users/apple/codes/fhir_graph_rag/docs/ARCHITECTURE.md) with:
+Updated [ARCHITECTURE.md](../ARCHITECTURE.md) with:
 - **Concrete directory tree** — replaced vague `services/` with `libs/` (framework-free shared libraries) + `apps/` (deployable services) separation
 - **Container topology** — explicit Docker Compose service map with ports
 - **PostgreSQL schema outline** — `pipeline_runs`, `data_quality_results`, `lineage_mappings`, `ingestion_events`

@@ -12,6 +12,8 @@ An end-to-end local portfolio project for healthcare data engineering and ground
 
 Requires Python 3.12+, Node.js 22+, Docker Desktop/Compose, and initial network access for dependencies and images. The default question engine needs no paid API or model.
 
+For a new checkout:
+
 ```bash
 make setup          # locked dependencies, Chromium, private local .env
 make demo           # start stores/app; generate, validate, ingest, reconcile, evaluate
