@@ -37,6 +37,8 @@ flowchart TD
 
 ## Verification
 
+The following measurements capture the October 9, 2026 v1.0.0 release. Current run and recovery instructions are in the [run guide](GETTING_STARTED.md).
+
 Release verification uses an independent raw-NDJSON oracle with complete page traversal and exact live resource checks. Unit regressions exercise adversarial filters, wrong units/statuses, timestamp ties, missing/non-numeric values, source drift, claim rejection, changed checkpoint bindings, interrupted writes and legacy schemas. Live reconciliation checks exact graph identities and references plus per-type HAPI counts.
 
 The 100-patient release has 1,468 encounters, 7,957 resources, 17,130 reference edges and eight passing data-quality rules. All 33 deterministic evaluation cases pass across 79 pages; 246 distinct live sources match. The selected local-model clinical cases pass with 36 live sources checked. The full quality gate includes 439 Python tests, strict types/lint and a production frontend build; 21 controlled Chromium regressions and the real local walkthrough pass.
@@ -70,4 +72,4 @@ A future production project would need authenticated deployment, least-privilege
 
 ## Reproduce
 
-Run `make setup`, `make demo`, `make verify-demo`, `make check`, `make browser-check`, and `make benchmark`. The README explains safe migration to a new Compose namespace when generated hashes change. A clean checkout and remote GitHub Actions verify installation and the full demo from committed source.
+Run `make setup`, `make demo`, `make verify-demo`, `make check`, `make browser-check`, and `make benchmark`. The [run guide](GETTING_STARTED.md) explains safe migration to a new Compose namespace when generated hashes change. A clean checkout and remote GitHub Actions verify installation and the full demo from committed source.

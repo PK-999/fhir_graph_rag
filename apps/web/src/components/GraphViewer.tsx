@@ -1,5 +1,7 @@
 "use client";
 
+import { apiUrl } from "@/lib/api";
+
 import { useEffect, useState, useCallback, useImperativeHandle, forwardRef } from "react";
 import { ReactFlow, useNodesState, useEdgesState, Background, Controls, MiniMap, Node, Edge, MarkerType } from "@xyflow/react";
 import '@xyflow/react/dist/style.css';
@@ -100,7 +102,6 @@ export const GraphViewer = forwardRef<GraphViewerRef, GraphViewerProps>(({ initi
     if (!id) return;
     setLoading(true);
     try {
-      const url = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8010/api/v1";
 
       let endpoint = `/graph/neighbors/${encodeURIComponent(id)}?depth=${d}`;
       if (mode === "patient-360" && id.startsWith("Patient/")) {
@@ -109,7 +110,7 @@ export const GraphViewer = forwardRef<GraphViewerRef, GraphViewerProps>(({ initi
         endpoint = `/graph/neighbors/${encodeURIComponent(id)}?depth=1`;
       }
 
-      const res = await fetch(`${url}${endpoint}`);
+      const res = await fetch(apiUrl(endpoint));
       const data = await res.json();
       setTruncated(data.truncated || false);
 
@@ -135,8 +136,7 @@ export const GraphViewer = forwardRef<GraphViewerRef, GraphViewerProps>(({ initi
     expandNode: async (id: string, relationship: string, targetLabel: string) => {
       setLoading(true);
       try {
-        const url = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8010/api/v1";
-        const res = await fetch(`${url}/graph/explore/${encodeURIComponent(id)}/expand?relationship=${encodeURIComponent(relationship)}&target_label=${encodeURIComponent(targetLabel)}`);
+        const res = await fetch(apiUrl(`/graph/explore/${encodeURIComponent(id)}/expand?relationship=${encodeURIComponent(relationship)}&target_label=${encodeURIComponent(targetLabel)}`));
         const data = await res.json();
 
         const { rfNodes, rfEdges } = formatGraph(data.nodes || [], data.edges || []);

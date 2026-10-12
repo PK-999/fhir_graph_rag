@@ -1,4 +1,6 @@
-.PHONY: setup dev down reset-data infra compose-check lint web-check browser-check check verify-demo test test-cov smoke generate validate pipeline evaluate demo clean format benchmark record-demo
+.PHONY: help setup dev restart-web down reset-data infra compose-check lint web-check browser-check check verify-demo test test-cov smoke generate validate pipeline evaluate demo clean format benchmark record-demo
+
+.DEFAULT_GOAL := help
 
 PYTHON := $(if $(wildcard .venv/bin/python),.venv/bin/python,python3)
 ENV_FILE ?= .env
@@ -8,6 +10,19 @@ FHIRGRAPH_API_PORT ?= 8010
 FHIRGRAPH_WEB_PORT ?= 4010
 
 # ── Docker ──
+help:
+	@echo "FHIRGraph: local mock-data portfolio"
+	@echo "  make setup          Install locked dependencies and create private local config"
+	@echo "  make demo           Start the stack and run the complete 100-patient pipeline"
+	@echo "  make verify-demo    Verify readiness, all query cases and the live UI flow"
+	@echo "  make check          Run source, type, unit and build checks"
+	@echo "  make browser-check  Run controlled browser regressions"
+	@echo "  make benchmark      Measure the isolated 1,000-patient workload"
+	@echo "  make dev / down     Start or stop the selected stack; volumes are retained"
+	@echo "  make restart-web    Recreate only the web container after a stale source mount"
+	@echo "Options: ENV_FILE=.env OUTPUT=artifacts/demo PATIENTS=100 SEED=20260830"
+	@echo "Run guide: docs/GETTING_STARTED.md"
+
 setup:
 	python3 -m venv .venv
 	.venv/bin/python -m pip install -c requirements.lock -e '.[dev]' -e apps/api
@@ -18,6 +33,10 @@ setup:
 dev:
 	test -f $(ENV_FILE) || (echo "Missing $(ENV_FILE); copy .env.example to .env" && exit 1)
 	$(COMPOSE) up --build --detach --wait --wait-timeout 180
+
+restart-web:
+	test -f $(ENV_FILE) || (echo "Missing $(ENV_FILE); copy .env.example to .env" && exit 1)
+	$(COMPOSE) up --detach --force-recreate --no-deps --wait --wait-timeout 120 web
 
 down:
 	$(COMPOSE) down
@@ -94,9 +113,8 @@ demo:
 
 # ── Cleanup ──
 clean:
-	rm -rf artifacts/bundles artifacts/ndjson artifacts/data_quality_summary.json artifacts/dataset_manifest.json
-	find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
-	find . -type d -name .pytest_cache -exec rm -rf {} + 2>/dev/null || true
+	find libs apps/api pipelines scripts tests -type d -name __pycache__ -prune -exec rm -rf {} +
+	rm -rf .pytest_cache .mypy_cache .ruff_cache apps/web/playwright-report apps/web/test-results
 
 # Isolated measured release workload; all volumes are retained.
 benchmark:

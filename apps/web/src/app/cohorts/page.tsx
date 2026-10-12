@@ -1,5 +1,7 @@
 "use client";
 
+import { apiUrl } from "@/lib/api";
+
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -89,14 +91,13 @@ export default function CohortBuilderPage() {
     setError(null);
     setResult(null);
     try {
-      const url = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8010/api/v1";
       const payload = {
         conditions: conditions.filter(c => c.trim() !== ""),
         min_age: minAge ? parseInt(minAge) : null,
         max_age: maxAge ? parseInt(maxAge) : null,
       };
 
-      const res = await fetch(`${url}/cohorts/query`, {
+      const res = await fetch(apiUrl("/cohorts/query"), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

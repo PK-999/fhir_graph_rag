@@ -1,6 +1,6 @@
 # Project review — 2026-10-05
 
-> Historical October 5 review. The portfolio release addresses its remaining ingestion, validation, provenance, evaluation and delivery gaps; see [current case study](CASE_STUDY.md).
+> Historical October 5 review. The portfolio release addresses its remaining ingestion, validation, provenance, evaluation and delivery gaps; see [current case study](../CASE_STUDY.md).
 
 FHIRGraph now runs as an end-to-end local portfolio demo: seeded mock FHIR data → independent validation → persistent HAPI resources → Neo4j reference graph → constrained questions with exact source evidence. The earlier raw text-to-Cypher prototype has been replaced with strict plans and application-owned queries.
 

@@ -37,7 +37,7 @@ The optional local Ollama planner must agree with a complete supported determini
 
 ## UI and runtime
 
-FastAPI exposes graph/patient/timeline/cohort queries, actual quality results, a static mapping catalog, the question engine, and source retrieval. Next.js server pages use `API_INTERNAL_URL`; browser requests use `NEXT_PUBLIC_API_URL`. The patient FHIR tab displays the exact HAPI Patient resource. Failed services show unavailable states rather than mock successful runs. Scripted clinical narratives and speculative edge insights were removed; graph type highlighting is explicitly labeled as highlighting. Patient overview grouping edges are identified separately from explicit FHIR references.
+FastAPI exposes graph/patient/timeline/cohort queries, actual quality results, a static mapping catalog, the question engine, and source retrieval. Next.js server pages use `API_INTERNAL_URL` through `apps/web/src/lib/server-api.ts`; browser requests use build-time `NEXT_PUBLIC_API_URL` through `apps/web/src/lib/api.ts`. These helpers centralize URL construction while keeping private runtime configuration out of browser modules. The patient FHIR tab displays the exact HAPI Patient resource. Failed services show unavailable states rather than mock successful runs. Scripted clinical narratives and speculative edge insights were removed; graph type highlighting is explicitly labeled as highlighting. Patient overview grouping edges are identified separately from explicit FHIR references.
 
 Compose runs five local services. API readiness probes Neo4j, PostgreSQL, and HAPI with bounded timeouts; web startup depends on that real readiness check. HAPI's distroless image does not have a fake JVM-only healthcheck. Ollama is optional and runs separately.
 

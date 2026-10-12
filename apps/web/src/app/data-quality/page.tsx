@@ -1,3 +1,4 @@
+import { serverApiUrl } from "@/lib/server-api";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
@@ -5,11 +6,15 @@ import { CheckCircle2 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
-async function getDQSummary() {
-  const apiUrl = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8010/api/v1";
+interface QualityResult {
+  rule_name: string;
+  status: "pass" | "fail";
+  details: { checked?: number; [key: string]: unknown };
+}
 
+async function getDQSummary() {
   try {
-    const res = await fetch(`${apiUrl}/data-quality/summary`, { cache: 'no-store' });
+    const res = await fetch(serverApiUrl("/data-quality/summary"), { cache: 'no-store' });
     if (!res.ok) throw new Error("Failed to fetch DQ summary");
     return res.json();
   } catch (error) {
@@ -72,7 +77,7 @@ export default async function DataQualityPage() {
               <TableRow className="border-border hover:bg-transparent">
                 <TableHead>Rule Name</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead>Rule Outcome</TableHead>
+                <TableHead>Records checked</TableHead>
                 <TableHead>Details</TableHead>
               </TableRow>
             </TableHeader>
@@ -84,24 +89,15 @@ export default async function DataQualityPage() {
                   </TableCell>
                 </TableRow>
               ) : (
-                results.map((r: any, i: number) => (
-                  <TableRow key={i} className="border-border hover:bg-muted/50">
+                results.map((r: QualityResult) => (
+                  <TableRow key={r.rule_name} className="border-border hover:bg-muted/50">
                     <TableCell className="font-medium text-foreground">{r.rule_name}</TableCell>
                     <TableCell>
                       {r.status === 'pass' && <Badge className="bg-emerald-100/50 text-emerald-700 border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-500 dark:border-emerald-500/20">Pass</Badge>}
                       {r.status === 'fail' && <Badge className="bg-rose-100/50 text-rose-700 border-rose-200 dark:bg-rose-500/10 dark:text-rose-500 dark:border-rose-500/20">Fail</Badge>}
-                      {r.status === 'warning' && <Badge className="bg-amber-100/50 text-amber-700 border-amber-200 dark:bg-amber-500/10 dark:text-amber-500 dark:border-amber-500/20">Warning</Badge>}
                     </TableCell>
                     <TableCell>
-                      <div className="flex items-center gap-2">
-                        <div className="w-full bg-secondary h-2 rounded-full overflow-hidden w-24">
-                          <div
-                            className={`h-full ${r.pass_rate >= 99 ? 'bg-emerald-500' : r.pass_rate >= 90 ? 'bg-amber-500' : 'bg-rose-500'}`}
-                            style={{ width: `${r.pass_rate === 100 ? "Pass" : "Fail"}` }}
-                          />
-                        </div>
-                        <span className="text-sm text-muted-foreground">{r.pass_rate === 100 ? "Pass" : "Fail"}</span>
-                      </div>
+                      {typeof r.details?.checked === "number" ? r.details.checked.toLocaleString() : "—"}
                     </TableCell>
                     <TableCell className="text-muted-foreground text-sm">
                       {JSON.stringify(r.details)}

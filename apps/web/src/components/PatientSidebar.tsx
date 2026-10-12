@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+
+import { apiUrl } from "@/lib/api";
 import { User, Activity, Pill, Calendar, Stethoscope } from "lucide-react";
 
 export type ViewMode = "patient-360" | "clinical-journey" | "explorer";
@@ -18,8 +20,7 @@ export function PatientSidebar({ patientId, viewMode, onViewModeChange, onStoryS
     async function load() {
       setLoading(true);
       try {
-        const url = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8010/api/v1";
-        const res = await fetch(`${url}/patients/${patientId}`);
+        const res = await fetch(apiUrl(`/patients/${patientId}`));
         if (res.ok) {
           const data = await res.json();
           setPatient(data);

@@ -1,13 +1,12 @@
+import { serverApiUrl } from "@/lib/server-api";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Activity, Users, FileText, Pill, Stethoscope, Scissors, Network, Link2 } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
 async function getDashboardSummary() {
-  const apiUrl = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8010/api/v1";
-
   try {
-    const res = await fetch(`${apiUrl}/dashboard/summary`, { cache: 'no-store' });
+    const res = await fetch(serverApiUrl("/dashboard/summary"), { cache: 'no-store' });
     if (!res.ok) throw new Error("Failed to fetch dashboard summary");
     return res.json();
   } catch (error) {
