@@ -1,6 +1,6 @@
 # FHIRGraph Finish-Line Tracker
 
-> **Historical September roadmap:** This tracker preserves earlier decisions and checks. Its 100,000-patient target and incomplete stages are future work; its baseline counts and blockers are historical. Current portfolio behavior and verification are documented in the [README](../README.md) and [project review](PROJECT_REVIEW.md), updated for the portfolio release. See [current case study](CASE_STUDY.md).
+> **Historical September roadmap:** This tracker preserves earlier decisions and checks. Its 100,000-patient target and incomplete stages are future work; its baseline counts and blockers are historical. Current portfolio behavior and verification are documented in the [README](../../README.md) and [project review](PROJECT_REVIEW.md), updated for the portfolio release. See [current case study](../CASE_STUDY.md).
 
 **Source design:** `docs/superpowers/specs/2026-09-01-fhirgraph-finish-line-design.md`  
 **Status legend:** `[ ]` not started, `[~]` in progress, `[x]` verified, `[!]` blocked

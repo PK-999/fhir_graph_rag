@@ -1,3 +1,4 @@
+import { serverApiUrl } from "@/lib/server-api";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { ArrowRight, Database } from "lucide-react";
@@ -5,10 +6,8 @@ import { ArrowRight, Database } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 async function getLineage() {
-  const apiUrl = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8010/api/v1";
-
   try {
-    const res = await fetch(`${apiUrl}/lineage`, { cache: 'no-store' });
+    const res = await fetch(serverApiUrl("/lineage"), { cache: 'no-store' });
     if (!res.ok) throw new Error("Failed to fetch lineage");
     const data = await res.json();
     return data.mappings || [];

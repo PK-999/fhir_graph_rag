@@ -1,0 +1,52 @@
+{
+  "boundaries": [
+    "Complete application runs locally in Docker; public portfolio is a static presentation.",
+    "Questions use the supported bounded graph catalog.",
+    "Passing structural checks does not establish full FHIR conformance or clinical validity.",
+    "Checkpoint recovery assumes the same persistent store."
+  ],
+  "checks": {
+    "cleanup_data_preservation_regression": "pass",
+    "controlled_browser_regressions": {
+      "count": 21,
+      "status": "pass"
+    },
+    "current_documentation_links": "pass",
+    "frontend_lint_types_and_production_build": "pass",
+    "frontend_unit_tests": {
+      "count": 5,
+      "status": "pass"
+    },
+    "live_browser_walkthrough": "pass",
+    "merged_compose_config": "pass",
+    "python_lint_format_and_strict_types": "pass",
+    "python_tests": {
+      "count": 440,
+      "status": "pass"
+    }
+  },
+  "data_quality_rule_count": 8,
+  "dataset": {
+    "dataset_hash": "901b6d7cc89b097b5034901e934796aee5e020bb289d0036baba0d0b323b0d7e",
+    "patient_count": 100,
+    "reference_count": 17130,
+    "seed": 20260830,
+    "status": "pass",
+    "total_resources": 7957
+  },
+  "retrieval": {
+    "case_count": 33,
+    "page_count": 79,
+    "source_checks": {
+      "failed": 0,
+      "passed": 246,
+      "total": 246
+    },
+    "status": "pass"
+  },
+  "schema_version": 1,
+  "scope": "Local mock-data portfolio readiness after repository cleanup; October 9 scale/model captures remain separate unchanged evidence.",
+  "source_base_commit": "dbee4529608cfb8251c4896be9121bef2394f4f2",
+  "unchanged_scale_report": "benchmark-1000.json",
+  "verified_at": "2026-10-12T04:55:00.491059+00:00"
+}

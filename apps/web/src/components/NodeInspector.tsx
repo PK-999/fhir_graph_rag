@@ -1,5 +1,7 @@
 "use client";
 
+import { apiUrl } from "@/lib/api";
+
 import { useEffect, useState } from "react";
 import { X, ChevronRight, Code2 } from "lucide-react";
 import { getNodeDisplayName } from "@/lib/graph";
@@ -36,8 +38,7 @@ export function NodeInspector({
     async function loadExplore() {
       setLoading(true);
       try {
-        const url = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8010/api/v1";
-        const res = await fetch(`${url}/graph/explore/${encodeURIComponent(node!.id)}`);
+        const res = await fetch(apiUrl(`/graph/explore/${encodeURIComponent(node!.id)}`));
         const data = await res.json();
         setCategories(data.categories || []);
       } catch (err) {

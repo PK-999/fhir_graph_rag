@@ -1,6 +1,6 @@
 # Build Plan
 
-> **Historical roadmap:** The milestone record below and the September [finish-line tracker](FINISH_LINE_TRACKER.md) retain earlier plans, including a proposed 100,000-patient target. They do not describe the current release or establish that scale as verified. For the verified 100-patient portfolio demo, current checks, and remaining work, see the [README](../README.md) and [project review](PROJECT_REVIEW.md), updated 2026-10-05.
+> **Historical roadmap:** The milestone record below and the September [finish-line tracker](FINISH_LINE_TRACKER.md) retain earlier plans, including a proposed 100,000-patient target. They do not describe the current release or establish that scale as verified. For the verified 100-patient portfolio demo, current checks, and remaining work, see the [README](../../README.md) and [project review](PROJECT_REVIEW.md), updated 2026-10-05.
 
 ## Milestone 0 — repository bootstrap
 

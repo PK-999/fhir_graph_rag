@@ -1,3 +1,4 @@
+import { serverApiUrl } from "@/lib/server-api";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -11,10 +12,8 @@ import { PatientGraphTab } from "./PatientGraphTab";
 import { TimelineView } from "@/components/TimelineView";
 
 async function getPatientDetail(id: string) {
-  const apiUrl = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8010/api/v1";
-
   try {
-    const res = await fetch(`${apiUrl}/patients/${id}`, { cache: 'no-store' });
+    const res = await fetch(serverApiUrl(`/patients/${id}`), { cache: 'no-store' });
     if (!res.ok) throw new Error("Patient not found");
     return res.json();
   } catch (error) {
@@ -24,9 +23,8 @@ async function getPatientDetail(id: string) {
 }
 
 async function getPatientResource(id: string) {
-  const apiUrl = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8010/api/v1";
   try {
-    const res = await fetch(`${apiUrl}/resources/Patient/${encodeURIComponent(id)}`, {
+    const res = await fetch(serverApiUrl(`/resources/Patient/${encodeURIComponent(id)}`), {
       cache: "no-store",
       signal: AbortSignal.timeout(6000),
     });

@@ -1,5 +1,7 @@
 "use client";
 
+import { apiUrl } from "@/lib/api";
+
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { Bot, FileJson, Send } from "lucide-react";
@@ -8,7 +10,6 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8010/api/v1";
 const examples = ["List five patients", "Find patients with type 2 diabetes", "Find patients whose latest HbA1c is above 8% with active Metformin", "Show history for Patient/p-000001", "Which patients have active Metformin prescriptions?", "Show lab history for Patient/p-000001"];
 type Row = Record<string, unknown>;
 type Evidence = { type: string; id: string; label: string; patient_id: string; source_url: string; facts: Row };
@@ -31,7 +32,7 @@ function EvidenceCard({ evidence }: { evidence: Evidence }) {
     setProvenanceError(undefined); setProvenanceLoading(true);
     try {
       if (!/^[A-Za-z]+\/[A-Za-z0-9.-]+$/.test(evidence.id)) throw new Error("Invalid source reference.");
-      const response = await fetch(`${API}/lineage/resources/${evidence.id}`);
+      const response = await fetch(apiUrl(`/lineage/resources/${evidence.id}`));
       const payload = await response.json();
       if (!response.ok) throw new Error("Provenance is unavailable. Please retry.");
       setProvenance(payload);
@@ -44,7 +45,7 @@ function EvidenceCard({ evidence }: { evidence: Evidence }) {
     setError(undefined); setLoading(true);
     try {
       if (!/^\/resources\/[A-Za-z]+\/[A-Za-z0-9.-]+$/.test(evidence.source_url)) throw new Error("Invalid source reference.");
-      const response = await fetch(`${API}${evidence.source_url}`);
+      const response = await fetch(apiUrl(evidence.source_url));
       const payload = await response.json();
       if (!response.ok) throw new Error(typeof payload.detail === "string" ? payload.detail : "FHIR source is unavailable.");
       setSource(payload);
@@ -77,7 +78,7 @@ export default function AssistantPage() {
     if (!question.trim() || loading) return;
     setLoading(true); setError(undefined); setPageError(undefined); setAnswer(undefined); setAsked(question); setAskedSummary(useSummaryModel);
     try {
-      const response = await fetch(`${API}/assistant/query`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ query: question, use_summary_model: useSummaryModel }) });
+      const response = await fetch(apiUrl("/assistant/query"), { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ query: question, use_summary_model: useSummaryModel }) });
       const payload = await response.json();
       if (!response.ok) throw new Error(typeof payload.detail === "string" ? payload.detail : "The question service failed. Please retry.");
       setAnswer(payload as Answer);
@@ -89,7 +90,7 @@ export default function AssistantPage() {
     const current = answer;
     setLoading(true); setPageError(undefined);
     try {
-      const response = await fetch(`${API}/assistant/query`, {
+      const response = await fetch(apiUrl("/assistant/query"), {
         method: "POST", headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query: asked, plan: current.plan, offset: current.pagination!.next_offset, use_summary_model: askedSummary }),
       });

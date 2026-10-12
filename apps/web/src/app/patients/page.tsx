@@ -1,3 +1,4 @@
+import { serverApiUrl } from "@/lib/server-api";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -22,8 +23,7 @@ function SortHeader({ active, href, label }: SortHeaderProps) {
 }
 
 async function searchPatients(query: string, gender: string, dobStart: string, dobEnd: string, page: number = 1, sort: string = "name", order: string = "asc") {
-  const apiUrl = process.env.API_INTERNAL_URL || process.env.NEXT_PUBLIC_API_URL || "http://localhost:8010/api/v1";
-  const url = new URL(`${apiUrl}/patients`);
+  const url = new URL(serverApiUrl("/patients"));
   if (query) url.searchParams.append("q", query);
   if (gender) url.searchParams.append("gender", gender);
   if (dobStart) url.searchParams.append("dob_start", dobStart);

@@ -15,7 +15,6 @@ RUN pip install --no-cache-dir -c requirements.lock -e . -e apps/api
 
 # ── Dev target (hot-reload) ──
 FROM base AS dev
-COPY . .
 EXPOSE 8000
 CMD ["uvicorn", "apps.api.app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
 

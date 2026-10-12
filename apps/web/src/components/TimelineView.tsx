@@ -1,5 +1,7 @@
 "use client";
 
+import { apiUrl } from "@/lib/api";
+
 import { useEffect, useState } from "react";
 import { Calendar, Activity, Pill, Stethoscope, Scissors, Clock } from "lucide-react";
 
@@ -36,8 +38,7 @@ export function TimelineView({ patientId }: { patientId: string }) {
     async function load() {
       setLoading(true);
       try {
-        const url = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8010/api/v1";
-        const res = await fetch(`${url}/patients/${patientId}/timeline`);
+        const res = await fetch(apiUrl(`/patients/${patientId}/timeline`));
         const data = await res.json();
         setEvents(data.events || []);
       } catch (err) {
